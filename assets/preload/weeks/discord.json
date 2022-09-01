@@ -1,0 +1,50 @@
+{
+	"songs": [
+		[
+			"Pinged",
+			"bf",
+			[
+				146,
+				113,
+				253
+			]
+		],
+		[
+			"Channel",
+			"bf",
+			[
+				146,
+				113,
+				253
+			]
+		],
+		[
+			"Mic-Up",
+			"bf",
+			[
+				146,
+				113,
+				253
+			]
+		]
+	],
+	"hiddenUntilUnlocked": false,
+	"hideFreeplay": false,
+	"weekBackground": "stage",
+	"difficulties": "",
+	"weekCharacters": [
+		"dad",
+		"bf",
+		"gf"
+	],
+	"storyName": "you banned bitcch",
+	"weekName": "discord",
+	"freeplayColor": [
+		146,
+		113,
+		253
+	],
+	"hideStoryMode": true,
+	"weekBefore": "tutorial",
+	"startUnlocked": true
+}
