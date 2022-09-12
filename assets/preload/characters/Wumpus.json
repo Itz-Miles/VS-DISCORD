@@ -1,0 +1,78 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"loop": false,
+			"fps": 20,
+			"anim": "idle",
+			"indices": [],
+			"name": "idle"
+		},
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"loop": false,
+			"fps": 17,
+			"anim": "singUP",
+			"indices": [],
+			"name": "singUP"
+		},
+		{
+			"offsets": [
+				-1,
+				0
+			],
+			"loop": false,
+			"fps": 17,
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "singDOWN"
+		},
+		{
+			"offsets": [
+				-1,
+				0
+			],
+			"loop": false,
+			"fps": 17,
+			"anim": "singLEFT",
+			"indices": [],
+			"name": "singLEFT"
+		},
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"loop": false,
+			"fps": 17,
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "singRIGHT"
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/Wumpus",
+	"position": [
+		-140,
+		50
+	],
+	"healthicon": "Wumpus",
+	"flip_x": false,
+	"healthbar_colors": [
+		81,
+		77,
+		210
+	],
+	"camera_position": [
+		0,
+		0
+	],
+	"sing_duration": 4,
+	"scale": 1.6
+}

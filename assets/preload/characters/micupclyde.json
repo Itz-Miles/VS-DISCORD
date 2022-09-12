@@ -1,0 +1,78 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				-7,
+				0
+			],
+			"loop": false,
+			"fps": 18,
+			"anim": "idle",
+			"indices": [],
+			"name": "idle"
+		},
+		{
+			"offsets": [
+				-5,
+				0
+			],
+			"loop": false,
+			"fps": 18,
+			"anim": "singLEFT",
+			"indices": [],
+			"name": "singLEFT"
+		},
+		{
+			"offsets": [
+				-5,
+				0
+			],
+			"loop": false,
+			"fps": 18,
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "singDOWN"
+		},
+		{
+			"offsets": [
+				-5,
+				-1
+			],
+			"loop": false,
+			"fps": 18,
+			"anim": "singUP",
+			"indices": [],
+			"name": "singUP"
+		},
+		{
+			"offsets": [
+				-4,
+				1
+			],
+			"loop": false,
+			"fps": 18,
+			"anim": "singRIGHT",
+			"indices": [],
+			"name": "singRIGHT"
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/micupclyde",
+	"position": [
+		-990,
+		-690
+	],
+	"healthicon": "micupclyde",
+	"flip_x": false,
+	"healthbar_colors": [
+		88,
+		101,
+		242
+	],
+	"camera_position": [
+		1050,
+		870
+	],
+	"sing_duration": 5.99999999999999,
+	"scale": 0.2
+}
