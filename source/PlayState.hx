@@ -502,6 +502,14 @@ class PlayState extends MusicBeatState
 				}
 				dadbattleSmokes = new FlxSpriteGroup(); //troll'd
 
+			case 'general':
+				var stageBack:BGSprite = new BGSprite('stageback', -600, -300, 0.9, 0.9);
+				var stageFront:BGSprite = new BGSprite('stagefront', -650, 600, 1, 1);
+				stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
+				stageFront.updateHitbox();
+				add(stageBack);
+				add(stageFront);
+
 			case 'spooky': //Week 2
 				if(!ClientPrefs.lowQuality) {
 					halloweenBG = new BGSprite('halloween_bg', -200, -100, ['halloweem bg0', 'halloweem bg lightning strike']);

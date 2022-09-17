@@ -5433,7 +5433,7 @@
 		"song": "Pinged",
 		"needsVoices": true,
 		"arrowSkin": "",
-		"stage": "#general",
+		"stage": "general",
 		"validScore": true,
 		"bpm": 140,
 		"speed": 2
