@@ -19,7 +19,6 @@ import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import lime.app.Application;
 import flixel.math.FlxAngle;
-import Achievements;
 import flixel.input.keyboard.FlxKey;
 
 using StringTools;
@@ -130,7 +129,7 @@ class MainMenuState extends MusicBeatState {
 			switch (sideBarSelect) {
 				case 0:
 					FlxG.sound.play(Paths.sound('confirmMenu'));
-					new FlxTimer().start(1, function(tmr:FlxTimer){MusicBeatState.switchState(new StoryMenuState());});
+					new FlxTimer().start(1, function(tmr:FlxTimer){MusicBeatState.switchState(new StoryMenuChannel());});
 				case 1:
 					FlxG.sound.play(Paths.sound('confirmMenu'));
 					new FlxTimer().start(1, function(tmr:FlxTimer){MusicBeatState.switchState(new FreeplayState());});
