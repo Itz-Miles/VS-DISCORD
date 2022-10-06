@@ -127,8 +127,9 @@ class TitleState extends MusicBeatState
 		Conductor.changeBPM(102);
 		persistentUpdate = true;
 
-		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('BG_test'));
+		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
 		bg.screenCenter();
+		bg.color = 0x3b3a3a;
 		add(bg);
 		
 		titleChar = new FlxSprite(758, 219);
@@ -144,24 +145,36 @@ class TitleState extends MusicBeatState
 		add(logoBl);
 		FlxTween.tween(logoBl.scale, {x:0.39, y:0.39}, 0.1, {ease: FlxEase.cubeOut, type: FlxTween.PERSIST});
 
+		
 		splashText = new FlxSprite(-1000, 500).loadGraphic(Paths.image('splashText'));
 		splashText.updateHitbox();
 		splashText.antialiasing = ClientPrefs.globalAntialiasing;
 		splashText.screenCenter(X);
 		add(splashText);
         FlxTween.tween(splashText.scale, {x:0.23, y:0.23}, 0.1, {ease: FlxEase.cubeOut, type: FlxTween.PERSIST});
+
 		credGroup = new FlxGroup();
 		add(credGroup);
 		textGroup = new FlxGroup();
 
-		bgScreen = new FlxSprite().loadGraphic(Paths.image('bgScreen'));
-		credGroup.add(bgScreen);
 
 		credTextShit = new Alphabet(0, 0, "", true);
 		credTextShit.screenCenter();
 
-
 		credTextShit.visible = false;
+
+		credGroup = new FlxGroup();
+		add(credGroup);
+		textGroup = new FlxGroup();
+
+		bgScreen = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
+		bgScreen.color = 0x3b3a3a;
+		credGroup.add(bgScreen);
+
+		credTextShit = new Alphabet(0, 0, "", true);
+		credTextShit.screenCenter();
+		credTextShit.visible = false;
+		FlxTween.tween(credTextShit, {y: credTextShit.y + 20}, 2.9, {ease: FlxEase.quadInOut, type: PINGPONG});
 
 		logoSpr = new FlxSprite(0, FlxG.height * 0.4).loadGraphic(Paths.image('titlelogo'));
 		add(logoSpr);
@@ -170,8 +183,6 @@ class TitleState extends MusicBeatState
 		logoSpr.updateHitbox();
 		logoSpr.screenCenter(X);
 		logoSpr.antialiasing = ClientPrefs.globalAntialiasing;
-
-		FlxTween.tween(credTextShit, {y: credTextShit.y + 20}, 2.9, {ease: FlxEase.quadInOut, type: PINGPONG});
 
 		if (initialized)
 			skipIntro();
@@ -277,6 +288,7 @@ class TitleState extends MusicBeatState
 
 	private var sickBeats:Int = 0;
 	public static var closedState:Bool = false;
+
 	override function beatHit() {
 		super.beatHit();
 		if(splashText != null) FlxTween.tween(splashText.scale, {x:0.34, y:0.34}, 0.165, { type: FlxTween.PERSIST, ease: FlxEase.cubeOut, onComplete: tweenBack});
@@ -304,7 +316,6 @@ class TitleState extends MusicBeatState
 				case 6:
 					createCoolText(['A mod to'], -60);
 				case 8:
-					addMoreText('this game below', -60);
 					logoSpr.visible = true;
 				case 9:
 					deleteCoolText();
@@ -336,12 +347,6 @@ class TitleState extends MusicBeatState
 			FlxG.camera.flash(FlxColor.BLACK, 2);
 			remove(credGroup);
 			skippedIntro = true;
-			/*
-			openfl.Lib.application.window.width = 1366;
-            openfl.Lib.application.window.height = 768;
-            openfl.Lib.application.window.x = 0;
-        	openfl.Lib.application.window.y = 24;
-			*/
 		}
 	}
 }

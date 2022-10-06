@@ -53,19 +53,17 @@ class MainMenuState extends MusicBeatState {
 		FlxCamera.defaultCameras = [camGame];
 		persistentUpdate = persistentDraw = true;
 
-		var bg:FlxSprite = new FlxSprite(483, -166).loadGraphic(Paths.image('bg'));
-		bg.scrollFactor.set(0, 0.2);
+		var bg:FlxSprite = new FlxSprite(393, -166).loadGraphic(Paths.image('bg'));
+		bg.scrollFactor.set(0, 0.4);
 		bg.antialiasing = ClientPrefs.globalAntialiasing;
 		add(bg);
 
-		sideBar = new FlxSprite(0, 0).loadGraphic(Paths.image('stripcrude'));
+		sideBar = new FlxSprite(0, 0).loadGraphic(Paths.image('palette'));
 		sideBar.scrollFactor.set(0, 0);
+		sideBar.setGraphicSize(1290, 720);
+		sideBar.updateHitbox();
 		add(sideBar);
 		
-		directoryBar = new FlxSprite(130, 0).loadGraphic(Paths.image('serverName'));
-		directoryBar.scrollFactor.set(0, 0);
-		add(directoryBar);
-
 		camFollow = new FlxObject(0, 0, 1, 1);
 		camFollowPos = new FlxObject(0, 0, 1, 1);
 		add(camFollow);
@@ -76,8 +74,8 @@ class MainMenuState extends MusicBeatState {
 		menuItems = new FlxTypedGroup<FlxSprite>();
 		add(menuItems);
 
-		for (i in 0...3) {
-			var menuItem:FlxSprite = new FlxSprite(130, 87 + (i * 88));
+		for (i in 0...4) {
+			var menuItem:FlxSprite = new FlxSprite(100, 85 + (i * 88));
 			menuItem.ID = i;
 			menuItem.loadGraphic(Paths.image('menuItems/item' + menuItem.ID + (sideBarSelect == menuItem.ID)));
 			menuItem.origin.set(0, 0);
@@ -129,11 +127,14 @@ class MainMenuState extends MusicBeatState {
 			switch (sideBarSelect) {
 				case 0:
 					FlxG.sound.play(Paths.sound('confirmMenu'));
-					new FlxTimer().start(1, function(tmr:FlxTimer){MusicBeatState.switchState(new StoryMenuChannel());});
+					new FlxTimer().start(1, function(tmr:FlxTimer){CoolUtil.browserLoad('https://www.youtube.com/watch?v=dQw4w9WgXcQ');});
 				case 1:
 					FlxG.sound.play(Paths.sound('confirmMenu'));
-					new FlxTimer().start(1, function(tmr:FlxTimer){MusicBeatState.switchState(new FreeplayState());});
+					new FlxTimer().start(1, function(tmr:FlxTimer){MusicBeatState.switchState(new StoryMenuChannel());});
 				case 2:
+					FlxG.sound.play(Paths.sound('confirmMenu'));
+					new FlxTimer().start(1, function(tmr:FlxTimer){MusicBeatState.switchState(new FreeplayState());});
+				case 3:
 					FlxG.sound.play(Paths.sound('confirmMenu'));
 					new FlxTimer().start(1, function(tmr:FlxTimer){MusicBeatState.switchState(new options.OptionsState());});
 				}	
@@ -143,8 +144,8 @@ class MainMenuState extends MusicBeatState {
 	}
 
 	function reloadItemGraphics(sus:String = '') {
-		if (sideBarSelect == 3) sideBarSelect = 0;
-		if (sideBarSelect <= -1) sideBarSelect = 2;
+		if (sideBarSelect == 4) sideBarSelect = 0;
+		if (sideBarSelect <= -1) sideBarSelect = 3;
 		switch(sus){
 			case 'precache': //used during the transition
 				menuItems.forEach(function(spr:FlxSprite) { //loads all of the selected graphics in advance
