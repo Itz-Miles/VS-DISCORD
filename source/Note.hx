@@ -142,6 +142,16 @@ class Note extends FlxSprite
 						missHealth = 0.3;
 					}
 					hitCausesMiss = true;
+					case 'Instakill notes'://deprecated, replace with 'Kill Note' (really creative mechanics you got there, Vs Discord team)
+					ignoreNote = mustPress;
+					reloadNote('Instakill');//deprecated, use conforming names.
+					noteSplashTexture = 'deathsplash';//deprecated. Use camelCase, 9fox.
+					colorSwap.hue = 0;
+					colorSwap.saturation = 0;
+					colorSwap.brightness = 0;
+					lowPriority = true;
+					missHealth = 2;
+					hitCausesMiss = true;
 				case 'Alt Animation':
 					animSuffix = '-alt';
 				case 'No Animation':

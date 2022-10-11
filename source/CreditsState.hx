@@ -81,6 +81,15 @@ class CreditsState extends MusicBeatState
 		#end
 
 		var pisspoop:Array<Array<String>> = [ //Name - Icon name - Description - Link - BG Color
+			['Vs Discord Team'],
+			['Xb9Fox',               'xb9fox',          'Director/Composer/other',         'https://www.youtube.com/channel/UC86G4WsNrRBPqUhiXRjdjcA/videos', 'FFC3A1D4'],
+			['Microwave',            'microwave',       'Artist',                                 'https://www.reddit.com/user/LatinDank/',                   'FF828199'],
+			['Gwahyzark',            'gwahyzark',       'Charter',                                'https://www.youtube.com/watch?v=dQw4w9WgXcQ',              'FFF5E09A'],
+			['NathGlitchy64',        'nath',            'Composer',                               'https://www.youtube.com/channel/UCgKU9V7Pv-zsnQxtnAvO1kw', 'FFEDE247'],
+			['CookieBun',            'cookiebun',       'Animator/Artist',                        'https://www.youtube.com/channel/UCJPKP1C_lNsOIYSq7ncQX6g', 'FFF0E4AF'],
+			['Marten The Animal',    'marten',          'Animator',                               'https://www.youtube.com/channel/UCzanQGmdTOdKF24V-Mh3dXA', 'FF805F18'],
+			['Itz_Miles',  'miles test',  'UI Designer\nGameplay Programmer\nGraphics Specialist', 'https://www.youtube.com/channel/UCiJn3MxuIm8299uy34kTLHQ',  'FFFFFF'],
+			[''],
 			['Psych Engine Team'],
 			['Shadow Mario',		'shadowmario',		'Main Programmer of Psych Engine',								'https://twitter.com/Shadow_Mario_',	'444444'],
 			['RiverOaken',			'river',			'Main Artist/Animator of Psych Engine',							'https://twitter.com/RiverOaken',		'B42F71'],
