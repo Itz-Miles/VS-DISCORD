@@ -1,110 +1,110 @@
 {
 	"animations": [
 		{
+			"loop": false,
 			"offsets": [
 				-5,
 				0
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "idle",
-			"indices": [],
-			"name": "idle"
-		},
-		{
-			"offsets": [
-				-5,
-				0
-			],
-			"loop": false,
 			"fps": 24,
-			"anim": "singLEFT",
-			"indices": [],
-			"name": "singLEFT"
-		},
-		{
-			"loop": false,
-			"offsets": [
-				-5,
-				0
-			],
-			"anim": "singDOWN",
-			"fps": 24,
-			"name": "singDOWN",
+			"name": "idle",
 			"indices": []
 		},
 		{
 			"loop": false,
+			"offsets": [
+				-5,
+				0
+			],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "singLEFT",
+			"indices": []
+		},
+		{
+			"offsets": [
+				-5,
+				0
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "singDOWN",
+			"indices": [],
+			"name": "singDOWN"
+		},
+		{
 			"offsets": [
 				-5,
 				-1
 			],
-			"anim": "singUP",
+			"loop": false,
 			"fps": 24,
-			"name": "singUP",
-			"indices": []
+			"anim": "singUP",
+			"indices": [],
+			"name": "singUP"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				-4,
 				1
 			],
+			"loop": false,
+			"fps": 24,
 			"anim": "singRIGHT",
-			"fps": 24,
-			"name": "singRIGHT",
-			"indices": []
+			"indices": [],
+			"name": "singRIGHT"
 		},
 		{
+			"offsets": [
+				-5,
+				0
+			],
 			"loop": true,
-			"offsets": [
-				-5,
-				0
-			],
+			"fps": 24,
 			"anim": "singLEFTmiss",
-			"fps": 24,
-			"name": "miss",
-			"indices": []
+			"indices": [],
+			"name": "miss"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				-5,
 				0
 			],
+			"loop": false,
+			"fps": 24,
 			"anim": "singDOWNmiss",
-			"fps": 24,
-			"name": "miss",
-			"indices": []
+			"indices": [],
+			"name": "miss"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				-5,
 				0
 			],
+			"loop": false,
+			"fps": 24,
 			"anim": "singUPmiss",
-			"fps": 24,
-			"name": "miss",
-			"indices": []
+			"indices": [],
+			"name": "miss"
 		},
 		{
-			"loop": false,
 			"offsets": [
 				-5,
 				0
 			],
-			"anim": "singRIGHTmiss",
+			"loop": false,
 			"fps": 24,
-			"name": "miss",
-			"indices": []
+			"anim": "singRIGHTmiss",
+			"indices": [],
+			"name": "miss"
 		}
 	],
 	"no_antialiasing": false,
 	"image": "characters/mic-up-bf",
 	"position": [
-		-1000,
-		-760
+		-390,
+		-150
 	],
 	"healthicon": "bf",
 	"flip_x": true,
@@ -115,8 +115,8 @@
 	],
 	"camera_position": [
 		0,
-		0
+		250
 	],
 	"sing_duration": 5.99999999999999,
-	"scale": 0.2
+	"scale": 0.4
 }

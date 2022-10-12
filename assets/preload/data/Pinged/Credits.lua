@@ -6,7 +6,7 @@ artist1 = 'MICROWAVE, XB9FOX, NATHGLITCHY62'
 
 animator = 'MARTEN THE ANIMAL'
 
-music = 'NATHGLITCHY64'
+music = 'NATHGLITCHY62'
 
 Bitch = 1
 function onCreate()

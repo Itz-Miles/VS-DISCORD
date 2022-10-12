@@ -62,7 +62,7 @@
 		-990,
 		-690
 	],
-	"healthicon": "micupclyde",
+	"healthicon": "clydepissed",
 	"flip_x": false,
 	"healthbar_colors": [
 		88,
@@ -70,8 +70,8 @@
 		242
 	],
 	"camera_position": [
-		1050,
-		870
+		1070,
+		1030
 	],
 	"sing_duration": 5.99999999999999,
 	"scale": 0.2

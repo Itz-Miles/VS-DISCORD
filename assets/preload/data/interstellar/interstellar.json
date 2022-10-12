@@ -1,6 +1,6 @@
 {
 	"song": {
-		"player1": "BFPhase3_Perspective_Flipped",
+		"player1": "space_boyfrend",
 		"gfVersion": "gf",
 		"notes": [
 			{
@@ -1936,31 +1936,72 @@
 				"sectionNotes": [
 					[
 						112000,
-						1,
-						375
-					],
-					[
-						113000,
-						3,
-						375
-					],
-					[
-						112000,
-						7,
-						375
-					],
-					[
-						112500,
-						4,
-						375
-					],
-					[
-						113000,
 						5,
 						375
 					],
 					[
+						113000,
+						7,
+						375
+					],
+					[
+						112000,
+						3,
+						375
+					],
+					[
+						112500,
+						0,
+						375
+					],
+					[
+						113000,
+						1,
+						375
+					],
+					[
 						113500,
+						2,
+						375
+					]
+				],
+				"typeOfSection": 0,
+				"gfSection": false,
+				"altAnim": false,
+				"mustHitSection": false,
+				"changeBPM": false,
+				"bpm": 120
+			},
+			{
+				"sectionBeats": 4,
+				"sectionNotes": [
+					[
+						114000,
+						0,
+						375
+					],
+					[
+						114500,
+						3,
+						375
+					],
+					[
+						115000,
+						1,
+						375
+					],
+					[
+						115500,
+						3,
+						375
+					],
+					[
+						115000,
+						4,
+						375
+					],
+					[
+						114000,
 						6,
 						375
 					]
@@ -1976,64 +2017,23 @@
 				"sectionBeats": 4,
 				"sectionNotes": [
 					[
-						114000,
-						4,
-						375
-					],
-					[
-						114500,
-						7,
-						375
-					],
-					[
-						115000,
-						5,
-						375
-					],
-					[
-						115500,
-						7,
-						375
-					],
-					[
-						115000,
-						0,
-						375
-					],
-					[
-						114000,
-						2,
-						375
-					]
-				],
-				"typeOfSection": 0,
-				"gfSection": false,
-				"altAnim": false,
-				"mustHitSection": false,
-				"changeBPM": false,
-				"bpm": 120
-			},
-			{
-				"sectionBeats": 4,
-				"sectionNotes": [
-					[
 						116000,
-						2,
+						6,
 						375
 					],
 					[
 						117000,
-						3,
-						375
-					],
-					[
-						117500,
 						7,
 						375
 					],
 					[
+						117500,
+						3,
+						375
+					],
+					[
 						116000,
-						4,
+						0,
 						375
 					]
 				],
@@ -2047,24 +2047,24 @@
 			{
 				"sectionBeats": 4,
 				"sectionNotes": [
+					[
+						118000,
+						4,
+						625
+					],
+					[
+						119000,
+						6,
+						375
+					],
 					[
 						118000,
 						0,
 						625
 					],
 					[
-						119000,
-						2,
-						375
-					],
-					[
-						118000,
-						4,
-						625
-					],
-					[
 						119500,
-						7,
+						3,
 						375
 					]
 				],
@@ -2207,14 +2207,74 @@
 				"bpm": 120
 			},
 			{
-				"gfSection": false,
-				"altAnim": false,
 				"typeOfSection": 0,
 				"sectionNotes": [],
-				"bpm": 120,
 				"sectionBeats": 4,
+				"altAnim": false,
+				"gfSection": false,
+				"bpm": 120,
 				"changeBPM": false,
 				"mustHitSection": true
+			},
+			{
+				"typeOfSection": 0,
+				"sectionNotes": [],
+				"sectionBeats": 4,
+				"altAnim": false,
+				"gfSection": false,
+				"bpm": 120,
+				"changeBPM": false,
+				"mustHitSection": true
+			},
+			{
+				"typeOfSection": 0,
+				"sectionNotes": [],
+				"sectionBeats": 4,
+				"altAnim": false,
+				"gfSection": false,
+				"bpm": 120,
+				"changeBPM": false,
+				"mustHitSection": true
+			},
+			{
+				"typeOfSection": 0,
+				"sectionNotes": [],
+				"sectionBeats": 4,
+				"altAnim": false,
+				"gfSection": false,
+				"bpm": 120,
+				"changeBPM": false,
+				"mustHitSection": true
+			},
+			{
+				"sectionBeats": 4,
+				"sectionNotes": [],
+				"typeOfSection": 0,
+				"gfSection": false,
+				"altAnim": false,
+				"mustHitSection": true,
+				"changeBPM": false,
+				"bpm": 120
+			},
+			{
+				"sectionBeats": 4,
+				"sectionNotes": [],
+				"typeOfSection": 0,
+				"gfSection": false,
+				"altAnim": false,
+				"mustHitSection": true,
+				"changeBPM": false,
+				"bpm": 120
+			},
+			{
+				"sectionBeats": 4,
+				"sectionNotes": [],
+				"typeOfSection": 0,
+				"gfSection": false,
+				"altAnim": false,
+				"mustHitSection": true,
+				"changeBPM": false,
+				"bpm": 120
 			},
 			{
 				"gfSection": false,

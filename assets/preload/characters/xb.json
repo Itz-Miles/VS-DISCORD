@@ -1,0 +1,78 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [
+				35,
+				124
+			],
+			"anim": "idle",
+			"fps": 24,
+			"name": "9FOX idle",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				33,
+				120
+			],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "9FOX left",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				20,
+				120
+			],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "9FOX down",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				24,
+				125
+			],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "9FOX up",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				21,
+				121
+			],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "9FOX right",
+			"indices": []
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/9fox",
+	"position": [
+		0,
+		350
+	],
+	"healthicon": "9fox",
+	"flip_x": true,
+	"healthbar_colors": [
+		76,
+		56,
+		115
+	],
+	"camera_position": [
+		80,
+		-110
+	],
+	"sing_duration": 4,
+	"scale": 0.9
+}

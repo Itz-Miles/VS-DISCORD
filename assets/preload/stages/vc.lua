@@ -3,9 +3,9 @@ function onCreate()
 	makeLuaSprite('vcback', 'vcback', -600, -300);
 	setScrollFactor('vcback', 0.9, 0.9);
 	
-	makeLuaSprite('vcfront', 'vcfront', -650, 600);
+	makeLuaSprite('vcfront', 'vcfront', -465, 750);
 	setScrollFactor('vcfront', 0.9, 0.9);
-	scaleObject('vcfront', 1.1, 1.1);
+	scaleObject('vcfront', 0.9, 0.9);
 
 	addLuaSprite('vcback', false);
 	addLuaSprite('vcfront', false);

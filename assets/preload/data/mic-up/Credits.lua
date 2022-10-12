@@ -1,10 +1,10 @@
-coder1 = 'XB9FOX, MARTEN THE ANIMAL'
+coder1 = 'ITZ_MILES'
 
-charter = 'GWAHYZARK, XB9FOX'
+charter = 'MARIOLOLZ'
 
-artist1 = 'MICROWAVE, XB9FOX'
+artist1 = 'MADEXX, XB9FOX, MICROWAVE'
 
-animator = 'MARTEN THE ANIMAL, XB9FOX'
+animator = 'MADEXX, XB9FOX'
 
 music = 'XB9FOX'
 
