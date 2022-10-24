@@ -20,11 +20,10 @@ class ParallaxSprite extends FlxSprite
 
         public function new(img:String, x:Float = 0, y:Float = 0) {
 			super(x, y); /* ALWAYS call back to constructors immedately whgen overriding low-level functions. Putting super() after loadGraphic causes a crash.*/
-            loadGraphic(Paths.image(img));            
+            loadGraphic(Paths.image(img));          
             antialiasing = ClientPrefs.globalAntialiasing;
             origin.set(0, 0); //just in case
         }
-
 
         /* 
         Call this function to anchor the sprite's neutral position/set skew factors/set direction.
@@ -32,6 +31,8 @@ class ParallaxSprite extends FlxSprite
         */
         public function fixate(anchorX:Int = 0, anchorY:Int = 0, scrollOneX:Float = 1, scrollOneY:Float = 1, scrollTwoX:Float = 1.1, scrollTwoY:Float = 1.1, direct:String = 'horizontal'):Void {
             direction = direct;
+            pointOne.scrollFactor.set(1, 1);// just in case 2: electric boogaloo
+            pointTwo.scrollFactor.set(1, 1);
             pointOne.setPosition(anchorX, anchorY);
             switch(direction) {
                 case 'horizontal':
@@ -88,26 +89,37 @@ class ParallaxSprite extends FlxSprite
     function updateScrollMatrix():Void {
 		_scrollMatrix.identity();
 
-		switch(direction) {
+		switch(direction) {//note to miles: sprites can jitter when subjected to subpixel increments. update the matrix only under certain conditions.
 
 			case 'horizontal'://floors, ceilings, and other horizontal elements
                 setGraphicSize(Std.int(frameWidth), Std.int(pointTwo.getScreenPosition().y - pointOne.getScreenPosition().y));
 				_scrollMatrix.c = ((pointTwo.getScreenPosition().x - pointOne.getScreenPosition().x) / ((frameHeight)));
 				
-                
         	case 'vertical': // walls and other vertical elements
                 setGraphicSize(Std.int(pointTwo.getScreenPosition().x - pointOne.getScreenPosition().x), Std.int(frameHeight));
-				_scrollMatrix.b = ((frameWidth) / (pointTwo.getScreenPosition().x - pointOne.getScreenPosition().x));
+				_scrollMatrix.b = ((pointTwo.getScreenPosition().y - pointOne.getScreenPosition().y) / (frameWidth));
 		}
 		_matrix.concat(_scrollMatrix);
 	}
 }
 
 /*
- It'z_Miles
-
  Sprites with scroll factors that support 3D displacement projection.
  I haven't documented everything on this version, feel free to contact me for any info.
- If you fail to comply with the apache licsence's terms, I will beat you with a sack of oranges.
- (That means you, Bill! Don't nab code and remove the credit!)
+
+
+ Copyright 2022 It'z_Miles
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
 */
+
