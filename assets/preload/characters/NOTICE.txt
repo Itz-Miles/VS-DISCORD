@@ -1,0 +1,4 @@
+Soon for VS DISCORD, characters can be loaded anywhere in the game. I'm going to rename most filepath prefixes to: 
+character name - status effect - stage
+(because i just think its neat)
+(its actually for other reasons too!!)
