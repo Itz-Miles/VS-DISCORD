@@ -1,12 +1,13 @@
-
-replace this with some cool art banner logo cover
 <!--view the pretty format on the webpage:
 https://github.com/Itz-Miles/VS-DISCORD
 -->
 
-______________________________________________________________________________________________________________________________________________________________________
+![logo](https://user-images.githubusercontent.com/95124554/225757488-505bd0b0-8d16-4f27-a7bd-f28fbdeb0c81.png)
+replace this with some cool art banner logo cover
+
+__________________________________________________________________________________________________________________________________________
 # Source code for VS Discord: A mod to Friday Night Funkin'
-If you just want to play Funkin' Minecraft, play it [here.](https://itz-miles.github.io/VS-DISCORD-test)
+If you just want to play VS DISCORD, play it [here.](https://itz-miles.github.io/VS-DISCORD-test)
 
 # Building From Source
 
@@ -36,7 +37,7 @@ Open Terminal in Launchpad's Utillities folder.
 Spotlight Search for Terminal.
 ```
 ## Haxe Module Manager
-To install HMM for installing and managing libraries needed for Funkin' Minecraft, run the following command:
+To install HMM for installing and managing libraries needed for VS DISCORD, run the following command:
 `haxelib install hmm`
 
 To install the libraries listed in hmm.json, run the following command:
@@ -78,12 +79,13 @@ lime build mac
 # Credits:
 
 ©xb9fox 2023 - Some rights reserved.
+
 ©It'z_Miles 2023 - Some rights reserved.
 
 (will have to determine what assets to attribute for copyright purposes. Gonna use both Apache 2.0 and CC BY-NC 2.0)
 (will add library and engine licencing soon)
 
-VS DISCORD is not an official `Discord.` product. Not licensed by or assosiated with `Discord.`.
+VS DISCORD is not an official Discord product. Not licensed by or assosiated with Discord.
 
 ## VS Discord Team
 * xb9fox - did a thing
