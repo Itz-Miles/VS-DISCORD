@@ -1,9 +1,17 @@
-# FNF-VS-Discord
-Source code for VS Discord: A mod to Friday Night Funkin'
 
-# Installation:
+replace this with some cool art banner logo cover
+<!--view the pretty format on the webpage:
+https://github.com/Itz-Miles/VS-DISCORD
+-->
 
-If you just want to play VS Discord, just download and play here: (put updated gamebanana hyperlink thingie here)
+______________________________________________________________________________________________________________________________________________________________________
+# Source code for VS Discord: A mod to Friday Night Funkin'
+If you just want to play Funkin' Minecraft, play it [here.](https://itz-miles.github.io/VS-DISCORD-test)
+
+# Building From Source
+
+## Haxe
+You must have [the most up-to-date version of Haxe](https://haxe.org/download/) (4.2.4+) in order to compile.
 
 ## Visual Studio
 `windows` To install the software needed to compile: install [Visual Studio 19](https://visualstudio.microsoft.com/vs/older-downloads/#visual-studio-2019-and-other-products) and ONLY these components:
@@ -27,57 +35,15 @@ Open Terminal in Launchpad's Utillities folder.
 
 Spotlight Search for Terminal.
 ```
+## Haxe Module Manager
+To install HMM for installing and managing libraries needed for Funkin' Minecraft, run the following command:
+`haxelib install hmm`
 
-## Haxe
-You must have [the most up-to-date version of Haxe](https://haxe.org/download/) (4.2.4+) in order to compile.
-
-## HaxeFlixel
-To install the latest stable version of HaxeFlixel needed to compile, run the following commands:
-
-```
-haxelib install lime
-haxelib install openfl
-haxelib install flixel
-haxelib run lime setup flixel
-haxelib run lime setup
-haxelib install flixel-tools
-haxelib run flixel-tools setup
-```
-You can update HaxeFlixel anytime by running this command:
-```
-haxelib update flixel
-```
-## Funkin' Addons
-To install additonal libraries needed to compile, run the following commands:
-```
-haxelib install flixel
-haxelib install flixel addons
-haxelib install flixel-ui
-haxelib install hscript
-haxelib install newgrounds
-```
-## GIT-scm
-To make installing packages from GitHub repositories easier, [install GIT-scm](https://git-scm.com/downloads)
- 
-After installing GIT-scm, run the following commands:
-```
-haxelib git polymod https://github.com/larsiusprime/polymod.git
-haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc
-```
-Don't use discord??? Ignore these, and delete the text on line 133 of Project.xml: `<haxelib name="discord_rpc" if="desktop"/>`
-## Funkin' Lua
-To instal the LuaScript API for Friday Night Funkin', run the following command:
-```
-haxelib git linc_luajit https://github.com/nebulazorua/linc_luajit
-```
-...Or don't. To play without the luascript API, delete the text on line 47 of Project.xml: `<define name="LUA_ALLOWED" if="desktop" />`
-
-If you want video support on your mod, simply do `haxelib install hxCodec` on a Command prompt/PowerShell
-
-otherwise, you can delete the "VIDEOS_ALLOWED" Line on Project.xml       changing this
+To install the libraries listed in hmm.json, run the following command:
+`haxelib run hmm install`
 
 ## Compilation
-Run the correlating commands in the Terminal that match your build target to compile.
+Run the correlating commands in the terminal that match your build target to compile.
 
 Note: If you see any messages relating to deprecated packages, ignore them. They're just warnings that don't affect compiling.
 
@@ -85,22 +51,62 @@ Note: If you see any messages relating to deprecated packages, ignore them. They
 ```
 lime test windows
 lime test windows -debug
+lime build windows
 ```
 
 `linux`
 ```
 lime test linux
 lime test linux debug
+lime build linux
 ```
 
 `html5`
 ``` 
 lime test html5
 lime test html5 -debug
+lime build html5
 ```
 
 `mac`
 ```
 lime test mac
 lime test mac -debug
+lime build mac
 ```
+
+# Credits:
+
+©xb9fox 2023 - Some rights reserved.
+©It'z_Miles 2023 - Some rights reserved.
+
+(will have to determine what assets to attribute for copyright purposes. Gonna use both Apache 2.0 and CC BY-NC 2.0)
+(will add library and engine licencing soon)
+
+VS DISCORD is not an official `Discord.` product. Not licensed by or assosiated with `Discord.`.
+
+## VS Discord Team
+* xb9fox - did a thing
+* person - did a thing
+* person - did a thing
+* person - did a thing
+* person - did a thing
+* person - did a thing
+* person - did a thing
+* person - did a thing
+* person - did a thing
+
+* It'z_Miles - Parallax 3D
+
+## Psych Engine:
+* Shadow Mario - Programmer/Owner of Psych
+* bbpanzu - Assistant Programmer
+* shubs - New Input System
+* PolybiusProxy - HxCodec Video Support
+* Keoiki - Note Splash Animations
+
+## Funkin' Crew
+* ninjamuffin99 - Programmer of Friday Night Funkin'
+* PhantomArcade -	Animator of Friday Night Funkin'
+* evilsk8r - Artist of Friday Night Funkin'
+* kawaisprite - Composer of Friday Night Funkin'
