@@ -57,7 +57,7 @@
 		}
 	],
 	"no_antialiasing": false,
-	"image": "characters/Wumpus",
+	"image": "characters/wumpus-space",
 	"position": [
 		-140,
 		50

@@ -8,7 +8,7 @@
 			],
 			"anim": "idle",
 			"fps": 24,
-			"name": "bf-mic-up idle",
+			"name": "bf-micup idle",
 			"indices": []
 		},
 		{
@@ -19,7 +19,7 @@
 			],
 			"anim": "singLEFT",
 			"fps": 24,
-			"name": "bf-mic-up singLEFT",
+			"name": "bf-micup singLEFT",
 			"indices": []
 		},
 		{
@@ -30,7 +30,7 @@
 			],
 			"anim": "singDOWN",
 			"fps": 24,
-			"name": "bf-mic-up singDOWN",
+			"name": "bf-micup singDOWN",
 			"indices": []
 		},
 		{
@@ -41,7 +41,7 @@
 			],
 			"anim": "singUP",
 			"fps": 24,
-			"name": "bf-mic-up singUP",
+			"name": "bf-micup singUP",
 			"indices": []
 		},
 		{
@@ -52,7 +52,7 @@
 			],
 			"anim": "singRIGHT",
 			"fps": 24,
-			"name": "bf-mic-up singRIGHT",
+			"name": "bf-micup singRIGHT",
 			"indices": []
 		},
 		{
@@ -63,7 +63,7 @@
 			],
 			"anim": "singLEFTmiss",
 			"fps": 24,
-			"name": "bf-mic-up singLEFTmiss",
+			"name": "bf-micup singLEFTmiss",
 			"indices": []
 		},
 		{
@@ -74,7 +74,7 @@
 			],
 			"anim": "singDOWNmiss",
 			"fps": 24,
-			"name": "bf-mic-up singDOWNmiss",
+			"name": "bf-micup singDOWNmiss",
 			"indices": []
 		},
 		{
@@ -85,7 +85,7 @@
 			],
 			"anim": "singUPmiss",
 			"fps": 24,
-			"name": "bf-mic-up singUPmiss",
+			"name": "bf-micup singUPmiss",
 			"indices": []
 		},
 		{
@@ -96,12 +96,12 @@
 			],
 			"anim": "singRIGHTmiss",
 			"fps": 24,
-			"name": "bf-mic-up singRIGHTmiss",
+			"name": "bf-micup singRIGHTmiss",
 			"indices": []
 		}
 	],
 	"no_antialiasing": false,
-	"image": "characters/bf-mic-up",
+	"image": "characters/bf-micup",
 	"position": [
 		-970,
 		-780
