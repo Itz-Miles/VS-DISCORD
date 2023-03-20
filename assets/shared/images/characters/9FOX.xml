@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<TextureAtlas imagePath="9FOX.png">
+<TextureAtlas imagePath="9fox.png">
 <SubTexture name="9FOX idle0000" x="445" y="1511" width="444" height="464" frameX="-51" frameY="-92" frameWidth="596" frameHeight="569" />
 <SubTexture name="9FOX idle0001" x="0" y="1511" width="445" height="472" frameX="-50" frameY="-85" frameWidth="596" frameHeight="569" />
 <SubTexture name="9FOX idle0002" x="1663" y="962" width="438" height="480" frameX="-52" frameY="-77" frameWidth="596" frameHeight="569" />

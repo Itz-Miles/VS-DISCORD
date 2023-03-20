@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath="clyde-micup.png">
+<SubTexture name="idle0000" x="5132" y="4371" width="1696" height="2005" frameX="-367" frameY="-48" frameWidth="2448" frameHeight="2448" />
+<SubTexture name="idle0001" x="0" y="2273" width="1696" height="2098" frameX="-365" frameY="-50" frameWidth="2448" frameHeight="2448" />
+<SubTexture name="idle0002" x="1696" y="2273" width="1698" height="2076" frameX="-365" frameY="-50" frameWidth="2448" frameHeight="2448" />
+<SubTexture name="idle0003" x="3394" y="2273" width="1699" height="2041" frameX="-364" frameY="-50" frameWidth="2448" frameHeight="2448" />
+<SubTexture name="idle0004" x="5445" y="0" width="1700" height="2041" frameX="-363" frameY="-50" frameWidth="2448" frameHeight="2448" />
+<SubTexture name="idle0005" x="5445" y="2041" width="1700" height="2041" frameX="-362" frameY="-49" frameWidth="2448" frameHeight="2448" />
+<SubTexture name="singLEFT0000" x="0" y="6405" width="1707" height="1923" frameX="-357" frameY="-47" frameWidth="2448" frameHeight="2448" />
+<SubTexture name="singLEFT0001" x="7145" y="1934" width="1705" height="1922" frameX="-358" frameY="-47" frameWidth="2448" frameHeight="2448" />
+<SubTexture name="singLEFT0002" x="7145" y="0" width="1706" height="1934" frameX="-358" frameY="-46" frameWidth="2448" frameHeight="2448" />
+<SubTexture name="singDOWN0000" x="5395" y="6405" width="1787" height="1874" frameX="-279" frameY="-43" frameWidth="2448" frameHeight="2448" />
+<SubTexture name="singDOWN0001" x="3566" y="6405" width="1829" height="1901" frameX="-236" frameY="-44" frameWidth="2448" frameHeight="2448" />
+<SubTexture name="singDOWN0002" x="1707" y="6405" width="1859" height="1916" frameX="-207" frameY="-44" frameWidth="2448" frameHeight="2448" />
+<SubTexture name="singRIGHT0000" x="0" y="4371" width="1710" height="2034" frameX="-356" frameY="-44" frameWidth="2448" frameHeight="2448" />
+<SubTexture name="singRIGHT0001" x="1710" y="4371" width="1710" height="2032" frameX="-356" frameY="-43" frameWidth="2448" frameHeight="2448" />
+<SubTexture name="singRIGHT0002" x="3420" y="4371" width="1712" height="2029" frameX="-355" frameY="-44" frameWidth="2448" frameHeight="2448" />
+<SubTexture name="singUP0000" x="0" y="0" width="1809" height="2273" frameX="-257" frameY="-32" frameWidth="2448" frameHeight="2448" />
+<SubTexture name="singUP0001" x="1809" y="0" width="1818" height="2215" frameX="-247" frameY="-44" frameWidth="2448" frameHeight="2448" />
+<SubTexture name="singUP0002" x="3627" y="0" width="1818" height="2208" frameX="-249" frameY="-43" frameWidth="2448" frameHeight="2448" />
+</TextureAtlas>
