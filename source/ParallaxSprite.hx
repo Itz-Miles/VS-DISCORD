@@ -5,8 +5,6 @@ import flixel.FlxCamera;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.graphics.frames.FlxFrame.FlxFrameAngle;
-import flixel.util.FlxDestroyUtil;
-import flixel.math.FlxPoint;
 import flixel.FlxObject;
 import flixel.util.FlxColor;
 
@@ -16,67 +14,76 @@ class ParallaxSprite extends FlxSprite
     public var pointOne:FlxObject = new FlxObject();
     public var pointTwo:FlxObject = new FlxObject();
     var _scrollMatrix:Matrix = new Matrix();
-	public var direction:Null<String> = 'horizontal';
+    public var direction:Null<String> = 'horizontal';
 
-        public function new(img:String, x:Float = 0, y:Float = 0) {
-			super(x, y); /* ALWAYS call back to constructors immedately whgen overriding low-level functions. Putting super() after loadGraphic causes a crash.*/
-            loadGraphic(Paths.image(img));          
-            antialiasing = ClientPrefs.globalAntialiasing;
-            origin.set(0, 0); //just in case
-        }
+    public function new(path:String, x:Float = 0, y:Float = 0) {
+        super(x, y);
+        loadGraphic(Paths.image('archpieces test/$path'));
+        antialiasing = ClientPrefs.globalAntialiasing;
+        origin.set(0, 0);
+    }
+    
+    /**
+     * Call this function to anchor the sprite's neutral position, set skew factors, and set the direction.
+     * You can set these outside of this function, but this may lead to the sprite behaving unexpectedly.
+     * @param anchorX       (deprecated) the camera position where the sprite's x axis appears unchanged.
+     * @param anchorY       (deprecated) the camera position where the sprite's y axis appears unchanged.
+     * @param scrollOneX        the horizontal scroll factor of the first point.
+     * @param scrollOneY        the vertical scroll factor of the first point.
+     * @param scrollTwoX        the horizontal scroll factor fo the second point.
+     * @param scrollTwoY        the vertical scroll factor of the second point.
+     * @param direct        the sprite's direction, which determines the skew.
+     * 
+     * @param direct_horizontal     direct argument. typically for ceilings and floors. Skews on the x axis, stretches on the y axis.
+     * @param direct_vertical       direct argument. typically for walls and backdrops. Stretches on the x axis, skews on the y axis.
+     **/
 
-        /* 
-        Call this function to anchor the sprite's neutral position/set skew factors/set direction.
-        You can set these outside of the function, but the inaccuracies may lead to the sprite behaving unexpectedly.
-        */
-        public function fixate(anchorX:Int = 0, anchorY:Int = 0, scrollOneX:Float = 1, scrollOneY:Float = 1, scrollTwoX:Float = 1.1, scrollTwoY:Float = 1.1, direct:String = 'horizontal'):Void {
-            direction = direct;
-            pointOne.scrollFactor.set(1, 1);// just in case 2: electric boogaloo
-            pointTwo.scrollFactor.set(1, 1);
-            pointOne.setPosition(anchorX, anchorY);
-            switch(direction) {
-                case 'horizontal':
-                pointTwo.setPosition((anchorX), (anchorY + this.height));
-                case 'vertical':
-                pointTwo.setPosition((anchorX + this.width), (anchorY));
-            }
-            scrollFactor.set(scrollOneX, scrollOneY);
-            pointOne.scrollFactor.set(scrollOneX, scrollOneY);
-            pointTwo.scrollFactor.set(scrollTwoX, scrollTwoY);
+    public function fixate(anchorX:Int = 0, anchorY:Int = 0, scrollOneX:Float = 1, scrollOneY:Float = 1, scrollTwoX:Float = 1.1, scrollTwoY:Float = 1.1, direct:String = 'horizontal'):Void {
+        direction = direct;
+        pointOne.scrollFactor.set(1, 1);
+        pointTwo.scrollFactor.set(1, 1);
+        pointOne.setPosition((anchorX + this.x), (anchorY + this.y));
+        switch(direction) {
+            case 'horizontal'|'orizzontale':
+                pointTwo.setPosition((this.x + anchorX), (this.y + anchorY + this.height));
+            case 'vertical'|'vertikale'|'verticale':
+                pointTwo.setPosition((this.x + anchorX + this.width), (this.y + anchorY));
         }
+        scrollFactor.set(scrollOneX, scrollOneY);
+        pointOne.scrollFactor.set(scrollOneX, scrollOneY);
+        pointTwo.scrollFactor.set(scrollTwoX, scrollTwoY);
+    }
 
-        /*destroy EVERYTHING (when not needed)*/
-        override public function destroy():Void {
-            pointOne = null;
-            pointTwo = null;
-            direction = null;
-            _scrollMatrix = null;
-            super.destroy();
-        }
-   
-	    override function drawComplex(camera:FlxCamera):Void { /* low level draw function intercepted by the scrollMatrix*/
+    override public function destroy():Void {
+        pointOne = null;
+        pointTwo = null;
+        direction = null;
+        _scrollMatrix = null;
+        super.destroy();
+    }
+
+    override function drawComplex(camera:FlxCamera):Void {
             _frame.prepareMatrix(_matrix, FlxFrameAngle.ANGLE_0, checkFlipX(), checkFlipY());
             _matrix.translate(-origin.x, -origin.y);
     
-                if (bakedRotationAngle <= 0) {
-                    updateTrig();
+        if (bakedRotationAngle <= 0) {
+            updateTrig();
     
                     if (angle != 0)
-                        _matrix.rotateWithTrig(_cosAngle, _sinAngle);
-                }
+                _matrix.rotateWithTrig(_cosAngle, _sinAngle);
+            }
     
-                updateScrollMatrix();
-                _matrix.scale(scale.x, scale.y);
+        updateScrollMatrix();
+        _matrix.scale(scale.x, scale.y);
                 
-    
-            _point.addPoint(origin);
+        _point.addPoint(origin);
             if (isPixelPerfectRender(camera))
-                _point.floor();
+            _point.floor();
     
-            _matrix.translate(_point.x, _point.y);
-            camera.drawPixels(_frame, framePixels, _matrix, colorTransform, blend, antialiasing);
-        }
-
+        _matrix.translate(_point.x, _point.y);
+        camera.drawPixels(_frame, framePixels, _matrix, colorTransform, blend, antialiasing);
+    }
+    
                 override public function isSimpleRender(?camera:FlxCamera):Bool {
                     if (FlxG.renderBlit) {
                         return super.isSimpleRender(camera) && (_scrollMatrix.c == 0) && (_scrollMatrix.b == 0);
@@ -89,13 +96,13 @@ class ParallaxSprite extends FlxSprite
     function updateScrollMatrix():Void {
 		_scrollMatrix.identity();
 
-		switch(direction) {//note to miles: sprites can jitter when subjected to subpixel increments. update the matrix only under certain conditions.
+		switch(direction) {//todo: update matrix only under certain conditions to avoid jittering every other frame
 
-			case 'horizontal'://floors, ceilings, and other horizontal elements
+			case 'horizontal'|'orizzontale':
                 setGraphicSize(Std.int(frameWidth), Std.int(pointTwo.getScreenPosition().y - pointOne.getScreenPosition().y));
 				_scrollMatrix.c = ((pointTwo.getScreenPosition().x - pointOne.getScreenPosition().x) / ((frameHeight)));
 				
-        	case 'vertical': // walls and other vertical elements
+        	case 'vertical'|'vertikale'|'verticale':
                 setGraphicSize(Std.int(pointTwo.getScreenPosition().x - pointOne.getScreenPosition().x), Std.int(frameHeight));
 				_scrollMatrix.b = ((pointTwo.getScreenPosition().y - pointOne.getScreenPosition().y) / (frameWidth));
 		}
@@ -104,11 +111,11 @@ class ParallaxSprite extends FlxSprite
 }
 
 /*
- Sprites with scroll factors that support 3D displacement projection.
- I haven't documented everything on this version, feel free to contact me for any info.
+ Sprites with multiple scroll factors to create a parallax effect.
 
+ This class remains largely undocumented! Feel free to refer to previous versions or contact me for any info.
 
- Copyright 2022 It'z_Miles
+ Copyright 2022 It'z_Miles, some rights rerserved.
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -122,4 +129,3 @@ class ParallaxSprite extends FlxSprite
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-

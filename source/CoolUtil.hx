@@ -1,17 +1,13 @@
 package;
 
+import flixel.util.FlxColor;
+import openfl.geom.Point;
+import openfl.geom.Rectangle;
+import openfl.display.BitmapData;
+import flixel.FlxCamera;
 import flixel.FlxG;
+import flixel.FlxSprite;
 import openfl.utils.Assets;
-import lime.utils.Assets as LimeAssets;
-import lime.utils.AssetLibrary;
-import lime.utils.AssetManifest;
-import flixel.system.FlxSound;
-#if sys
-import sys.io.File;
-import sys.FileSystem;
-#else
-import openfl.utils.Assets;
-#end
 
 using StringTools;
 
@@ -31,6 +27,63 @@ class CoolUtil
 		var m:Float = Math.fround(f * snap);
 		trace(snap);
 		return (m / snap);
+	}
+
+	/**
+	 * Returns the dominant FlxColor from a portion of the screen
+	 * @param x The x coordinate of the top-left corner of the portion of the screen to sample
+	 * @param y The y coordinate of the top-left corner of the portion of the screen to sample
+	 * @param width The width of the portion of the screen to sample
+	 * @param height The height of the portion of the screen to sample
+	 * @return The dominant FlxColor of the sampled portion of the screen, or null if an error occurred
+	 */
+	public static function getDominantScreenColor(x:Int, y:Int, width:Int, height:Int):Null<FlxColor>
+	{
+		if (FlxG.camera == null || FlxG.camera.buffer == null) {
+			trace("Error: camera or buffer not set up correctly.");
+			return null;
+		}
+	
+		var cameraWidth:Int = FlxG.camera.buffer.width;
+		var cameraHeight:Int = FlxG.camera.buffer.height;
+	
+		if (x < 0 || y < 0 || x + width > cameraWidth || y + height > cameraHeight) {
+			trace("Error: coordinates or dimensions out of bounds.");
+			return null;
+		}
+	
+		var colorCounts = new Map<Int, Int>();
+		var maxColor:Int = -1;
+		var maxCount:Int = -1;
+	
+		// Loop through each pixel in the sampled portion of the screen
+		for (xx in x...x+width)
+		{
+			for (yy in y...y+height)
+			{
+				var color:Int = FlxG.camera.buffer.getPixel(xx, yy);
+	
+				// If this color has not been seen before, initialize its count to 0
+				if (!colorCounts.exists(color))
+				{
+					colorCounts.set(color, 0);
+				}
+	
+				// Increment the count for this color
+				var count:Int = colorCounts.get(color) + 1;
+				colorCounts.set(color, count);
+	
+				// Update the dominant color if this color has a higher count
+				if (count > maxCount)
+				{
+					maxColor = color;
+					maxCount = count;
+				}
+			}
+		}
+	
+		// Return the dominant color as a FlxColor object
+		return new FlxColor(maxColor);
 	}
 	
 	public static function getDifficultyFilePath(num:Null<Int> = null)
@@ -61,11 +114,7 @@ class CoolUtil
 	public static function coolTextFile(path:String):Array<String>
 	{
 		var daList:Array<String> = [];
-		#if sys
-		if(FileSystem.exists(path)) daList = File.getContent(path).trim().split('\n');
-		#else
 		if(Assets.exists(path)) daList = Assets.getText(path).trim().split('\n');
-		#end
 
 		for (i in 0...daList.length)
 		{
@@ -86,7 +135,7 @@ class CoolUtil
 
 		return daList;
 	}
-	public static function dominantColor(sprite:flixel.FlxSprite):Int{
+	public static function dominantColor(sprite:flixel.FlxSprite):Int {
 		var countByColor:Map<Int, Int> = [];
 		for(col in 0...sprite.frameWidth){
 			for(row in 0...sprite.frameHeight){
@@ -122,7 +171,6 @@ class CoolUtil
 		return dumbArray;
 	}
 
-	//uhhhh does this even work at all? i'm starting to doubt
 	public static function precacheSound(sound:String, ?library:String = null):Void {
 		Paths.sound(sound, library);
 	}
@@ -136,6 +184,32 @@ class CoolUtil
 		Sys.command('/usr/bin/xdg-open', [site]);
 		#else
 		FlxG.openURL(site);
-		#end
+		#end // linux
 	}
+	public static function copyCameraToSprite(x:Int, y:Int, width:Int, height:Int, sprite:FlxSprite) {
+		var camera:FlxCamera = FlxG.camera;
+		var buffer:BitmapData = new BitmapData(width, height);
+		buffer.copyPixels(camera.buffer, new Rectangle(x, y, width, height), new Point(0, 0));
+		sprite.pixels = buffer;
+		sprite.dirty = true;
+	  }
+
+    static function userName():String {
+        var userName:String = "joe";
+        #if (sys != null) // Check if running on desktop
+        {
+            userName = sys.User.getCurrentUserName();
+        }
+        #elseif (js != null) // Check if running in JavaScript
+        {
+            userName = js.Browser.window.navigator.userAgent;
+        }
+        #elseif (neko != null) // Check if running on Neko
+        {
+            userName = neko.Sys.getEnv("USER");
+        }
+		#end
+        trace("Current user's name: " + userName);
+		return userName;
+    }
 }

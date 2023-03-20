@@ -3,7 +3,7 @@ package;
 import flixel.FlxSprite;
 import flixel.graphics.frames.FlxAtlasFrames;
 
-class CheckboxThingie extends FlxSprite
+class Checkbox extends FlxSprite
 {
 	public var sprTracker:FlxSprite;
 	public var daValue(default, set):Bool;
@@ -13,7 +13,7 @@ class CheckboxThingie extends FlxSprite
 	public function new(x:Float = 0, y:Float = 0, ?checked = false) {
 		super(x, y);
 
-		frames = Paths.getSparrowAtlas('checkboxanim');
+		frames = Paths.getSparrowAtlas('settings/checkboxanim', "shared");
 		animation.addByPrefix("unchecked", "checkbox0", 24, false);
 		animation.addByPrefix("unchecking", "checkbox anim reverse", 24, false);
 		animation.addByPrefix("checking", "checkbox anim0", 24, false);

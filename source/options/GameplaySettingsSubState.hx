@@ -31,43 +31,14 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 {
 	public function new()
 	{
-		title = 'Gameplay Settings';
-		rpcTitle = 'Gameplay Settings Menu'; //for Discord Rich Presence
+		title = 'Gameplay';
+		rpcTitle = 'Gameplay Settings'; //for Discord Rich Presence
 
 		var option:Option = new Option('Controller Mode',
-			'Check this if you want to play with\na controller instead of using your Keyboard.',
+			'If checked, you can play with a controller instead of a Keyboard.',
 			'controllerMode',
 			'bool',
 			false);
-		addOption(option);
-
-		//I'd suggest using "Downscroll" as an example for making your own option since it is the simplest here
-		var option:Option = new Option('Downscroll', //Name
-			'If checked, notes go Down instead of Up, simple enough.', //Description
-			'downScroll', //Save data variable name
-			'bool', //Variable type
-			false); //Default value
-		addOption(option);
-
-		var option:Option = new Option('Middlescroll',
-			'If checked, your notes get centered.',
-			'middleScroll',
-			'bool',
-			false);
-		addOption(option);
-
-		var option:Option = new Option('Opponent Notes',
-			'If unchecked, opponent notes get hidden.',
-			'opponentStrums',
-			'bool',
-			true);
-		addOption(option);
-
-		var option:Option = new Option('Ghost Tapping',
-			"If checked, you won't get misses from pressing keys\nwhile there are no notes able to be hit.",
-			'ghostTapping',
-			'bool',
-			true);
 		addOption(option);
 
 		var option:Option = new Option('Disable Reset Button',
@@ -75,6 +46,13 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 			'noReset',
 			'bool',
 			false);
+		addOption(option);
+
+		var option:Option = new Option('Relative Judgement',
+		"relative",
+		'relativeHitCalc',
+		'bool',
+		true);
 		addOption(option);
 
 		var option:Option = new Option('Hitsound Volume',
@@ -91,7 +69,7 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 		option.onChange = onChangeHitsoundVolume;
 
 		var option:Option = new Option('Rating Offset',
-			'Changes how late/early you have to hit for a "Sick!"\nHigher values mean you have to hit later.',
+			'Changes how late/early you have to hit a note. Higher values mean you have to hit later.',
 			'ratingOffset',
 			'int',
 			0);
@@ -101,47 +79,15 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 		option.maxValue = 30;
 		addOption(option);
 
-		var option:Option = new Option('Sick! Hit Window',
-			'Changes the amount of time you have\nfor hitting a "Sick!" in milliseconds.',
-			'sickWindow',
-			'int',
-			45);
-		option.displayFormat = '%vms';
-		option.scrollSpeed = 15;
-		option.minValue = 15;
-		option.maxValue = 45;
-		addOption(option);
-
-		var option:Option = new Option('Good Hit Window',
-			'Changes the amount of time you have\nfor hitting a "Good" in milliseconds.',
-			'goodWindow',
-			'int',
-			90);
-		option.displayFormat = '%vms';
-		option.scrollSpeed = 30;
-		option.minValue = 15;
-		option.maxValue = 90;
-		addOption(option);
-
-		var option:Option = new Option('Bad Hit Window',
-			'Changes the amount of time you have\nfor hitting a "Bad" in milliseconds.',
-			'badWindow',
-			'int',
-			135);
+		var option:Option = new Option('Hit Window',
+			'The window you have in milliseconds for htting a note.',
+			'hitWindow',
+			'float',
+			167);
 		option.displayFormat = '%vms';
 		option.scrollSpeed = 60;
-		option.minValue = 15;
-		option.maxValue = 135;
-		addOption(option);
-
-		var option:Option = new Option('Safe Frames',
-			'Changes how many frames you have for\nhitting a note earlier or late.',
-			'safeFrames',
-			'float',
-			10);
-		option.scrollSpeed = 5;
-		option.minValue = 2;
-		option.maxValue = 10;
+		option.minValue = 16.6;
+		option.maxValue = 166.7;
 		option.changeValue = 0.1;
 		addOption(option);
 

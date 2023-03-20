@@ -2,7 +2,6 @@ package;
 
 import flixel.FlxG;
 import flixel.FlxSprite;
-import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.group.FlxSpriteGroup;
 import flixel.math.FlxMath;
 import flixel.util.FlxTimer;
@@ -119,9 +118,6 @@ class Alphabet extends FlxSpriteGroup
 		var xPos:Float = 0;
 		for (character in splitWords)
 		{
-			// if (character.fastCodeAt() == " ")
-			// {
-			// }
 
 			var spaceChar:Bool = (character == " " || (isBold && character == "_"));
 			if (spaceChar)
@@ -144,8 +140,6 @@ class Alphabet extends FlxSpriteGroup
 					xPos += 40 * consecutiveSpaces * textSize;
 				}
 				consecutiveSpaces = 0;
-
-				// var letter:AlphaCharacter = new AlphaCharacter(30 * loopNum, 0, textSize);
 				var letter:AlphaCharacter = new AlphaCharacter(xPos, 0, textSize);
 
 				if (isBold)
@@ -385,7 +379,7 @@ class AlphaCharacter extends FlxSprite
 	public function new(x:Float, y:Float, textSize:Float)
 	{
 		super(x, y);
-		var tex = Paths.getSparrowAtlas('alphabet');
+		var tex = Paths.getSparrowAtlas('text/alphabet', "shared");
 		frames = tex;
 
 		setGraphicSize(Std.int(width * textSize));
@@ -509,7 +503,6 @@ class AlphaCharacter extends FlxSprite
 			case "'":
 				y -= 20;
 			case '-':
-				//x -= 35 - (90 * (1.0 - textSize));
 				y -= 16;
 		}
 	}

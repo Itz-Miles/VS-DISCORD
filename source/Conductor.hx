@@ -2,11 +2,6 @@ package;
 
 import Song.SwagSong;
 
-/**
- * ...
- * @author
- */
-
 typedef BPMChangeEvent =
 {
 	var stepTime:Int;
@@ -24,34 +19,52 @@ class Conductor
 	public static var lastSongPos:Float;
 	public static var offset:Float = 0;
 
-	//public static var safeFrames:Int = 10;
-	public static var safeZoneOffset:Float = (ClientPrefs.safeFrames / 60) * 1000; // is calculated in create(), is safeFrames in milliseconds
+	public static var hitWindow:Float = ClientPrefs.relativeHitCalc ? ClientPrefs.hitWindow : ClientPrefs.hitWindow / 2;
+
 
 	public static var bpmChangeMap:Array<BPMChangeEvent> = [];
 
-	public function new()
-	{
-	}
+	/*
+	Ratings
+	*/
 
-	public static function judgeNote(note:Note, diff:Float=0):Rating // die
-	{
-		var data:Array<Rating> = PlayState.instance.ratingsData; //shortening cuz fuck u
-		for(i in 0...data.length-1) //skips last window (Shit)
-		{
-			if (diff <= data[i].hitWindow)
-			{
-				return data[i];
+	public static function judge(noteDelta:Float):Dynamic {
+		for (rating in Ratings.list) {
+			if (noteDelta <= Conductor.hitWindow * rating[2]) {
+				return rating;
 			}
 		}
-		return data[data.length - 1];
+		return Ratings.list[Ratings.list.length - 1];
+	}
+	
+
+	public static function getAverageRating():Dynamic {
+        if (PlayState.instance.noteJudges > 0) {
+			return [getRatingName(PlayState.instance.noteRatings / PlayState.instance.noteJudges), PlayState.instance.noteRatings / PlayState.instance.noteJudges];
+        } else {
+			return ['?/10', null];
+        }
+    }
+
+	public static function getRatingName(avgRating:Float):String {
+		for (rating in Ratings.list) {
+			if (rating[1] <= avgRating) {
+				return rating[0];
+			}
+		}
+		return '0/10';
 	}
 
-	public static function getCrotchetAtTime(time:Float){
+	/* 
+	BPM stuff
+	*/
+	
+	public static function getCrotchetAtTime(time:Float) {
 		var lastChange = getBPMFromSeconds(time);
 		return lastChange.stepCrochet*4;
 	}
 
-	public static function getBPMFromSeconds(time:Float){
+	public static function getBPMFromSeconds(time:Float) {
 		var lastChange:BPMChangeEvent = {
 			stepTime: 0,
 			songTime: 0,
@@ -152,33 +165,5 @@ class Conductor
 
 		crochet = calculateCrochet(bpm);
 		stepCrochet = crochet / 4;
-	}
-}
-
-class Rating
-{
-	public var name:String = '';
-	public var image:String = '';
-	public var counter:String = '';
-	public var hitWindow:Null<Int> = 0; //ms
-	public var ratingMod:Float = 1;
-	public var score:Int = 350;
-	public var noteSplash:Bool = true;
-
-	public function new(name:String)
-	{
-		this.name = name;
-		this.image = name;
-		this.counter = name + 's';
-		this.hitWindow = Reflect.field(ClientPrefs, name + 'Window');
-		if(hitWindow == null)
-		{
-			hitWindow = 0;
-		}
-	}
-
-	public function increase(blah:Int = 1)
-	{
-		Reflect.setField(PlayState.instance, counter, Reflect.field(PlayState.instance, counter) + blah);
 	}
 }

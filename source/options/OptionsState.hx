@@ -29,24 +29,24 @@ using StringTools;
 
 class OptionsState extends MusicBeatState
 {
-	var options:Array<String> = ['Note Colors', 'Controls', 'Adjust Delay and Combo', 'Graphics', 'Visuals and UI', 'Gameplay'];
+	var options:Array<String> = ['Controls', 'Graphics', 'Gameplay', 'Visuals', 'Offsets'];
 	private var grpOptions:FlxTypedGroup<Alphabet>;
 	private static var curSelected:Int = 0;
 	public static var menuBG:FlxSprite;
+	public static var fromPlayState:Bool = false;
 
 	function openSelectedSubstate(label:String) {
+		this.persistentDraw = false;
 		switch(label) {
-			case 'Note Colors':
-				openSubState(new options.NotesSubState());
 			case 'Controls':
 				openSubState(new options.ControlsSubState());
 			case 'Graphics':
 				openSubState(new options.GraphicsSettingsSubState());
-			case 'Visuals and UI':
+			case 'Visuals':
 				openSubState(new options.VisualsUISubState());
 			case 'Gameplay':
 				openSubState(new options.GameplaySettingsSubState());
-			case 'Adjust Delay and Combo':
+			case 'Offsets':
 				LoadingState.loadAndSwitchState(new options.NoteOffsetState());
 		}
 	}
@@ -55,17 +55,13 @@ class OptionsState extends MusicBeatState
 	var selectorRight:Alphabet;
 
 	override function create() {
+
+		Paths.clearStoredMemory();
+		Paths.clearUnusedMemory();
+		
 		#if desktop
 		DiscordClient.changePresence("Options Menu", null);
 		#end
-
-		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
-		bg.color = 0xFFea71fd;
-		bg.updateHitbox();
-
-		bg.screenCenter();
-		bg.antialiasing = ClientPrefs.globalAntialiasing;
-		add(bg);
 
 		grpOptions = new FlxTypedGroup<Alphabet>();
 		add(grpOptions);
@@ -106,7 +102,14 @@ class OptionsState extends MusicBeatState
 
 		if (controls.BACK) {
 			FlxG.sound.play(Paths.sound('cancelMenu'));
-			MusicBeatState.switchState(new MainMenuState());
+			if (PlayState.instance != null && OptionsState.fromPlayState) { //Check if player came from playstate.
+					FlxG.sound.music.volume = 0.0;
+					MusicBeatState.switchState(new PlayState());
+					OptionsState.fromPlayState = false;
+				} else { // No? Then return to the main menu.
+					Conductor.changeBPM(102); 
+					MusicBeatState.switchState(new MainMenuState());
+			}
 		}
 
 		if (controls.ACCEPT) {

@@ -71,11 +71,15 @@ class ControlsSubState extends MusicBeatSubstate {
 	public function new() {
 		super();
 
-		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
-		bg.color = 0xFFea71fd;
-		bg.screenCenter();
-		bg.antialiasing = ClientPrefs.globalAntialiasing;
-		add(bg);
+		var titleText:Alphabet = new Alphabet(0, 0, "Controls", true, false, 0, 0.6);
+		titleText.x += 60;
+		titleText.y += 40;
+		titleText.alpha = 0.4;
+		add(titleText);
+
+		#if desktop
+		DiscordClient.changePresence("Controls Settings", null);
+		#end
 
 		grpOptions = new FlxTypedGroup<Alphabet>();
 		add(grpOptions);

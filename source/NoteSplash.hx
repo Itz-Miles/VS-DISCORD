@@ -16,7 +16,7 @@ class NoteSplash extends FlxSprite
 		var skin:String = 'noteSplashes';
 		if(PlayState.SONG.splashSkin != null && PlayState.SONG.splashSkin.length > 0) skin = PlayState.SONG.splashSkin;
 
-		loadAnims(skin);
+		loadAnims('notes/$skin');
 		
 		colorSwap = new ColorSwap();
 		shader = colorSwap.shader;
@@ -35,7 +35,7 @@ class NoteSplash extends FlxSprite
 		}
 
 		if(textureLoaded != texture) {
-			loadAnims(texture);
+			loadAnims('notes/$texture');
 		}
 		colorSwap.hue = hueColor;
 		colorSwap.saturation = satColor;
@@ -48,7 +48,7 @@ class NoteSplash extends FlxSprite
 	}
 
 	function loadAnims(skin:String) {
-		frames = Paths.getSparrowAtlas(skin);
+		frames = Paths.getSparrowAtlas(skin, "shared");
 		for (i in 1...3) {
 			animation.addByPrefix("note1-" + i, "note splash blue " + i, 24, false);
 			animation.addByPrefix("note2-" + i, "note splash green " + i, 24, false);
@@ -62,4 +62,5 @@ class NoteSplash extends FlxSprite
 
 		super.update(elapsed);
 	}
+	
 }
