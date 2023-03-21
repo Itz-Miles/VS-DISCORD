@@ -49,7 +49,7 @@ using StringTools;
 
 class PlayState extends MusicBeatState
 {
-	public static var STRUM_X = 42;
+	public static var STRUM_X = 48.5;
 	public static var STRUM_X_MIDDLESCROLL = -278;
 	private var isCameraOnForcedPos:Bool = false;
 	public var boyfriendMap:Map<String, Boyfriend> = new Map<String, Boyfriend>();

@@ -56,6 +56,12 @@
       "dir": null,
       "ref": "master",
       "url": "https://github.com/Aidan63/linc_discord-rpc"
+    },
+    {
+      "name": "hxcpp-debug-server",
+      "type": "haxelib",
+      "version": "1.2.4"
     }
+
   ]
 }
