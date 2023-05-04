@@ -4,6 +4,7 @@ import Controls;
 import flixel.FlxCamera;
 import flixel.FlxG;
 import flixel.util.FlxSignal;
+
 class PlayerSettings
 {
 	static public var numPlayers(default, null) = 0;

@@ -49,11 +49,8 @@ class IntroState extends MusicBeatState
 
 		super.create();
 
-		FlxG.save.bind('funkin' #if (flixel < "5.0.0"), 'ninjamuffin99' #end);
+		FlxG.save.bind('funkin' #if (flixel < "5.0.0"), "Itz_Miles" #end);
 		ClientPrefs.loadPrefs();
-
-		if (ClientPrefs.totems > 37)
-			ClientPrefs.totems = 37; // ok?
 
 		Highscore.load();
 
@@ -63,7 +60,6 @@ class IntroState extends MusicBeatState
 		}
 		FlxG.fixedTimestep = false;
 		FlxG.mouse.visible = false;
-
 
 		if (FlxG.sound.music == null)
 		{
@@ -97,6 +93,7 @@ class IntroState extends MusicBeatState
 		add(logoSpr);
 
 		FlxTween.tween(credTextShit, {y: credTextShit.y + 20}, 2.9, {ease: FlxEase.quadInOut, type: PINGPONG});
+		createCoolText(['Runnning on'], -30);
 	}
 
 	override function update(elapsed:Float)
@@ -130,7 +127,7 @@ class IntroState extends MusicBeatState
 			#end
 		}
 
-		if (pressedEnter)
+		if (pressedEnter && !ClientPrefs.firstIntro)
 			endIntro();
 
 		super.update(elapsed);
@@ -192,43 +189,37 @@ class IntroState extends MusicBeatState
 			sickBeats++;
 			switch (sickBeats)
 			{
-				case 1:
-					FlxG.sound.music.stop();
-					FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
-					FlxG.sound.music.fadeIn(4, 0, 0.7);
 				case 2:
-					createCoolText(['Runnning on'], -30);
-				case 4:
 					logoSpr.visible = true;
-				case 5:
+				case 3:
 					logoSpr.visible = false;
 					deleteCoolText();
-				case 6:
-					createCoolText(['A mod to'], -30);
+				case 4:
+					createCoolText(['Based on'], -30);
 					logoSpr.loadGraphic(Paths.image('logos/titlelogo', "shared"));
 					logoSpr.setGraphicSize(Std.int(FlxG.width / 3));
 					logoSpr.updateHitbox();
 					logoSpr.screenCenter(X);
 					logoSpr.x -= 300;
 					logoSpr.y += 50;
-				case 8:
+				case 6:
 					logoSpr.visible = true;
-				case 9:
+				case 7:
 					deleteCoolText();
 					logoSpr.visible = false;
+				case 8:
+					createCoolText(['xb9fox'], -30);
 				case 10:
-					createCoolText(['Itz_Miles'], -30);
-				case 12:
 					addMoreText('Presents', 15);
-				case 13:
+				case 11:
 					deleteCoolText();
+				case 12:
+					createCoolText(['funkin'], -15);
+				case 13:
+					addMoreText('Vsersus', 15);
 				case 14:
-					createCoolText(['Itz'], -15);
+					addMoreText('Discord', 45);
 				case 15:
-					addMoreText('Funkin', 15);
-				case 16:
-					addMoreText('Minecraft', 45);
-				case 17:
 					endIntro();
 			}
 		}
@@ -236,7 +227,10 @@ class IntroState extends MusicBeatState
 
 	function endIntro()
 	{
-		MusicBeatState.switchState(new TitleState(), 0.4);
+		ClientPrefs.firstIntro = false;
+		FlxG.save.data.firstIntro = false;
+		MusicBeatState.switchState(new TitleState(), 0.1);
+		
 		closedState = true;
 	}
 }

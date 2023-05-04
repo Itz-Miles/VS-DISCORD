@@ -11,7 +11,6 @@ import flixel.input.gamepad.FlxGamepadButton;
 import flixel.input.gamepad.FlxGamepadInputID;
 import flixel.input.keyboard.FlxKey;
 
-
 enum abstract Action(String) to String from String
 {
 	var UI_UP = "ui_up";
@@ -68,7 +67,7 @@ enum Control
 	RESET;
 	ACCEPT;
 	BACK;
-	PAUSE;	
+	PAUSE;
 }
 
 enum KeyboardScheme
@@ -115,6 +114,7 @@ class Controls extends FlxActionSet
 	var _reset = new FlxActionDigital(Action.RESET);
 
 	var byName:Map<String, FlxActionDigital> = [];
+
 	public var gamepadsAdded:Array<Int> = [];
 	public var keyboardScheme = KeyboardScheme.None;
 
@@ -296,7 +296,8 @@ class Controls extends FlxActionSet
 			byName[action.name] = action;
 
 		setKeyboardScheme(scheme, false);
-	}	
+	}
+
 	override function update()
 	{
 		super.update();
@@ -481,8 +482,10 @@ class Controls extends FlxActionSet
 	public function bindKeys(control:Control, keys:Array<FlxKey>)
 	{
 		var copyKeys:Array<FlxKey> = keys.copy();
-		for (i in 0...copyKeys.length) {
-			if(i == NONE) copyKeys.remove(i);
+		for (i in 0...copyKeys.length)
+		{
+			if (i == NONE)
+				copyKeys.remove(i);
 		}
 
 		inline forEachBound(control, (action, state) -> addKeys(action, copyKeys, state));
@@ -495,8 +498,10 @@ class Controls extends FlxActionSet
 	public function unbindKeys(control:Control, keys:Array<FlxKey>)
 	{
 		var copyKeys:Array<FlxKey> = keys.copy();
-		for (i in 0...copyKeys.length) {
-			if(i == NONE) copyKeys.remove(i);
+		for (i in 0...copyKeys.length)
+		{
+			if (i == NONE)
+				copyKeys.remove(i);
 		}
 
 		inline forEachBound(control, (action, _) -> removeKeys(action, copyKeys));
@@ -505,7 +510,7 @@ class Controls extends FlxActionSet
 	inline static function addKeys(action:FlxActionDigital, keys:Array<FlxKey>, state:FlxInputState)
 	{
 		for (key in keys)
-			if(key != NONE)
+			if (key != NONE)
 				action.addKey(key, state);
 	}
 
@@ -527,7 +532,7 @@ class Controls extends FlxActionSet
 
 		keyboardScheme = scheme;
 		var keysMap = ClientPrefs.keyBinds;
-		
+
 		switch (scheme)
 		{
 			case Solo:
@@ -544,6 +549,7 @@ class Controls extends FlxActionSet
 				inline bindKeys(Control.BACK, keysMap.get('back'));
 				inline bindKeys(Control.PAUSE, keysMap.get('pause'));
 				inline bindKeys(Control.RESET, keysMap.get('reset'));
+
 			case Duo(true):
 				inline bindKeys(Control.UI_UP, [W]);
 				inline bindKeys(Control.UI_DOWN, [S]);
@@ -592,7 +598,7 @@ class Controls extends FlxActionSet
 	public function addGamepad(id:Int, ?buttonMap:Map<Control, Array<FlxGamepadInputID>>):Void
 	{
 		gamepadsAdded.push(id);
-		
+
 		for (control => buttons in buttonMap)
 			inline bindButtons(control, id, buttons);
 	}
@@ -636,11 +642,11 @@ class Controls extends FlxActionSet
 			Control.NOTE_LEFT => [DPAD_LEFT, LEFT_STICK_DIGITAL_LEFT, RIGHT_STICK_DIGITAL_LEFT, X],
 			Control.NOTE_RIGHT => [DPAD_RIGHT, LEFT_STICK_DIGITAL_RIGHT, RIGHT_STICK_DIGITAL_RIGHT, B],
 			Control.PAUSE => [START],
-			Control.RESET => [8]
+			Control.RESET => [8] // dont have enough time to consider controller inputs, yell at me if you guys want it earlier.
 		]);
 		#else
 		addGamepadLiteral(id, [
-			//Swap A and B for switch
+			// Swap A and B for switch
 			Control.ACCEPT => [B, START],
 			Control.BACK => [A],
 			Control.UI_UP => [DPAD_UP, LEFT_STICK_DIGITAL_UP, RIGHT_STICK_DIGITAL_UP],
@@ -653,6 +659,7 @@ class Controls extends FlxActionSet
 			Control.NOTE_RIGHT => [DPAD_RIGHT, LEFT_STICK_DIGITAL_RIGHT, RIGHT_STICK_DIGITAL_RIGHT, A],
 			Control.PAUSE => [START],
 			Control.RESET => [8],
+			// dont have enough time to consider controller inputs, yell at me if you want it earlier.
 		]);
 		#end
 	}

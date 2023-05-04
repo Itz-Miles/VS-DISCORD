@@ -17,7 +17,7 @@ import flixel.math.FlxPoint;
 
 using StringTools;
 
-class NoteOffsetState extends MusicBeatState
+class OffsetsState extends MusicBeatState
 {
 	var boyfriend:Character;
 	var gf:Character;
@@ -36,7 +36,6 @@ class NoteOffsetState extends MusicBeatState
 
 	override public function create()
 	{
-
 		Paths.clearStoredMemory();
 		Paths.clearUnusedMemory();
 
@@ -57,6 +56,10 @@ class NoteOffsetState extends MusicBeatState
 
 		persistentUpdate = true;
 		FlxG.sound.pause();
+		
+		#if desktop
+		DiscordClient.changePresence("Offsets", null);
+		#end
 
 		var titleText:Alphabet = new Alphabet(0, 0, "Offsets", true, false, 0, 0.6);
 		titleText.x += 60;
@@ -64,10 +67,6 @@ class NoteOffsetState extends MusicBeatState
 		titleText.alpha = 0.4;
 		titleText.cameras = [camHUD];
 		add(titleText);
-
-		#if desktop
-		DiscordClient.changePresence("Offsets Settings", null);
-		#end
 
 		// Characters
 		gf = new Character(450, -30, 'outlineGF', false, "shared");
@@ -78,13 +77,13 @@ class NoteOffsetState extends MusicBeatState
 		add(boyfriend);
 
 		// Note delay stuff
-		
+
 		beatText = new Alphabet(0, 0, 'Beat Hit!', true, false, 0.05, 0.6);
-		beatText.x += 140; //huh
+		beatText.x += 140; // huh
 		beatText.alpha = 0;
 		beatText.acceleration.y = 250;
 		add(beatText);
-		
+
 		timeTxt = new FlxText(160, 600, 381, "", 32);
 		timeTxt.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.BLACK, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.WHITE);
 		timeTxt.scrollFactor.set();
@@ -114,46 +113,51 @@ class NoteOffsetState extends MusicBeatState
 	override public function update(elapsed:Float)
 	{
 		var addNum:Int = 1;
-		if(FlxG.keys.pressed.SHIFT) addNum = 10;
+		if (FlxG.keys.pressed.SHIFT)
+			addNum = 10;
 
-			if(controls.UI_LEFT_P)
-			{
-				barPercent = Math.max(delayMin, Math.min(ClientPrefs.noteOffset - 1, delayMax));
-				updateNoteDelay();
-			}
-			else if(controls.UI_RIGHT_P)
-			{
-				barPercent = Math.max(delayMin, Math.min(ClientPrefs.noteOffset + 1, delayMax));
-				updateNoteDelay();
-			}
-
-			var mult:Int = 1;
-			if(controls.UI_LEFT || controls.UI_RIGHT)
-			{
-				holdTime += elapsed;
-				if(controls.UI_LEFT) mult = -1;
-			}
-
-			if(controls.UI_LEFT_R || controls.UI_RIGHT_R) holdTime = 0;
-
-			if(holdTime > 0.5)
-			{
-				barPercent += 100 * elapsed * mult;
-				barPercent = Math.max(delayMin, Math.min(barPercent, delayMax));
-				updateNoteDelay();
-			}
-
-			if(controls.RESET)
-			{
-				holdTime = 0;
-				barPercent = 0;
-				updateNoteDelay();
-			}
-		
-		if(controls.BACK)
+		if (controls.UI_LEFT_P)
 		{
-			if(zoomTween != null) zoomTween.cancel();
-			if(beatTween != null) beatTween.cancel();
+			barPercent = Math.max(delayMin, Math.min(ClientPrefs.noteOffset - 1, delayMax));
+			updateNoteDelay();
+		}
+		else if (controls.UI_RIGHT_P)
+		{
+			barPercent = Math.max(delayMin, Math.min(ClientPrefs.noteOffset + 1, delayMax));
+			updateNoteDelay();
+		}
+
+		var mult:Int = 1;
+		if (controls.UI_LEFT || controls.UI_RIGHT)
+		{
+			holdTime += elapsed;
+			if (controls.UI_LEFT)
+				mult = -1;
+		}
+
+		if (controls.UI_LEFT_R || controls.UI_RIGHT_R)
+			holdTime = 0;
+
+		if (holdTime > 0.5)
+		{
+			barPercent += 100 * elapsed * mult;
+			barPercent = Math.max(delayMin, Math.min(barPercent, delayMax));
+			updateNoteDelay();
+		}
+
+		if (controls.RESET)
+		{
+			holdTime = 0;
+			barPercent = 0;
+			updateNoteDelay();
+		}
+
+		if (controls.BACK)
+		{
+			if (zoomTween != null)
+				zoomTween.cancel();
+			if (beatTween != null)
+				beatTween.cancel();
 
 			persistentUpdate = false;
 			CustomFadeTransition.nextCamera = camOther;
@@ -169,27 +173,31 @@ class NoteOffsetState extends MusicBeatState
 
 	var zoomTween:FlxTween;
 	var lastBeatHit:Int = -1;
+
 	override public function beatHit()
 	{
 		super.beatHit();
 
-		if(lastBeatHit == curBeat)
+		if (lastBeatHit == curBeat)
 		{
 			return;
 		}
 
-		if(curBeat % 2 == 0)
+		if (curBeat % 2 == 0)
 		{
 			boyfriend.dance();
 			gf.dance();
 		}
-		
-		if(curBeat % 4 == 2)
+
+		if (curBeat % 4 == 2)
 		{
 			FlxG.camera.zoom = 1.1;
 
-			if(zoomTween != null) zoomTween.cancel();
-			zoomTween = FlxTween.tween(FlxG.camera, {zoom: 1}, 1, {ease: FlxEase.circOut, onComplete: function(twn:FlxTween)
+			if (zoomTween != null)
+				zoomTween.cancel();
+			zoomTween = FlxTween.tween(FlxG.camera, {zoom: 1}, 1, {
+				ease: FlxEase.circOut,
+				onComplete: function(twn:FlxTween)
 				{
 					zoomTween = null;
 				}
@@ -198,8 +206,11 @@ class NoteOffsetState extends MusicBeatState
 			beatText.alpha = 1;
 			beatText.y = 320;
 			beatText.velocity.y = -150;
-			if(beatTween != null) beatTween.cancel();
-			beatTween = FlxTween.tween(beatText, {alpha: 0}, 1, {ease: FlxEase.sineIn, onComplete: function(twn:FlxTween)
+			if (beatTween != null)
+				beatTween.cancel();
+			beatTween = FlxTween.tween(beatText, {alpha: 0}, 1, {
+				ease: FlxEase.sineIn,
+				onComplete: function(twn:FlxTween)
 				{
 					beatTween = null;
 				}
@@ -215,17 +226,19 @@ class NoteOffsetState extends MusicBeatState
 		timeTxt.text = '< Offset: ' + prefix(Math.floor(barPercent)) + ' ms >';
 	}
 
-	function prefix(num:Int) {
+	function prefix(num:Int)
+	{
 		var numString:String = Std.string(num);
 		var numLength:Int = numString.length;
 		var prefix:String = "";
-		
-		if (numLength < 3) {
-		  for (i in 0...3 - numLength) {
-			prefix += "0";
-		  }
+
+		if (numLength < 3)
+		{
+			for (i in 0...3 - numLength)
+			{
+				prefix += "0";
+			}
 		}
 		return prefix + numString;
-	  }
-	
+	}
 }
