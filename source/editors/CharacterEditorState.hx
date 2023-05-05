@@ -111,7 +111,7 @@ class CharacterEditorState extends MusicBeatState
 		healthBarBG.cameras = [camHUD];
 
 		leHealthIcon = new HealthIcon(char.healthIcon, false);
-		leHealthIcon.y = FlxG.height - 150;
+		leHealthIcon.y = healthBarBG.y - leHealthIcon.height;
 		add(leHealthIcon);
 		leHealthIcon.cameras = [camHUD];
 

@@ -12,12 +12,10 @@ import openfl.events.Event;
 import openfl.display.StageScaleMode;
 import lime.app.Application;
 import Paths;
-
 #if desktop
 import Discord.DiscordClient;
 #end
-
-//crash handler stuff
+// crash handler stuff
 #if CRASH_HANDLER
 import openfl.events.UncaughtErrorEvent;
 import haxe.CallStack;
@@ -34,7 +32,7 @@ class Main extends Sprite
 	var gameWidth:Int = 1280; // Width of the game in pixels (might be less / more in actual pixels depending on your zoom).
 	var gameHeight:Int = 720; // Height of the game in pixels (might be less / more in actual pixels depending on your zoom).
 	var initialState:Class<FlxState>; // The FlxState the game starts with.
-	
+
 	var zoom:Float = -1; // If -1, zoom is automatically calculated to fit the window dimensions.
 	var framerate:Int = 60; // How many frames per second the game should run at.
 	var skipSplash:Bool = true; // Whether to skip the flixel splash screen that appears in release mode.
@@ -75,7 +73,7 @@ class Main extends Sprite
 
 	private function setupGame():Void
 	{
-		initialState =#if html5 LoadingState; #else IntroState;#end
+		initialState = #if html5 LoadingState; #else IntroState; #end
 		var stageWidth:Int = Lib.current.stage.stageWidth;
 		var stageHeight:Int = Lib.current.stage.stageHeight;
 
@@ -87,25 +85,27 @@ class Main extends Sprite
 			gameWidth = Math.ceil(stageWidth / zoom);
 			gameHeight = Math.ceil(stageHeight / zoom);
 		}
-	
+
 		ClientPrefs.loadDefaultKeys();
 		addChild(new FlxGame(gameWidth, gameHeight, initialState, zoom, framerate, framerate, skipSplash, startFullscreen));
 
 		#if !mobile
-		fpsVar = new FPS(10, 3, 0xFFFFFF);
+		fpsVar = new FPS(0, 0, 0xFFFFFF);
 		addChild(fpsVar);
 		Lib.current.stage.align = "tl";
 		Lib.current.stage.scaleMode = StageScaleMode.NO_SCALE;
-		if(fpsVar != null) {
+		if (fpsVar != null)
+		{
 			fpsVar.visible = ClientPrefs.showFPS;
 		}
 		#end
 
-		
 		#if desktop
-		if (!DiscordClient.isInitialized) {
+		if (!DiscordClient.isInitialized)
+		{
 			DiscordClient.initialize();
-			Application.current.window.onClose.add(function() {
+			Application.current.window.onClose.add(function()
+			{
 				DiscordClient.shutdown();
 			});
 		}
@@ -115,8 +115,7 @@ class Main extends Sprite
 		FlxG.autoPause = false;
 		FlxG.mouse.visible = false;
 		#end
-		
-		
+
 		#if CRASH_HANDLER
 		Lib.current.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, onCrash);
 		#end
@@ -135,7 +134,7 @@ class Main extends Sprite
 		dateNow = dateNow.replace(" ", "_");
 		dateNow = dateNow.replace(":", "'");
 
-		path = "./crash/" + "PsychEngine_" + dateNow + ".txt";
+		path = "./crash/" + "Vs-Discord_" + dateNow + ".txt";
 
 		for (stackItem in callStack)
 		{
@@ -148,7 +147,9 @@ class Main extends Sprite
 			}
 		}
 
-		errMsg += "\nUncaught Error: " + e.error + "\nPlease report this error to the GitHub page: https://github.com/ShadowMario/FNF-PsychEngine\n\n> Crash Handler written by: sqirra-rng";
+		errMsg += "\nUncaught Error: "
+			+ e.error
+			+ "\nPlease report this error to the GitHub page: https://github.com/Itz-Miles/VS-DISCORD\n\n> Crash Handler written by sqirra-rng";
 
 		if (!FileSystem.exists("./crash/"))
 			FileSystem.createDirectory("./crash/");

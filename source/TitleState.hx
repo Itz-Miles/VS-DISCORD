@@ -4,7 +4,6 @@ package;
 import Discord.DiscordClient;
 import sys.thread.Thread;
 #end
-
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
@@ -30,30 +29,29 @@ class TitleState extends MusicBeatState
 	var gamepad:FlxGamepad;
 	var pressedEnter:Bool;
 
-	override public function create():Void {
-
+	override public function create():Void
+	{
 		Paths.clearStoredMemory();
 		Paths.clearUnusedMemory();
 
 		super.create();
-	
+
 		bg = new FlxSprite().loadGraphic(Paths.image('backgrounds/titleBG', "shared"));
 		bg.screenCenter();
 		add(bg);
-			
-		logoBl = new FlxSprite(-590, -340).loadGraphic(Paths.image('logos/logo', "shared"));
+
+		logoBl = new FlxSprite(-15, -10).loadGraphic(Paths.image('logos/logo', "shared"));
 		logoBl.updateHitbox();
 		logoBl.antialiasing = ClientPrefs.globalAntialiasing;
 		add(logoBl);
-		FlxTween.tween(logoBl.scale, {x:0.39, y:0.39}, 0.1, {ease: FlxEase.cubeOut, type: FlxTweenType.PERSIST});
-	
+
 		splashText = new FlxSprite(0, 560).loadGraphic(Paths.image('text/splashText', "shared"));
 		splashText.updateHitbox();
 		splashText.antialiasing = ClientPrefs.globalAntialiasing;
 		splashText.screenCenter(X);
 		add(splashText);
-		FlxTween.tween(splashText.scale, {x:0.76, y:0.76}, 0.1, {ease: FlxEase.cubeOut, type: FlxTweenType.PERSIST});
-	
+		FlxTween.tween(splashText.scale, {x: 0.76, y: 0.76}, 0.1, {ease: FlxEase.cubeOut, type: FlxTweenType.PERSIST});
+
 		titleGF = new Character(758, 219, "titleGF", false, "shared");
 		add(titleGF);
 
@@ -65,7 +63,8 @@ class TitleState extends MusicBeatState
 		if (FlxG.sound.music != null)
 			Conductor.songPosition = FlxG.sound.music.time;
 
-		if (FlxG.keys.justPressed.F) {
+		if (FlxG.keys.justPressed.F)
+		{
 			FlxG.fullscreen = !FlxG.fullscreen;
 		}
 
@@ -95,14 +94,14 @@ class TitleState extends MusicBeatState
 
 		if (!transitioning)
 		{
-			if(pressedEnter)
+			if (pressedEnter)
 			{
-				
 				FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
-                splashText.y = 570;
+				splashText.y = 570;
 				transitioning = true;
 
-				new FlxTimer().start(1, function(tmr:FlxTimer) {
+				new FlxTimer().start(1, function(tmr:FlxTimer)
+				{
 					MusicBeatState.switchState(new MainMenuState());
 				});
 			}
@@ -111,19 +110,24 @@ class TitleState extends MusicBeatState
 	}
 
 	function tweenBack(tween:FlxTween):Void
-{
-	FlxTween.tween(splashText.scale, {x:0.76, y:0.76}, 0.165, {ease: FlxEase.cubeOut, type: FlxTweenType.PERSIST});
-    FlxTween.tween(logoBl.scale, {x:0.39, y:0.39}, 0.165, {ease: FlxEase.cubeOut, type: FlxTweenType.PERSIST});
-}
+	{
+		FlxTween.tween(splashText.scale, {x: 0.76, y: 0.76}, 0.165, {ease: FlxEase.cubeOut, type: FlxTweenType.PERSIST});
+		FlxTween.tween(logoBl.scale, {x: 0.975, y: 0.975}, 0.165, {ease: FlxEase.cubeOut, type: FlxTweenType.PERSIST});
+	}
+
 	override function beatHit()
 	{
 		super.beatHit();
-		if(splashText != null) FlxTween.tween(splashText.scale, {x:0.79, y:0.79}, 0.165, { type: FlxTweenType.PERSIST, ease: FlxEase.cubeOut, onComplete: tweenBack});
-        if(splashText != null) splashText.y = 560; //might tween back later
-		if(logoBl != null) FlxTween.tween(logoBl.scale, {x:0.40, y:0.40}, 0.165, { type: FlxTweenType.PERSIST, ease: FlxEase.cubeOut, onComplete: tweenBack});
+		if (splashText != null)
+			FlxTween.tween(splashText.scale, {x: 0.79, y: 0.79}, 0.165, {type: FlxTweenType.PERSIST, ease: FlxEase.cubeOut, onComplete: tweenBack});
+		if (splashText != null)
+			splashText.y = 560; // might tween back later
+		if (logoBl != null)
+			FlxTween.tween(logoBl.scale, {x: 1, y: 1}, 0.165, {type: FlxTweenType.PERSIST, ease: FlxEase.cubeOut, onComplete: tweenBack});
 
-		if(titleGF != null) {
-            titleGF.dance();
+		if (titleGF != null)
+		{
+			titleGF.dance();
 		}
 	}
 }

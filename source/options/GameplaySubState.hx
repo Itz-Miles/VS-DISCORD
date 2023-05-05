@@ -24,42 +24,28 @@ import flixel.util.FlxTimer;
 import flixel.input.keyboard.FlxKey;
 import flixel.graphics.FlxGraphic;
 import Controls;
+import CoolUtil;
 
 using StringTools;
 
-class GameplaySettingsSubState extends BaseOptionsMenu
+class GameplaySubState extends BaseOptionsMenu
 {
 	public function new()
 	{
 		title = 'Gameplay';
-		rpcTitle = 'Gameplay Settings'; //for Discord Rich Presence
+		rpcTitle = 'Gameplay'; // for Discord Rich Presence
 
-		var option:Option = new Option('Controller Mode',
-			'If checked, you can play with a controller instead of a Keyboard.',
-			'controllerMode',
-			'bool',
+		var option:Option = new Option('Controller Mode', 'If checked, you can play with a controller instead of a keyboard.', 'controllerMode', 'bool',
 			false);
 		addOption(option);
 
-		var option:Option = new Option('Disable Reset Button',
-			"If checked, pressing Reset won't do anything.",
-			'noReset',
-			'bool',
-			false);
+		var option:Option = new Option('Disable Reset Button', "If checked, pressing Reset won't do anything.", 'noReset', 'bool', false);
 		addOption(option);
 
-		var option:Option = new Option('Relative Judgement',
-		"relative",
-		'relativeHitCalc',
-		'bool',
-		true);
+		var option:Option = new Option('Relative Judgement', "relative", 'relativeHitCalc', 'bool', true);
 		addOption(option);
 
-		var option:Option = new Option('Hitsound Volume',
-			'Funny notes does \"Tick!\" when you hit them."',
-			'hitsoundVolume',
-			'percent',
-			0);
+		var option:Option = new Option('Hitsound Volume:', 'Hitting a note plays a "Tick" sound.', 'hitsoundVolume', 'percent', 0);
 		addOption(option);
 		option.scrollSpeed = 1.6;
 		option.minValue = 0.0;
@@ -68,27 +54,23 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 		option.decimals = 1;
 		option.onChange = onChangeHitsoundVolume;
 
-		var option:Option = new Option('Rating Offset',
-			'Changes how late/early you have to hit a note. Higher values mean you have to hit later.',
-			'ratingOffset',
-			'int',
-			0);
+		var option:Option = new Option('Rating Offset:', 'Changes how late/early you have to hit a note. Higher values mean you have to hit later.',
+			'ratingOffset', 'int', 0);
 		option.displayFormat = '%vms';
 		option.scrollSpeed = 20;
 		option.minValue = -30;
 		option.maxValue = 30;
 		addOption(option);
 
-		var option:Option = new Option('Hit Window',
-			'The window you have in milliseconds for htting a note.',
-			'hitWindow',
-			'float',
-			167);
+		var option:Option = new Option('Hit Window:', 'The window you have in milliseconds for htting a note.', 'hitWindow', 'float', 167);
 		option.displayFormat = '%vms';
 		option.scrollSpeed = 60;
 		option.minValue = 16.6;
 		option.maxValue = 166.7;
 		option.changeValue = 0.1;
+		addOption(option);
+
+		var option:Option = new Option('Difficulty:', "The game's default difficulty.", 'optionsDifficulty', 'string', 'Normal', CoolUtil.defaultDifficulties);
 		addOption(option);
 
 		super();

@@ -8,10 +8,9 @@ using StringTools;
 class HealthIcon extends FlxSprite
 {
 	public var sprTracker:FlxSprite;
-	private var isOldIcon:Bool = false;
+
 	private var isPlayer:Bool = false;
 	private var char:String = '';
-
 
 	public function new(char:String, isPlayer:Bool = false, ?library:String)
 	{
@@ -30,21 +29,29 @@ class HealthIcon extends FlxSprite
 	}
 
 	private var iconOffsets:Array<Float> = [0, 0];
-	public function changeIcon(char:String, ?library:String) {
-		if(this.char != char) {
+
+	public function changeIcon(char:String, ?library:String)
+	{
+		if (this.char != char)
+		{
 			var name:String = 'icons/' + char;
-			if(!Paths.fileExists('images/' + name + '.png', IMAGE, null, library)) name = 'icons/icon-' + char; //Older versions of psych engine's support
-			if(!Paths.fileExists('images/' + name + '.png', IMAGE, null, library)) name = 'icons/icon-face'; //Prevents crash from missing icon
+			if (!Paths.fileExists('images/' + name + '.png', IMAGE, null, library))
+				name = 'icons/icon-' + char; // Older versions of psych engine's support
+			if (!Paths.fileExists('images/' + name + '.png', IMAGE, null, library))
+				name = 'icons/icon-face'; // Prevents crash from missing icon
 			var file:Dynamic = Paths.image(name, library);
 
-			loadGraphic(file); //Load stupidly first for getting the file size
-			loadGraphic(file, true, Math.floor(width / 2), Math.floor(height)); //Then load it fr
-			iconOffsets[0] = (width - 150) / 2;
-			iconOffsets[1] = (width - 150) / 2;
-			updateHitbox();
+			loadGraphic(file); // Load stupidly first for getting the file size
+			if (width == height * 2)
+			{
+				loadGraphic(file, true, Math.floor(width / 2), Math.floor(height)); // Then load it fr
+				iconOffsets[0] = (width - 150) / 2;
+				iconOffsets[1] = (width - 150) / 2;
+				updateHitbox();
 
-			animation.add(char, [0, 1], 0, false, isPlayer);
-			animation.play(char);
+				animation.add(char, [0, 1], 0, false, isPlayer);
+				animation.play(char);
+			}
 			this.char = char;
 
 			antialiasing = ClientPrefs.globalAntialiasing;
@@ -58,7 +65,8 @@ class HealthIcon extends FlxSprite
 		offset.y = iconOffsets[1];
 	}
 
-	public function getCharacter():String {
+	public function getCharacter():String
+	{
 		return char;
 	}
 }
