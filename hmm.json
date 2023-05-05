@@ -18,7 +18,7 @@
     {
       "name": "flixel-addons",
       "type": "haxelib",
-      "version": "2.11.0"
+      "version": null
     },
     {
       "name": "flixel-tools",
@@ -32,6 +32,11 @@
     },
     {
       "name": "hxcpp",
+      "type": "haxelib",
+      "version": null
+    },
+    {
+      "name": "hxcpp-debug-server",
       "type": "haxelib",
       "version": null
     },
@@ -56,12 +61,6 @@
       "dir": null,
       "ref": "master",
       "url": "https://github.com/Aidan63/linc_discord-rpc"
-    },
-    {
-      "name": "hxcpp-debug-server",
-      "type": "haxelib",
-      "version": "1.2.4"
     }
-
   ]
 }
