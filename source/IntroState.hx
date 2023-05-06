@@ -214,11 +214,10 @@ class IntroState extends MusicBeatState
 				case 11:
 					deleteCoolText();
 				case 12:
-					createCoolText(['funkin'], -15);
+					createCoolText(['Versus'], 0);
 				case 13:
-					addMoreText('Vsersus', 15);
+					addMoreText('Discord', 30);
 				case 14:
-					addMoreText('Discord', 45);
 				case 15:
 					endIntro();
 			}
