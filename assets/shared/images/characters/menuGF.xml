@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextureAtlas imagePath="gf-menu.png">
+<TextureAtlas imagePath="menuGF.png">
 	<SubTexture name="gf_hey0000" x="1019" y="870" width="300" height="427" frameX="-3" frameY="0" frameWidth="305" frameHeight="427"/>
 	<SubTexture name="gf_hey0001" x="1019" y="870" width="300" height="427" frameX="-3" frameY="0" frameWidth="305" frameHeight="427"/>
 	<SubTexture name="gf_hey0002" x="347" y="879" width="305" height="424" frameX="0" frameY="-3" frameWidth="305" frameHeight="427"/>

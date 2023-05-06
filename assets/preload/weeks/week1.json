@@ -1,5 +1,5 @@
 {
-	"storyName": "clyddeee",
+	"storyName": "week 1",
 	"difficulties": "",
 	"hideFreeplay": false,
 	"weekBackground": "stage",
@@ -13,7 +13,7 @@
 	"hideStoryMode": true,
 	"songs": [
 		[
-			"Pinged",
+			"Channel",
 			"micupclyde",
 			[
 				88,
@@ -22,7 +22,7 @@
 			]
 		],
 		[
-			"Channel",
+			"Pinged",
 			"micupclyde",
 			[
 				88,
@@ -47,7 +47,17 @@
 				101,
 				242
 			]
+		],
+		[
+			"Interstellar",
+			"wumpus",
+			[
+				6,
+				133,
+				255
+			]
 		]
+
 	],
 	"weekCharacters": [
 		"dad",
@@ -55,5 +65,5 @@
 		"gf"
 	],
 	"hiddenUntilUnlocked": false,
-	"weekName": "clyyyyyyde"
+	"weekName": "songs"
 }
