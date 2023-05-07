@@ -1,9 +1,8 @@
 {
 	"storyName": "week 1",
-	"difficulties": "",
 	"hideFreeplay": false,
 	"weekBackground": "stage",
-	"weekBefore": "tutorial",
+	"weekBefore": "week 1",
 	"freeplayColor": [
 		146,
 		113,
