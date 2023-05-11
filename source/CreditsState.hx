@@ -50,12 +50,52 @@ class CreditsState extends MusicBeatState
 		var pisspoop:Array<Array<String>> = [
 			// Name - Icon name - Description - Link - BG Color
 
-			["Funkin' Minecraft"],
-
+			["Versus Discord"],
+			[
+			'Xb9Fox',               
+			'xb9fox',          
+			'Director',
+			'https://www.youtube.com/channel/UC86G4WsNrRBPqUhiXRjdjcA/videos', 
+			'FFC3A1D4'
+			],
+			[
+			'Microwave',            
+			'microwave',       
+			'Artist',                                 
+			'https://www.reddit.com/user/LatinDank/',                   
+			'FF828199'
+			],
+			[
+			'Gwahyzark',
+			'gwahyzark',
+			'Charter',
+			'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+			'FFF5E09A'
+			],
+			['NathGlitchy64',        
+			'nath',            
+			'Composer',
+			'https://www.youtube.com/channel/UCgKU9V7Pv-zsnQxtnAvO1kw', 
+			'FFEDE247'
+			],
+			[
+			'CookieBun',
+			'cookiebun',
+			'Animator/Artist',
+			'https://www.youtube.com/channel/UCJPKP1C_lNsOIYSq7ncQX6g',
+			'FFF0E4AF'
+			],
+			[
+			'Marten',
+			'marten',
+			'Animator',
+			'https://www.youtube.com/channel/UCzanQGmdTOdKF24V-Mh3dXA',
+			'FF805F18'
+			],
 			[
 				"It'z_Miles", 
 				'miles', 
-				'Developer / Parallax3D',
+				'Frontend/Backend Developer',
 				'https://twitter.com/Itz_MilesDev', 
 				'FFEAA6'
 			],
@@ -148,7 +188,7 @@ class CreditsState extends MusicBeatState
 				'FFFFFF'
 			]
 		];
-
+		
 		for (i in pisspoop)
 		{
 			creditsStuff.push(i);
