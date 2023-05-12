@@ -39,7 +39,6 @@ class ClientPrefs
 		'note_down' => [F, DOWN],
 		'note_up' => [J, UP],
 		'note_right' => [K, RIGHT],
-		'off-hand' => [S, SPACE],
 		'ui_left' => [A, LEFT],
 		'ui_down' => [S, DOWN],
 		'ui_up' => [W, UP],

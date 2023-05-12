@@ -12,7 +12,7 @@
 	"hideStoryMode": true,
 	"songs": [
 		[
-			"Channel",
+			"channel",
 			"micupclyde",
 			[
 				88,
@@ -21,7 +21,7 @@
 			]
 		],
 		[
-			"Pinged",
+			"pinged",
 			"micupclyde",
 			[
 				88,
@@ -30,7 +30,7 @@
 			]
 		],
 		[
-			"Mic-Up",
+			"mic-Up",
 			"clydepissed",
 			[
 				88,
@@ -39,7 +39,7 @@
 			]
 		],
 		[
-			"Finale",
+			"finale",
 			"clydepissed",
 			[
 				88,
@@ -48,7 +48,7 @@
 			]
 		],
 		[
-			"Interstellar",
+			"interstellar",
 			"wumpus",
 			[
 				6,
@@ -64,5 +64,5 @@
 		"gf"
 	],
 	"hiddenUntilUnlocked": false,
-	"weekName": "songs"
+	"weekName": "week 1"
 }

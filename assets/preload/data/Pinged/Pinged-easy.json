@@ -5430,10 +5430,10 @@
 		"events": [],
 		"player2": "tankman",
 		"splashSkin": "noteSplashes",
-		"song": "Pinged",
+		"song": "pinged",
 		"needsVoices": true,
 		"arrowSkin": "",
-		"stage": "#general",
+		"stage": "general",
 		"validScore": true,
 		"bpm": 140,
 		"speed": 2
