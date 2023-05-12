@@ -23,20 +23,8 @@ class StoryMenuState extends MusicBeatState
 	// Wether you have to beat the previous week for playing this one, defaults to True
 	public static var weekCompleted:Map<String, Bool> = new Map<String, Bool>();
 	private static var lastDifficultyName:String = '';
-
 	var curDifficulty:Int = CoolUtil.difficultyIndex(CoolUtil.defaultDifficulties, ClientPrefs.optionsDifficulty);
-	var bg:FlxSprite;
-	var sideBar:FlxSprite;
 	private static var curWeek:Int = 0;
-	var storyMode:FlxSprite;
-	var weekBox:FlxSprite;
-	var directoryBar:FlxSprite;
-	var controlScheme:Int = 0;
-	var menuDifficulties:FlxTypedGroup<FlxSprite>;
-	var difficultyPannelActive:Bool = false;
-	var directoryTitle:FlxText;
-
-	var xFile:Array<Float> = [319, 597, 987];
 
 	override function create()
 	{
@@ -51,21 +39,6 @@ class StoryMenuState extends MusicBeatState
 		WeekData.reloadWeekFiles(true);
 		if (curWeek >= WeekData.weeksList.length)
 			curWeek = 0;
-		persistentUpdate = persistentDraw = true;
-
-		bg = new FlxSprite().loadGraphic(Paths.image('backgrounds/menuBG', "shared"));
-		bg.screenCenter();
-		bg.y += 50;
-		bg.antialiasing = ClientPrefs.globalAntialiasing;
-		add(bg);
-
-		weekBox = new FlxSprite(0, -485).loadGraphic(Paths.image('menus/weekBox', "shared"));
-
-		sideBar = new FlxSprite(0, 0).loadGraphic(Paths.image('menus/sideBar', "shared"));
-
-		storyMode = new FlxSprite(0, 60).loadGraphic(Paths.image('menus/menuItems/item0true', "shared"));
-
-		directoryBar = new FlxSprite(0, 0).loadGraphic(Paths.image('menus/menuBar', "shared"));
 
 		for (i in 0...WeekData.weeksList.length)
 		{
@@ -81,48 +54,8 @@ class StoryMenuState extends MusicBeatState
 		}
 
 		changeDifficulty();
-
-		menuDifficulties = new FlxTypedGroup<FlxSprite>();
-
-		add(sideBar);
-		add(storyMode);
-		for (i in 1...7)
-			{
-				var item:FlxSprite = new FlxSprite(0, 60 + (i * 90) + (i * 4));
-				item.ID = i;
-				item.loadGraphic(Paths.image('menus/menuItems/item${item.ID}false', "shared"));
-				add(item);
-				item.scrollFactor.set();
-				item.antialiasing = ClientPrefs.globalAntialiasing;
-				item.alpha = 0.5;
-			}
-
-		add(weekBox);
-		FlxTween.tween(weekBox, {x: 0, y: -577}, 0.66, {ease: FlxEase.cubeIn});
-
-		add(menuDifficulties);
-
-		for (i in 0...CoolUtil.difficulties.length)
-		{
-			var menuDifficulty:FlxSprite = new FlxSprite(0, -485 + 514);
-			menuDifficulty.ID = i;
-			menuDifficulty.loadGraphic(Paths.image('menus/menuItems/difficulty-${menuDifficulty.ID}-${(menuDifficulty.ID == curDifficulty)}', "shared"));
-			menuDifficulty.x = xFile[i];
-			menuDifficulties.add(menuDifficulty);
-			FlxTween.tween(menuDifficulty, {x: menuDifficulty.x, y: -577 + 514}, 0.66, {ease: FlxEase.cubeIn});
-		}
-		add(directoryBar);
-
-		directoryTitle = new FlxText(0, 12, 0, "choose a world", 36);
-		directoryTitle.scrollFactor.set(0, 0);
-		directoryTitle.setFormat(Paths.font('Minecrafter-Regular.ttf'), 36, FlxColor.BLACK);
-		directoryTitle.updateHitbox();
-		directoryTitle.screenCenter(X);
-		//directoryTitle.x += 264 /2;
-		add(directoryTitle);
-
 		changeWeek();
-		reloadItemGraphics("precache", curDifficulty);
+		selectWeek();
 	}
 
 	override function closeSubState()
@@ -132,95 +65,11 @@ class StoryMenuState extends MusicBeatState
 		super.closeSubState();
 	}
 
-	override function update(elapsed:Float)
-	{
-		switch (controlScheme)
-		{
-			case 0:
-				if (difficultyPannelActive) 
-				{
-					menuDifficulties.forEach(function(spr:FlxSprite)
-					{
-						FlxTween.tween(spr, {x: spr.x, y: -577 + 514}, 0.66, {ease: FlxEase.cubeIn});
-						directoryTitle.text = "choose a world";
-						directoryTitle.screenCenter(X);
-					});
-					FlxTween.tween(weekBox, {x: 0, y: -577}, 0.66, {ease: FlxEase.cubeIn});
-					difficultyPannelActive = false;
-				}
-
-				if (controls.UI_UP_P)
-				{
-					changeWeek(-1);
-					FlxG.sound.play(Paths.sound('scrollMenu'));
-				}
-				if (controls.UI_DOWN_P)
-				{
-					changeWeek(1);
-					FlxG.sound.play(Paths.sound('scrollMenu'));
-				}
-				if (controls.BACK)
-				{
-					FlxG.sound.play(Paths.sound('cancelMenu'));
-					FlxTransitionableState.skipNextTransIn = true;
-					FlxTransitionableState.skipNextTransOut = true;
-					MusicBeatState.switchState(new MainMenuState());
-				}
-				if (controls.ACCEPT)
-				{
-					controlScheme = 1;
-					//reloadItemGraphics();
-				}
-
-			case 1:
-				if (!difficultyPannelActive) {
-					menuDifficulties.forEach(function(spr:FlxSprite)
-					{
-						FlxTween.tween(spr, {x: spr.x, y: 514}, 0.66, {ease: FlxEase.bounceOut});
-					});
-					FlxTween.tween(weekBox, {x: 0, y: 0}, 0.66, {ease: FlxEase.bounceOut});
-					directoryTitle.text = "select the difficulty";
-					directoryTitle.screenCenter(X);
-				difficultyPannelActive = true;
-				}
-
-				if (controls.UI_LEFT_P)
-				{
-					changeDifficulty(-1);
-					FlxG.sound.play(Paths.sound('scrollMenu'));
-					reloadItemGraphics("change", curDifficulty);
-				}
-				if (controls.UI_RIGHT_P)
-				{
-					changeDifficulty(1);
-					FlxG.sound.play(Paths.sound('scrollMenu'));
-					reloadItemGraphics("change", curDifficulty);
-				}
-				if (controls.BACK)
-				{
-					controlScheme = 0;
-				}
-				if (controls.RESET)
-				{
-					persistentUpdate = false;
-					openSubState(new ResetScoreSubState('', curDifficulty, '', curWeek));
-				}
-				if (controls.ACCEPT)
-				{
-					selectWeek();
-					controlScheme = 3;
-				}
-		}
-
-		super.update(elapsed);
-	}
-
 	function selectWeek()
 	{
 		if (!weekIsLocked(curWeek))
 		{
 			FlxG.sound.play(Paths.sound('confirmMenu'));
-			reloadItemGraphics("enter", curDifficulty);
 			var songArray:Array<String> = [];
 			var leWeek:Array<Dynamic> = WeekData.weeksLoaded.get(WeekData.weeksList[curWeek]).songs;
 			for (i in 0...leWeek.length)
@@ -248,9 +97,6 @@ class StoryMenuState extends MusicBeatState
 		}
 	}
 
-	var tweenDifficulty:FlxTween;
-	var lastImagePath:String;
-
 	function changeDifficulty(change:Int = 0):Void
 	{
 		curDifficulty += change;
@@ -267,7 +113,6 @@ class StoryMenuState extends MusicBeatState
 		#end
 	}
 
-	var lerpScore:Int = 0;
 	var intendedScore:Int = 0;
 
 	function changeWeek(change:Int = 0):Void
@@ -323,32 +168,4 @@ class StoryMenuState extends MusicBeatState
 			&& leWeek.weekBefore.length > 0
 			&& (!weekCompleted.exists(leWeek.weekBefore) || !weekCompleted.get(leWeek.weekBefore)));
 	}
-
-	function reloadItemGraphics(type:String = "", difficulty:Dynamic)
-		{
-			switch (type)
-			{
-				case 'precache':
-					menuDifficulties.forEach(function(spr:FlxSprite)
-					{
-						spr.loadGraphic(Paths.image('menus/menuItems/difficulty-${spr.ID}-true', "shared"));
-						reloadItemGraphics('change', 1);
-					});
-	
-				case 'change':
-					menuDifficulties.forEach(function(spr:FlxSprite)
-					{
-						spr.loadGraphic(Paths.image('menus/menuItems/difficulty-${spr.ID}-${curDifficulty == spr.ID}', "shared"));
-					});
-	
-				case 'enter':
-					menuDifficulties.forEach(function(spr:FlxSprite)
-					{
-						if (spr.ID == curDifficulty){
-							FlxFlicker.flicker(spr);
-
-						}
-					});
-			}
-		}
 }
