@@ -20,7 +20,7 @@ class ToolTip extends FlxSprite
 		loadGraphic(Paths.image(image, library));
 
 		toolText = new FlxText(0, 0, this.width, "text");
-		toolText.setFormat(Paths.font('Minecraftia-Regular.ttf'), 24, 0xffffff, "center");
+		toolText.setFormat(Paths.font('vcr.ttf'), 24, 0xffffff, "center");
 		this.orientation = orientation;
 	}
 

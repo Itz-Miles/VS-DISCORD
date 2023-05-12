@@ -324,13 +324,18 @@ class PlayState extends MusicBeatState
 					add(stageCurtains);
 		}
 
-			case 'general':
-				var stageBack:BGSprite = new BGSprite('stageback', -600, -300, 0.9, 0.9);
-				var stageFront:BGSprite = new BGSprite('stagefront', -650, 600, 1, 1);
-				stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
-				stageFront.updateHitbox();
-				add(stageBack);
-				add(stageFront);
+			case 'general', 'shesmad':
+				var generalStageBack:FlxSprite = new FlxSprite(-600, -300, Paths.image("vcback", "week 1"));
+				var generalStageFront:FlxSprite = new FlxSprite(-650, 600, Paths.image("vcfront", "week 1"));
+				add(generalStageBack);
+				add(generalStageFront);
+			case 'space':
+				var spaceStageBack:FlxSprite = new FlxSprite(-600, -300, Paths.image("vcback", "week 1"));
+				var spaceStageFront:FlxSprite = new FlxSprite(-650, 600, Paths.image("vcfront", "week 1"));
+				add(spaceStageBack);
+				add(spaceStageFront);
+
+
 		}
 
 		add(gfGroup);
@@ -348,17 +353,17 @@ class PlayState extends MusicBeatState
 
 		if (!stageData.hide_girlfriend)
 		{
-			gf = new Character(0, 0, gfVersion);
+			gf = new Character(0, 0, gfVersion, false, "shared");
 			startCharacterPos(gf);
 			gf.scrollFactor.set(1, 1);
 			gfGroup.add(gf);
 		}
 
-		boyfriend = new Boyfriend(0, 0, SONG.player1);
+		boyfriend = new Boyfriend(0, 0, SONG.player1, "shared");
 		startCharacterPos(boyfriend);
 		boyfriendGroup.add(boyfriend);
 
-		dad = new Character(0, 0, SONG.player2);
+		dad = new Character(0, 0, SONG.player2, false, "shared");
 		startCharacterPos(dad, true);
 		dadGroup.add(dad);
 
@@ -385,7 +390,7 @@ class PlayState extends MusicBeatState
 
 		var showTime:Bool = (ClientPrefs.timeBarType != 'Disabled');
 		timeTxt = new FlxText(STRUM_X + (FlxG.width / 2) - 248, 19, 400, "", 30);
-		timeTxt.setFormat(Paths.font("Minecraftia-Regular.ttf"), 30, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		timeTxt.setFormat(Paths.font("vcr.ttf"), 30, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		timeTxt.scrollFactor.set();
 		timeTxt.alpha = 0;
 		timeTxt.borderSize = 3;
@@ -504,7 +509,7 @@ class PlayState extends MusicBeatState
 		toolTip.toolText.visible = false;
 
 		scoreTxt = new FlxText(0, healthBarBG.y + 24, FlxG.width, "", 20);
-		scoreTxt.setFormat(Paths.font("Minecraftia-Regular.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		scoreTxt.setFormat(Paths.font("vcr.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		scoreTxt.scrollFactor.set();
 		scoreTxt.borderSize = 2.5;
 		add(scoreTxt);
@@ -604,7 +609,7 @@ class PlayState extends MusicBeatState
 			case 0:
 				if (!boyfriendMap.exists(newCharacter))
 				{
-					var newBoyfriend:Boyfriend = new Boyfriend(0, 0, newCharacter);
+					var newBoyfriend:Boyfriend = new Boyfriend(0, 0, newCharacter, "shared");
 					boyfriendMap.set(newCharacter, newBoyfriend);
 					boyfriendGroup.add(newBoyfriend);
 					startCharacterPos(newBoyfriend);
@@ -614,7 +619,7 @@ class PlayState extends MusicBeatState
 			case 1:
 				if (!dadMap.exists(newCharacter))
 				{
-					var newDad:Character = new Character(0, 0, newCharacter);
+					var newDad:Character = new Character(0, 0, newCharacter, "shared");
 					dadMap.set(newCharacter, newDad);
 					dadGroup.add(newDad);
 					startCharacterPos(newDad, true);
@@ -624,7 +629,7 @@ class PlayState extends MusicBeatState
 			case 2:
 				if (gf != null && !gfMap.exists(newCharacter))
 				{
-					var newGf:Character = new Character(0, 0, newCharacter);
+					var newGf:Character = new Character(0, 0, newCharacter, "shared");
 					newGf.scrollFactor.set(0.95, 0.95);
 					gfMap.set(newCharacter, newGf);
 					gfGroup.add(newGf);

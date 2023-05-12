@@ -467,9 +467,9 @@ class Boyfriend extends Character
 {
 	public var startedDeath:Bool = false;
 
-	public function new(x:Float, y:Float, ?char:String = 'bf')
+	public function new(x:Float, y:Float, ?char:String = 'bf', library:String)
 	{
-		super(x, y, char, true);
+		super(x, y, char, true, library);
 	}
 
 	override function update(elapsed:Float)
