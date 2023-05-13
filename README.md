@@ -1,43 +1,64 @@
-<!--view the pretty format on the webpage:
-https://github.com/Itz-Miles/VS-DISCORD
--->
+<!--This is the markdown readme. View the pretty format on the webpage-->
+![logo](./art/logos/logo/logoHD.png)
+___
+# Source for Versus Discord: a cancelled mod for Friday Night Funkin'
+If you just want to play Versus Discord, play it [here](https://itz-miles.github.io/VS-DISCORD-site/game/play.html).
 
-![logo](https://user-images.githubusercontent.com/95124554/225757488-505bd0b0-8d16-4f27-a7bd-f28fbdeb0c81.png)
-replace this with some cool art banner logo cover
+If you just want to download it, visit [releases](https://github.com/Itz-Miles/VS-DISCORD/releases/latest).
 
-__________________________________________________________________________________________________________________________________________
-# Source code for VS Discord: A mod to Friday Night Funkin'
-If you just want to play VS DISCORD, play it [here.](https://itz-miles.github.io/VS-DISCORD-test)
 
 # Building From Source
 
 ## Haxe
 You must have [the most up-to-date version of Haxe](https://haxe.org/download/) (4.2.4+) in order to compile.
 
-## Visual Studio
-`windows` To install the software needed to compile: install [Visual Studio 19](https://visualstudio.microsoft.com/vs/older-downloads/#visual-studio-2019-and-other-products) and ONLY these components:
+## Visual Studio / Visual Studio Code
+
+Install [Visual Studio Code](https://code.visualstudio.com/download).
+
+For language support, debugging, linting, and documentation, install the [Vs Haxe Extension Pack](https://marketplace.visualstudio.com/items?itemName=vshaxe.haxe-extension-pack).
+
+For Lime / OpenFL project support, install the [Lime Extension](https://marketplace.visualstudio.com/items?itemName=openfl.lime-vscode-extension).
+
+`windows` For compiling the game on windows, install [Visual Studio 19](https://visualstudio.microsoft.com/vs/older-downloads/#visual-studio-2019-and-other-products) and ONLY these components:
 ```
 MSVC v142 - VS 2019 C++ x64/x86 build tools
 Windows SDK (10.0.17763.0)
 ```
-`Other Platforms` Do nothing.
 
 ## Command Prompt/Terminal
-`windows` any of these methods should send you to a terminal, where you can run commands needed to compile the game.
-```
-Ctrl + Shift + p, and set directory.
 
-open your directory, select Project.xml, and click "file" > "Open Windows Powershell".
+ These methods send you to a terminal, which will be used to install libraries and compile the game.
+ 
+`windows`
+```
+Vs Code: View > Terminal 
+
+Start Menu: Click on the Start button, type "PowerShell" or "Command Prompt" in the search bar, and select the respective application from the search results.
+
+File Explorer: Navigate to the desired location and enter "powershell" or "cmd" in the address bar to open with the current location set as the working directory.
+
+Run Dialog: Press the Windows key + R to open the Run dialog, type "powershell" or "cmd", and press Enter.
 ```
 
-`mac` any of these methods should send you to a terminal, where you can run commands needed to compile the game.
+`mac`
 ```
-Open Terminal in Launchpad's Utillities folder.
+Vs Code: View > Terminal
 
-Spotlight Search for Terminal.
+Spotlight Search: Press Command + Space to open Spotlight Search, type "Terminal," and press Enter.
+
+Finder: Open the Finder, go to the "Applications" folder, open the "Utilities" folder, and double-click on the "Terminal" application.
+
+Launchpad: Open the Launchpad (icon looks like a rocket in the Dock), type "Terminal" in the search bar, and click on the Terminal app.
 ```
+
+`linux`
+```
+Ain't no way I'm compiling the game on every single linux distro. Try stuff out and see!
+```
+
 ## Haxe Module Manager
-To install HMM for installing and managing libraries needed for VS DISCORD, run the following command:
+To install HMM for installing and managing libraries needed for Versus Discord, run the following command:
 `haxelib install hmm`
 
 To install the libraries listed in hmm.json, run the following command:
@@ -78,37 +99,25 @@ lime build mac
 
 # Credits:
 
-©xb9fox 2023 - Some rights reserved.
+©It'z_Miles 2023 Some rights reserved.
 
-©It'z_Miles 2023 - Some rights reserved.
+Versus Discord is not an official Discord product. Not approved by or assosiated with Discord.inc
 
-(will have to determine what assets to attribute for copyright purposes. Gonna use both Apache 2.0 and CC BY-NC 2.0)
-(will add library and engine licencing soon)
+## Versus Discord Team
+* Miles Fuqua - Developer/Parallax3D <img src="./assets/shared/images/icons/miles.png" width="16">
+* github - [contributors](https://github.com/Itz-Miles/VS-Discord/graphs/contributors) <img src= "./assets/shared/images/icons/github.png" width="16">
+* the rest of the team
 
-VS DISCORD is not an official Discord product. Not licensed by or assosiated with Discord.
-
-## VS Discord Team
-* xb9fox - did a thing
-* person - did a thing
-* person - did a thing
-* person - did a thing
-* person - did a thing
-* person - did a thing
-* person - did a thing
-* person - did a thing
-* person - did a thing
-
-* It'z_Miles - Parallax 3D
-
-## Psych Engine:
-* Shadow Mario - Programmer/Owner of Psych
-* bbpanzu - Assistant Programmer
-* shubs - New Input System
-* PolybiusProxy - HxCodec Video Support
-* Keoiki - Note Splash Animations
+## Psych Engine
+* Shadow Mario - Programmer/Owner of Psych <img src="./assets/shared/images/icons/shadowmario.png" width="16">
+* shubs - New Input System <img src="./assets/shared/images/icons/shubs.png" width="16">
+* PolybiusProxy - HxCodec Video Support <img src="./assets/shared/images/icons/polybiusproxy.png" width="16">
+* Keoiki - Note Splash Animations <img src="./assets/shared/images/icons/keoiki.png" width="16">
+* github - [contributors](https://github.com/ShadowMario/FNF-PsychEngine/graphs/contributors) <img src= "./assets/shared/images/icons/github.png" width="16">
 
 ## Funkin' Crew
-* ninjamuffin99 - Programmer of Friday Night Funkin'
-* PhantomArcade -	Animator of Friday Night Funkin'
-* evilsk8r - Artist of Friday Night Funkin'
-* kawaisprite - Composer of Friday Night Funkin'
+* ninjamuffin99 - Programmer of Friday Night Funkin' <img src="./assets/shared/images/icons/ninjamuffin99.png" width="16">
+* PhantomArcade -	Animator of Friday Night Funkin' <img src="./assets/shared/images/icons/phantomarcade.png" width="16">
+* evilsk8r - Artist of Friday Night Funkin' <img src="./assets/shared/images/icons/evilsk8r.png" width="16">
+* kawaisprite - Composer of Friday Night Funkin' <img src="./assets/shared/images/icons/kawaisprite.png" width="16">
+* github - [contributors](https://github.com/FunkinCrew/Funkin/graphs/contributors) <img src= "./assets/shared/images/icons/github.png" width="16">
