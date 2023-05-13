@@ -15,7 +15,7 @@ class PauseSubState extends MusicBeatSubstate
 	var grpMenuShit:FlxTypedGroup<Alphabet>;
 
 	var menuItems:Array<String> = [];
-	var menuItemsOG:Array<String> = ['Resume', 'Restart Song', 'Change Difficulty', 'Configure Settings', 'Exit to menu'];
+	var menuItemsOG:Array<String> = ['Resume', 'Restart', 'Settings', 'Exit'];
 	var curSelected:Int = 0;
 	var practiceText:FlxText;
 	var skipTimeText:FlxText;
@@ -173,7 +173,7 @@ class PauseSubState extends MusicBeatSubstate
 					FlxG.sound.music.fadeIn(2, 0, 1);
 
 
-				case "Restart Song":
+				case "Restart":
 					restartSong();
 				case "Leave Charting Mode":
 					restartSong();
@@ -199,7 +199,7 @@ class PauseSubState extends MusicBeatSubstate
 				case 'Toggle Botplay':
 					PlayState.instance.cpuControlled = !PlayState.instance.cpuControlled;
 					PlayState.changedDifficulty = true;
-				case "Exit to menu":
+				case "Exit":
 					PlayState.deathCounter = 0;
 					PlayState.seenCutscene = false;
 
