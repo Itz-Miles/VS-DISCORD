@@ -1,8 +1,8 @@
 {
-	"storyName": "week 1",
+	"storyName": "freeplay",
 	"hideFreeplay": false,
 	"weekBackground": "stage",
-	"weekBefore": "week 1",
+	"weekBefore": "freeplay",
 	"freeplayColor": [
 		146,
 		113,
@@ -64,5 +64,5 @@
 		"gf"
 	],
 	"hiddenUntilUnlocked": false,
-	"weekName": "week 1"
+	"weekName": "freeplay"
 }
