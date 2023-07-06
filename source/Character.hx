@@ -349,19 +349,6 @@ class Character extends FlxSprite
 			this.idleSuffix = theArgumentsArray[0];
 			this.recalculateDanceIdle();
 
-		case 'fade':
-			var duritation:Float = Std.parseFloat(theArgumentsArray[0]);
-			var targetedAlpha:Float = Std.parseFloat(theArgumentsArray[1]);
-
-			if (duritation <= 0){
-			this.alpha = targetedAlpha;
-			//this.icon.alpha = targetedAlpha;
-			} else {
-			FlxTween.tween(this, {alpha: targetedAlpha}, duritation);
-			//FlxTween.tween(this.icon, {alpha: targetedAlpha}, duritation);
-			}
-			//might give multiple characters their own individual icons without needing reflection
-
 		case 'hey':
 				var time:Float = Std.parseFloat(theArgumentsArray[0]);
 				if(Math.isNaN(time) || time <= 0) time = 0.6;
@@ -372,25 +359,6 @@ class Character extends FlxSprite
 		case 'animation':
 			this.playAnim(theArgumentsArray[0], true);
 			this.specialAnim = true;
-
-		case 'attack':
-			this.playAnim(theArgumentsArray[0], theArgumentsArray[1], theArgumentsArray[2], theArgumentsArray[3]);
-			switch(theArgumentsArray[4]) {
-				case 'punch':
-
-				case 'kick':
-					//
-				case 'shoot':
-
-				case 'swing':
-
-				case 'stun':
-					Reflect.field(PlayState.instance, theArgumentsArray[0]).stunned = true; //ok?
-
-				default:
-					trace('error: cannot define attack type ${theArgumentsArray[4]}');
-			}
-			//this.elapsedDamage = theArgumentsArray[4],
 
 		case 'die':
 			//change this to vs discord death
@@ -438,16 +406,14 @@ class Character extends FlxSprite
 			
 			}
 
-		case 'despawn':
-			//might seperate die and respawn
 		case 'respawn':
 			this.visible = true;
 
 			FlxTween.tween(FlxG.camera, {zoom: 1}, 1, {ease: FlxEase.elasticInOut, onComplete: function(twn:FlxTween) {
 			
-				FlxTween.angle(this, 90, 0, 0.5, {ease: FlxEase.quadInOut});
+				FlxTween.angle(this, 0, 0, 0.5, {ease: FlxEase.quadInOut});
 				
-					FlxTween.color(this, 0.5, 0xFFe6726a,  FlxColor.WHITE,{ease: FlxEase.quadInOut, onComplete: function(twn:FlxTween) {
+					FlxTween.color(this, 0.5, FlxColor.WHITE,  FlxColor.WHITE,{ease: FlxEase.quadInOut, onComplete: function(twn:FlxTween) {
 			
 						new FlxTimer().start(1, function(tmr:FlxTimer) {
 							LoadingState.loadAndSwitchState(new PlayState(), true);
@@ -493,7 +459,6 @@ class Boyfriend extends Character
 				playAnim('deathLoop');
 			}
 		}
-
 		super.update(elapsed);
 	}
 }

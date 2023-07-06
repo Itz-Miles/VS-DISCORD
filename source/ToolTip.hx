@@ -51,7 +51,7 @@ class ToolTip extends FlxSprite
 				default:
 					trace('orientations are above, left, right, and below. Argument: {$orientation}');
 			}
-			toolText.setPosition(this.x + (this.width - toolText.width) / 2, this.y);
+			toolText.setPosition(this.x + (this.width - toolText.width) / 2, this.y + (this.height - toolText.height) / 2);
 		}
 	}
 
