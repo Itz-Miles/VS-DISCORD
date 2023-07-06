@@ -156,24 +156,4 @@ class CoolUtil
 		FlxG.openURL(site);
 		#end
 	}
-
-	static function userName():String
-	{
-		var userName:String = "joe";
-		#if (sys != null) // Check if running on desktop
-		{
-			userName = sys.User.getCurrentUserName();
-		}
-		#elseif (js != null) // Check if running in JavaScript
-		{
-			userName = js.Browser.window.navigator.userAgent;
-		}
-		#elseif (neko != null) // Check if running on Neko
-		{
-			userName = neko.Sys.getEnv("USER");
-		}
-		#end
-		trace("Current user's name: " + userName);
-		return userName;
-	}
 }

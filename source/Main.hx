@@ -11,7 +11,9 @@ import openfl.display.Sprite;
 import openfl.events.Event;
 import openfl.display.StageScaleMode;
 import lime.app.Application;
+#if !macro
 import Paths;
+#end
 #if desktop
 import Discord.DiscordClient;
 #end
@@ -29,14 +31,15 @@ using StringTools;
 
 class Main extends Sprite
 {
-	var gameWidth:Int = 1280; // Width of the game in pixels (might be less / more in actual pixels depending on your zoom).
-	var gameHeight:Int = 720; // Height of the game in pixels (might be less / more in actual pixels depending on your zoom).
-	var initialState:Class<FlxState>; // The FlxState the game starts with.
-
-	var zoom:Float = -1; // If -1, zoom is automatically calculated to fit the window dimensions.
-	var framerate:Int = 60; // How many frames per second the game should run at.
-	var skipSplash:Bool = true; // Whether to skip the flixel splash screen that appears in release mode.
-	var startFullscreen:Bool = false; // Whether to start the game in fullscreen on desktop targets
+	var game = {
+		width: 1280, // WINDOW width
+		height: 720, // WINDOW height
+		initialState: #if html5 LoadingState #else IntroState #end, // initial game state
+		zoom: -1.0, // game state bounds
+		framerate: 60, // default framerate
+		skipSplash: true, // if the default flixel splash screen should be skipped
+		startFullscreen: false // if the game should start at fullscreen mode
+	};
 
 	public static var fpsVar:FPS;
 
@@ -73,29 +76,27 @@ class Main extends Sprite
 
 	private function setupGame():Void
 	{
-		initialState = #if html5 LoadingState; #else IntroState; #end
 		var stageWidth:Int = Lib.current.stage.stageWidth;
 		var stageHeight:Int = Lib.current.stage.stageHeight;
 
-		if (zoom == -1)
+		if (game.zoom == -1.0)
 		{
-			var ratioX:Float = stageWidth / gameWidth;
-			var ratioY:Float = stageHeight / gameHeight;
-			zoom = Math.min(ratioX, ratioY);
-			gameWidth = Math.ceil(stageWidth / zoom);
-			gameHeight = Math.ceil(stageHeight / zoom);
+			var ratioX:Float = stageWidth / game.width;
+			var ratioY:Float = stageHeight / game.height;
+			game.zoom = Math.min(ratioX, ratioY);
+			game.width = Math.ceil(stageWidth / game.zoom);
+			game.height = Math.ceil(stageHeight / game.zoom);
 		}
-
+	
 		ClientPrefs.loadDefaultKeys();
-		addChild(new FlxGame(gameWidth, gameHeight, initialState, zoom, framerate, framerate, skipSplash, startFullscreen));
+		addChild(new FlxGame(game.width, game.height, game.initialState, #if (flixel < "5.0.0") game.zoom, #end game.framerate, game.framerate, game.skipSplash, game.startFullscreen));
 
 		#if !mobile
-		fpsVar = new FPS(0, 0, 0xFFFFFF);
+		fpsVar = new FPS(10, 3, 0xFFFFFF);
 		addChild(fpsVar);
 		Lib.current.stage.align = "tl";
 		Lib.current.stage.scaleMode = StageScaleMode.NO_SCALE;
-		if (fpsVar != null)
-		{
+		if(fpsVar != null) {
 			fpsVar.visible = ClientPrefs.showFPS;
 		}
 		#end
@@ -115,7 +116,7 @@ class Main extends Sprite
 		FlxG.autoPause = false;
 		FlxG.mouse.visible = false;
 		#end
-
+		
 		#if CRASH_HANDLER
 		Lib.current.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, onCrash);
 		#end
@@ -134,7 +135,7 @@ class Main extends Sprite
 		dateNow = dateNow.replace(" ", "_");
 		dateNow = dateNow.replace(":", "'");
 
-		path = "./crash/" + "Vs-Discord_" + dateNow + ".txt";
+		path = "./crash/" + "Future-Bass-Funkin_" + dateNow + ".txt";
 
 		for (stackItem in callStack)
 		{
