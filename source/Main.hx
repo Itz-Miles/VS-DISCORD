@@ -12,7 +12,9 @@ import openfl.events.Event;
 import openfl.display.StageScaleMode;
 import lime.app.Application;
 #if !macro
+#if !macro
 import Paths;
+#end
 #end
 #if desktop
 import Discord.DiscordClient;
@@ -31,6 +33,15 @@ using StringTools;
 
 class Main extends Sprite
 {
+	var game = {
+		width: 1280, // WINDOW width
+		height: 720, // WINDOW height
+		initialState: #if html5 LoadingState #else IntroState #end, // initial game state
+		zoom: -1.0, // game state bounds
+		framerate: 60, // default framerate
+		skipSplash: true, // if the default flixel splash screen should be skipped
+		startFullscreen: false // if the game should start at fullscreen mode
+	};
 	var game = {
 		width: 1280, // WINDOW width
 		height: 720, // WINDOW height
@@ -87,18 +98,18 @@ class Main extends Sprite
 			game.width = Math.ceil(stageWidth / game.zoom);
 			game.height = Math.ceil(stageHeight / game.zoom);
 		}
-
+	
 		ClientPrefs.loadDefaultKeys();
 		addChild(new FlxGame(game.width, game.height, game.initialState, #if (flixel < "5.0.0") game.zoom, #end game.framerate, game.framerate,
 			game.skipSplash, game.startFullscreen));
 
 		#if !mobile
 		fpsVar = new FPS(10, 3, 0xFFFFFF);
+		fpsVar = new FPS(10, 3, 0xFFFFFF);
 		addChild(fpsVar);
 		Lib.current.stage.align = "tl";
 		Lib.current.stage.scaleMode = StageScaleMode.NO_SCALE;
-		if (fpsVar != null)
-		{
+		if(fpsVar != null) {
 			fpsVar.visible = ClientPrefs.showFPS;
 		}
 		#end
@@ -118,7 +129,7 @@ class Main extends Sprite
 		FlxG.autoPause = false;
 		FlxG.mouse.visible = false;
 		#end
-
+		
 		#if CRASH_HANDLER
 		Lib.current.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, onCrash);
 		#end
@@ -137,7 +148,7 @@ class Main extends Sprite
 		dateNow = dateNow.replace(" ", "_");
 		dateNow = dateNow.replace(":", "'");
 
-		path = "./crash/" + "Vs-Discord_" + dateNow + ".txt";
+		path = "./crash/" + "Future-Bass-Funkin_" + dateNow + ".txt";
 
 		for (stackItem in callStack)
 		{
