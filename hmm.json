@@ -13,22 +13,24 @@
     {
       "name": "flixel",
       "type": "haxelib",
-      "version": "4.11.0"
+      "version": "5.3.1"
     },
     {
       "name": "flixel-addons",
       "type": "haxelib",
-      "version": null
+      "version": "3.1.1"
     },
     {
       "name": "flixel-tools",
       "type": "haxelib",
-      "version": null
+      "version": "1.5.1"
     },
     {
       "name": "flixel-ui",
-      "type": "haxelib",
-      "version": null
+      "type": "git",
+      "dir": null,
+      "ref": "dev",
+      "url": "https://github.com/HaxeFlixel/flixel-ui"
     },
     {
       "name": "hxcpp",
@@ -49,11 +51,6 @@
       "name": "hxjsonast",
       "type": "haxelib",
       "version": null
-    },
-    {
-      "name": "hxCodec",
-      "type": "haxelib",
-      "version": "2.5.1"
     },
     {
       "name": "discord_rpc",
