@@ -42,10 +42,6 @@ import StageData;
 import ToolTip;
 import Character;
 
-#if VIDEOS_ALLOWED
-import vlc.MP4Handler;
-#end
-
 using StringTools;
 
 class PlayState extends MusicBeatState
@@ -733,53 +729,6 @@ class PlayState extends MusicBeatState
 		}
 	}
 
-	public function startVideo(name:String)
-	{
-		#if VIDEOS_ALLOWED
-		inCutscene = true;
-
-		var filepath:String = Paths.video(name);
-		if (!OpenFlAssets.exists(filepath))
-		{
-			FlxG.log.warn('Couldnt find video file: ' + name);
-			if (endingSong)
-			{
-				endSong();
-			}
-			else
-			{
-				startCountdown();
-			}
-			return;
-		}
-
-		FlxG.sound.music.stop();
-		var video:MP4Handler = new MP4Handler();
-		video.playVideo(filepath);
-
-		video.finishCallback = function()
-		{
-			if (endingSong)
-			{
-				endSong();
-			}
-			else
-			{
-				startCountdown();
-			}
-		}
-		#else
-		FlxG.log.warn('Your platfomrm does not support videos');
-		if (endingSong)
-		{
-			endSong();
-		}
-		else
-		{
-			startCountdown();
-		}
-		#end
-	}
 
 	var finishTimer:FlxTimer = null;
 
