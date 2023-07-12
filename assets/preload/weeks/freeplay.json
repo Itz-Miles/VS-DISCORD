@@ -1,7 +1,6 @@
 {
 	"storyName": "freeplay",
 	"hideFreeplay": false,
-	"weekBackground": "stage",
 	"weekBefore": "freeplay",
 	"freeplayColor": [
 		146,
@@ -12,8 +11,8 @@
 	"hideStoryMode": false,
 	"songs": [
 		[
-			"channel",
-			"micupclyde",
+			"pinged",
+			"menuface",
 			[
 				88,
 				101,
@@ -21,8 +20,17 @@
 			]
 		],
 		[
-			"pinged",
-			"micupclyde",
+			"channel",
+			"menuface",
+			[
+				88,
+				101,
+				242
+			]
+		],
+		[
+			"confrontation",
+			"menuface",
 			[
 				88,
 				101,
@@ -31,7 +39,7 @@
 		],
 		[
 			"mic-Up",
-			"clydepissed",
+			"menuface",
 			[
 				88,
 				101,
@@ -40,7 +48,7 @@
 		],
 		[
 			"finale",
-			"clydepissed",
+			"menuface",
 			[
 				88,
 				101,
@@ -49,7 +57,7 @@
 		],
 		[
 			"interstellar",
-			"wumpus",
+			"menuface",
 			[
 				6,
 				133,
@@ -57,11 +65,6 @@
 			]
 		]
 
-	],
-	"weekCharacters": [
-		"dad",
-		"bf",
-		"gf"
 	],
 	"hiddenUntilUnlocked": false,
 	"weekName": "freeplay"
