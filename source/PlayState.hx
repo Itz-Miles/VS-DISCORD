@@ -321,13 +321,14 @@ class PlayState extends MusicBeatState
 		}
 
 			case 'general', 'shesmad':
-				var generalStageBack:FlxSprite = new FlxSprite(-600, -300, Paths.image("vcback", "week 1"));
-				var generalStageFront:FlxSprite = new FlxSprite(-650, 600, Paths.image("vcfront", "week 1"));
+				var generalStageBack:FlxSprite = new FlxSprite(-600, -300, Paths.image("vcback", "freeplay"));
+				var generalStageFront:FlxSprite = new FlxSprite(-650, 600, Paths.image("vcfront", "freeplay"));
 				add(generalStageBack);
 				add(generalStageFront);
+
 			case 'space':
-				var spaceStageBack:FlxSprite = new FlxSprite(-600, -300, Paths.image("vcback", "week 1"));
-				var spaceStageFront:FlxSprite = new FlxSprite(-650, 600, Paths.image("vcfront", "week 1"));
+				var spaceStageBack:FlxSprite = new FlxSprite(0, 0, Paths.image("space", "freeplay"));
+				var spaceStageFront:FlxSprite = new FlxSprite(0, 429, Paths.image("earth", "freeplay"));
 				add(spaceStageBack);
 				add(spaceStageFront);
 
