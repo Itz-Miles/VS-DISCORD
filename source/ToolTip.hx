@@ -10,8 +10,7 @@ class ToolTip extends FlxSprite
 	public var toolText:FlxText;
 	public var orientation:String = "";
 
-	private var isShowing:Bool = false;
-	private var showTimer:FlxTimer = new FlxTimer();
+	private var showTimer:Float;
 
 	override public function new(x:Float, y:Float, image:String, target:Dynamic, orientation:String, duration:Float, library:String)
 	{
@@ -23,6 +22,7 @@ class ToolTip extends FlxSprite
 		toolText.setFormat(Paths.font("whitney-bold.otf"), 30, 0xffffff, CENTER, FlxTextBorderStyle.OUTLINE, 0xff0000);
 		toolText.borderSize = 2.5;
 		this.orientation = orientation;
+		showTimer = 0;
 	}
 
 	public function addText()
@@ -54,23 +54,23 @@ class ToolTip extends FlxSprite
 			}
 			toolText.setPosition(this.x + (this.width - toolText.width) / 2, this.y + (this.height - toolText.height) / 2);
 		}
+
+		if (visible)
+		{
+			showTimer += 1.0 * elapsed;
+			if (showTimer >= 3.0)
+			{
+				this.visible = false;
+				toolText.visible = false;
+				showTimer = 0;
+			}
+		}
 	}
 
 	public function showToolTip():Void
 	{
-		if (!isShowing)
-		{
-			this.visible = true;
-			toolText.visible = true;
-
-			showTimer.start(3, function(timer:FlxTimer):Void
-			{
-				this.visible = false;
-				toolText.visible = false;
-				isShowing = false;
-			});
-
-			isShowing = true;
-		}
+		showTimer = 0;
+		this.visible = true;
+		toolText.visible = true;
 	}
 }
