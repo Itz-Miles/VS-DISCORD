@@ -41,15 +41,15 @@ class TitleState extends MusicBeatState
 		logoBl.antialiasing = ClientPrefs.globalAntialiasing;
 		add(logoBl);
 
+		titleGF = new Character(550, 195, "outlineGF", false, "shared");
+		add(titleGF);
+
 		splashText = new FlxSprite(0, 560).loadGraphic(Paths.image('text/splashText', "shared"));
 		splashText.updateHitbox();
 		splashText.antialiasing = ClientPrefs.globalAntialiasing;
 		splashText.screenCenter(X);
 		add(splashText);
 		FlxTween.tween(splashText.scale, {x: 0.76, y: 0.76}, 0.1, {ease: FlxEase.cubeOut, type: FlxTweenType.PERSIST});
-
-		titleGF = new Character(550, 195, "outlineGF", false, "shared");
-		add(titleGF);
 
 		FlxG.camera.flash(FlxColor.BLACK, 1.7);
 	}
