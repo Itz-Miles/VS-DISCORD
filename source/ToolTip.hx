@@ -20,7 +20,8 @@ class ToolTip extends FlxSprite
 		loadGraphic(Paths.image(image, library));
 
 		toolText = new FlxText(0, 0, this.width, "text");
-		toolText.setFormat(Paths.font('vcr.ttf'), 24, 0xffffff, "center");
+		toolText.setFormat(Paths.font("whitney-bold.otf"), 30, 0xffffff, CENTER, FlxTextBorderStyle.OUTLINE, 0xff0000);
+		toolText.borderSize = 2.5;
 		this.orientation = orientation;
 	}
 
@@ -62,7 +63,7 @@ class ToolTip extends FlxSprite
 			this.visible = true;
 			toolText.visible = true;
 
-			showTimer.start(2.5, function(timer:FlxTimer):Void
+			showTimer.start(3, function(timer:FlxTimer):Void
 			{
 				this.visible = false;
 				toolText.visible = false;
