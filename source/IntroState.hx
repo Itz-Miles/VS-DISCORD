@@ -209,15 +209,18 @@ class IntroState extends MusicBeatState
 					logoSpr.visible = false;
 				case 8:
 					createCoolText(['xb9fox'], -30);
+				case 9:
+					addMoreText('microwave', 15);
 				case 10:
-					addMoreText('Presents', 15);
+					addMoreText('Present', 45);
 				case 11:
-					deleteCoolText();
+
 				case 12:
-					createCoolText(['Versus'], 0);
+					deleteCoolText();
 				case 13:
-					addMoreText('Discord', 30);
+					createCoolText(['Versus'], 0);
 				case 14:
+					addMoreText('Discord', 30);
 				case 15:
 					endIntro();
 			}
