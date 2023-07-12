@@ -95,10 +95,15 @@ class TitleState extends MusicBeatState
 				FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
 				splashText.y = 570;
 				transitioning = true;
-
-				new FlxTimer().start(1, function(tmr:FlxTimer)
-				{
-					MusicBeatState.switchState(new MainMenuState());
+				
+				FlxTween.tween(splashText, {x: splashText.x, y: splashText.y + 300}, 1.5, {ease: FlxEase.quintIn});
+				FlxTween.tween(logoBl, {x: logoBl.x, y: logoBl.y - 300}, 1.5, {ease: FlxEase.quintIn});
+				FlxTween.tween(FlxG.camera, {zoom: 22.0}, 1.5, {
+					ease: FlxEase.quintIn,
+					onComplete: function(twn:FlxTween)
+					{
+						MusicBeatState.switchState(new MainMenuState());
+					}
 				});
 			}
 		}
