@@ -49,7 +49,7 @@ class IntroState extends MusicBeatState
 
 		super.create();
 
-		FlxG.save.bind('funkin' #if (flixel < "5.0.0"), "Itz_Miles" #end);
+		FlxG.save.bind('funkin');
 		ClientPrefs.loadPrefs();
 
 		Highscore.load();
