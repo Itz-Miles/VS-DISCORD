@@ -24,7 +24,7 @@ using StringTools;
 class MainMenuState extends MusicBeatState
 {
 	public static var psychEngineVersion:String = '0.6.3'; //This is also used for Discord RPC
-	public static var curSelected:Int = 0;
+	public static var curSelected:Int = 1;
 
 	var menuItems:FlxTypedGroup<FlxSprite>;
 	private var camGame:FlxCamera;
@@ -96,8 +96,17 @@ class MainMenuState extends MusicBeatState
 		}
 
 		FlxG.camera.follow(camFollowPos, null, 1);
+		FlxG.camera.zoom = 22.0;
 
 		changeItem();
+
+		FlxTween.tween(FlxG.camera, {zoom: 1.0}, 1.5, {
+			ease: FlxEase.quintOut,
+			onComplete: function(twn:FlxTween)
+			{
+				
+			}
+		});
 
 		super.create();
 	}
@@ -133,7 +142,8 @@ class MainMenuState extends MusicBeatState
 			{
 				selectedSomethin = true;
 				FlxG.sound.play(Paths.sound('cancelMenu'));
-				MusicBeatState.switchState(new TitleState());
+				FlxTween.tween(FlxG.camera, {zoom: 22.0}, 1.5, {ease: FlxEase.quintIn});
+				MusicBeatState.switchState(new TitleState(), 2);
 			}
 
 			if (controls.ACCEPT)
