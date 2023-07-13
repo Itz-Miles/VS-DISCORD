@@ -1,66 +1,66 @@
 {
 	"animations": [
 		{
+			"loop": false,
 			"offsets": [
 				0,
 				0
 			],
-			"loop": false,
-			"fps": 20,
 			"anim": "idle",
-			"indices": [],
-			"name": "idle"
+			"fps": 20,
+			"name": "idle",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				0,
 				0
 			],
-			"loop": false,
-			"fps": 17,
 			"anim": "singUP",
-			"indices": [],
-			"name": "singUP"
-		},
-		{
-			"offsets": [
-				-1,
-				0
-			],
-			"loop": false,
 			"fps": 17,
-			"anim": "singDOWN",
-			"indices": [],
-			"name": "singDOWN"
+			"name": "singUP",
+			"indices": []
 		},
 		{
-			"offsets": [
-				-1,
-				0
-			],
 			"loop": false,
-			"fps": 17,
-			"anim": "singLEFT",
-			"indices": [],
-			"name": "singLEFT"
-		},
-		{
 			"offsets": [
 				0,
 				0
 			],
-			"loop": false,
+			"anim": "singDOWN",
 			"fps": 17,
+			"name": "singDOWN",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				0,
+				0
+			],
+			"anim": "singLEFT",
+			"fps": 17,
+			"name": "singLEFT",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				0,
+				0
+			],
 			"anim": "singRIGHT",
-			"indices": [],
-			"name": "singRIGHT"
+			"fps": 17,
+			"name": "singRIGHT",
+			"indices": []
 		}
 	],
 	"no_antialiasing": false,
 	"image": "characters/wumpus-space",
 	"position": [
-		-140,
-		50
+		0,
+		0
 	],
 	"healthicon": "Wumpus",
 	"flip_x": false,
@@ -70,9 +70,9 @@
 		210
 	],
 	"camera_position": [
-		0,
-		0
+		40,
+		160
 	],
 	"sing_duration": 4,
-	"scale": 1.6
+	"scale": 0.8
 }
