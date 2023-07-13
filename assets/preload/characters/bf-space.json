@@ -1,68 +1,69 @@
 {
 	"animations": [
 		{
-			"offsets": [
-				18,
-				94
-			],
 			"loop": false,
-			"fps": 24,
+			"offsets": [
+				4,
+				10
+			],
 			"anim": "singDOWN",
-			"indices": [],
-			"name": "singDOWN"
+			"fps": 24,
+			"name": "singDOWN",
+			"indices": []
 		},
 		{
-			"loop": false,
 			"offsets": [
-				21,
-				97
+				-18,
+				4
 			],
+			"loop": false,
+			"fps": 24,
 			"anim": "singUP",
-			"fps": 24,
-			"name": "singUP",
-			"indices": []
+			"indices": [],
+			"name": "singUP"
 		},
 		{
-			"loop": false,
 			"offsets": [
-				45,
-				120
+				5,
+				11
 			],
+			"loop": false,
+			"fps": 24,
 			"anim": "singDOWNmiss",
-			"fps": 24,
-			"name": "DOWNmiss",
-			"indices": []
+			"indices": [],
+			"name": "DOWNmiss"
 		},
 		{
-			"loop": false,
 			"offsets": [
-				63,
-				85
+				-20,
+				-3
 			],
+			"loop": false,
+			"fps": 24,
 			"anim": "singUPmiss",
-			"fps": 24,
-			"name": "UPmiss",
-			"indices": []
+			"indices": [],
+			"name": "UPmiss"
 		},
 		{
-			"loop": false,
 			"offsets": [
-				46,
-				92
+				3,
+				6
 			],
+			"loop": false,
+			"fps": 24,
 			"anim": "singRIGHTmiss",
-			"fps": 24,
-			"name": "RIGHTmiss",
-			"indices": []
+			"indices": [],
+			"name": "RIGHTmiss"
 		},
 		{
-			"offsets": [
-				43,
-				90
-			],
 			"loop": false,
-			"fps": 24,
+			"offsets": [
+				-1,
+				0
+			],
 			"anim": "singLEFT",
+			"fps": 24,
+			"name": "singRIGHT",
 			"indices": [
 				0,
 				1,
@@ -80,48 +81,47 @@
 				13,
 				14,
 				15
-			],
-			"name": "singRIGHT"
+			]
 		},
 		{
-			"offsets": [
-				9,
-				96
-			],
 			"loop": false,
-			"fps": 24,
+			"offsets": [
+				-9,
+				6
+			],
 			"anim": "singRIGHT",
-			"indices": [],
-			"name": "singLEFT"
+			"fps": 24,
+			"name": "singLEFT",
+			"indices": []
 		},
 		{
-			"offsets": [
-				14,
-				110
-			],
 			"loop": false,
-			"fps": 24,
+			"offsets": [
+				13,
+				4
+			],
 			"anim": "singLEFTmiss",
-			"indices": [],
-			"name": "LEFTmiss"
+			"fps": 24,
+			"name": "LEFTmiss",
+			"indices": []
 		},
 		{
-			"offsets": [
-				15,
-				90
-			],
-			"indices": [],
-			"fps": 24,
-			"anim": "idle",
 			"loop": false,
-			"name": "idle"
+			"offsets": [
+				0,
+				0
+			],
+			"anim": "idle",
+			"fps": 24,
+			"name": "idle",
+			"indices": []
 		}
 	],
 	"no_antialiasing": false,
-	"image": "characters/space_boyfrend",
+	"image": "characters/bf-space",
 	"position": [
-		-280,
-		-10
+		0,
+		0
 	],
 	"healthicon": "bf",
 	"flip_x": true,
@@ -131,9 +131,9 @@
 		209
 	],
 	"camera_position": [
-		310,
-		-200
+		120,
+		0
 	],
 	"sing_duration": 4,
-	"scale": 1.1
+	"scale": 1
 }
