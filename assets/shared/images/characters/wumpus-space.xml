@@ -1,15 +1,15 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <TextureAtlas imagePath="wumpus-space.png">
-<SubTexture name="idle0000" x="0" y="0" width="652" height="573" frameX="-9" frameY="-16" frameWidth="768" frameHeight="768" />
-<SubTexture name="idle0001" x="652" y="0" width="653" height="573" frameX="-9" frameY="-16" frameWidth="768" frameHeight="768" />
-<SubTexture name="idle0002" x="1305" y="0" width="660" height="573" frameX="-9" frameY="-16" frameWidth="768" frameHeight="768" />
-<SubTexture name="idle0003" x="0" y="573" width="660" height="573" frameX="-9" frameY="-16" frameWidth="768" frameHeight="768" />
-<SubTexture name="singLEFT0000" x="660" y="573" width="621" height="574" frameX="-11" frameY="-2" frameWidth="768" frameHeight="768" />
-<SubTexture name="singLEFT0001" x="1281" y="573" width="625" height="573" frameX="-9" frameY="-16" frameWidth="768" frameHeight="768" />
-<SubTexture name="singUP0000" x="0" y="1147" width="675" height="574" frameX="-9" frameY="-39" frameWidth="768" frameHeight="768" />
-<SubTexture name="singUP0001" x="675" y="1147" width="669" height="573" frameX="-9" frameY="-16" frameWidth="768" frameHeight="768" />
-<SubTexture name="singDOWN0000" x="1344" y="1147" width="649" height="573" frameX="-14" frameY="-4" frameWidth="768" frameHeight="768" />
-<SubTexture name="singDOWN0001" x="0" y="1721" width="655" height="573" frameX="-9" frameY="-16" frameWidth="768" frameHeight="768" />
-<SubTexture name="singRIGHT0000" x="655" y="1721" width="678" height="574" frameX="-8" frameY="-35" frameWidth="768" frameHeight="768" />
-<SubTexture name="singRIGHT0001" x="1333" y="1721" width="667" height="573" frameX="-9" frameY="-16" frameWidth="768" frameHeight="768" />
+<SubTexture name="idle0000" x="0" y="0" width="326" height="286"/>
+<SubTexture name="idle0001" x="326" y="0" width="326" height="286"/>
+<SubTexture name="idle0002" x="652" y="0" width="330" height="286"/>
+<SubTexture name="idle0003" x="0" y="286" width="330" height="286"/>
+<SubTexture name="singLEFT0000" x="330" y="286" width="310" height="287"/>
+<SubTexture name="singLEFT0001" x="640" y="286" width="312" height="286"/>
+<SubTexture name="singUP0000" x="0" y="573" width="337" height="287"/>
+<SubTexture name="singUP0001" x="337" y="573" width="334" height="286"/>
+<SubTexture name="singDOWN0000" x="672" y="573" width="324" height="286"/>
+<SubTexture name="singDOWN0001" x="0" y="860" width="327" height="286"/>
+<SubTexture name="singRIGHT0000" x="327" y="860" width="339" height="287"/>
+<SubTexture name="singRIGHT0001" x="666" y="860" width="333" height="286"/>
 </TextureAtlas>
