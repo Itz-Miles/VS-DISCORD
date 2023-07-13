@@ -364,9 +364,12 @@ class PlayState extends MusicBeatState
 		startCharacterPos(dad, true);
 		dadGroup.add(dad);
 
-		var camPos:FlxPoint = new FlxPoint(gf.getGraphicMidpoint().x, gf.getGraphicMidpoint().y);
-		camPos.x += gf.cameraPosition[0];
-		camPos.y += gf.cameraPosition[1];
+		var camPos:FlxPoint = new FlxPoint(GF_X, GF_Y);
+		if (gf != null)
+		{
+			camPos.x += gf.cameraPosition[0];
+			camPos.y += gf.cameraPosition[1];
+		}
 
 		if (dad.curCharacter.startsWith('gf'))
 		{
@@ -649,54 +652,55 @@ class PlayState extends MusicBeatState
 
 	public var noteJudges:Int;
 	public var noteRatings:Float;
+
 	public function updateRating(note:Note = null, bounce:Bool)
+	{
+		vocals.volume = 1;
+		var noteDelta:Float;
+		var noteRating:Array<Dynamic>;
+		var score:Int = 400;
+		if (note != null)
 		{
-			vocals.volume = 1;
-			var noteDelta:Float;
-			var noteRating:Array<Dynamic>;
-			var score:Int = 400;
-			if (note != null)
+			noteDelta = Math.abs(note.strumTime - Conductor.songPosition + ClientPrefs.ratingOffset);
+			noteRating = Conductor.judge(noteDelta);
+			toolTip.showToolTip();
+			toolTip.targetSpr = playerStrums.members[note.noteData];
+			toolTip.toolText.text = noteRating[0];
+
+			if (!cpuControlled)
 			{
-				noteDelta = Math.abs(note.strumTime - Conductor.songPosition + ClientPrefs.ratingOffset);
-				noteRating = Conductor.judge(noteDelta);
-				toolTip.showToolTip();
-				toolTip.targetSpr = playerStrums.members[note.noteData];
-				toolTip.toolText.text = noteRating[0];
-	
-				if (!cpuControlled)
+				score = noteRating[4];
+				if (!note.ratingDisabled)
 				{
-					score = noteRating[4];
-					if (!note.ratingDisabled)
-					{
-						noteRatings += noteRating[1];
-						noteJudges++;
-					}
-					songScore += score;
+					noteRatings += noteRating[1];
+					noteJudges++;
 				}
-				if ((noteRating[3]) && !note.noteSplashDisabled)
-				{
-					note.spawnSplash();
-				}
+				songScore += score;
 			}
-			totalRatings = Conductor.getAverageRating();
-			scoreTxt.text = 'Score: ${songScore} | Misses: ${songMisses} | Rating: ${totalRatings[0]} ${(totalRatings[0] != '?/10' ? ' (${Highscore.floorDecimal(totalRatings[1] * 100, 2)})' : '')}';
-	
-			if (ClientPrefs.hudZooms && bounce)
+			if ((noteRating[3]) && !note.noteSplashDisabled)
 			{
-				if (scoreTxtTween != null)
-				{
-					scoreTxtTween.cancel();
-				}
-				scoreTxt.scale.x = 1.075;
-				scoreTxt.scale.y = 1.075;
-				scoreTxtTween = FlxTween.tween(scoreTxt.scale, {x: 1, y: 1}, 0.2, {
-					onComplete: function(twn:FlxTween)
-					{
-						scoreTxtTween = null;
-					}
-				});
+				note.spawnSplash();
 			}
 		}
+		totalRatings = Conductor.getAverageRating();
+		scoreTxt.text = 'Score: ${songScore} | Misses: ${songMisses} | Rating: ${totalRatings[0]} ${(totalRatings[0] != '?/10' ? ' (${Highscore.floorDecimal(totalRatings[1] * 100, 2)})' : '')}';
+
+		if (ClientPrefs.hudZooms && bounce)
+		{
+			if (scoreTxtTween != null)
+			{
+				scoreTxtTween.cancel();
+			}
+			scoreTxt.scale.x = 1.075;
+			scoreTxt.scale.y = 1.075;
+			scoreTxtTween = FlxTween.tween(scoreTxt.scale, {x: 1, y: 1}, 0.2, {
+				onComplete: function(twn:FlxTween)
+				{
+					scoreTxtTween = null;
+				}
+			});
+		}
+	}
 
 	public function spawnNoteSplash(x:Float, y:Float, data:Int, ?note:Note = null)
 	{
@@ -1057,9 +1061,12 @@ class PlayState extends MusicBeatState
 			var chars:Array<Character> = [boyfriend, gf, dad];
 			for (i in 0...chars.length)
 			{
-				if (chars[i].colorTween != null)
+				if (chars[i] != null)
 				{
-					chars[i].colorTween.active = true;
+					if (chars[i].colorTween != null)
+					{
+						chars[i].colorTween.active = true;
+					}
 				}
 			}
 
@@ -2172,15 +2179,16 @@ class PlayState extends MusicBeatState
 				note.destroy();
 			}
 		});
-		combo = 0;
 
 		health -= daNote.missHealth;
 
-		if (gf.animOffsets.exists('sad'))
+		if (gf != null)
 		{
-			gf.playAnim('sad');
+			if (gf.animOffsets.exists('sad'))
+			{
+				gf.playAnim('sad');
+			}
 		}
-		combo = 0;
 
 		songMisses++;
 		vocals.volume = 0;
