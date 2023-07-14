@@ -66,9 +66,9 @@ class Character extends FlxSprite
 	public var specialAnim:Bool = false;
 	public var animationNotes:Array<Dynamic> = [];
 	public var stunned:Bool = false;
-	public var singDuration:Float = 4; //multiplier for how long a character's animation is held.
+	public var singDuration:Float = 4; // multiplier for how long a character's animation is held.
 	public var idleSuffix:String = '';
-	public var danceIdle:Bool = false; //wether to use "danceLeft" and "danceRight" indices or not.
+	public var danceIdle:Bool = false; // wether to use "danceLeft" and "danceRight" indices or not.
 	public var skipDance:Bool = false;
 	public var danceMult:Int = 1;
 
@@ -88,7 +88,6 @@ class Character extends FlxSprite
 	public var healthColorArray:Array<Int> = [255, 0, 0];
 
 	public static var DEFAULT_CHARACTER:String = 'bf';
-
 
 	public function new(x:Float, y:Float, ?character:String = 'bf', ?isPlayer:Bool = false, ?library:String)
 	{
@@ -206,7 +205,6 @@ class Character extends FlxSprite
 
 	override function update(elapsed:Float)
 	{
-
 		if (!debugMode && animation.curAnim != null)
 		{
 			if (heyTimer > 0)
@@ -338,93 +336,67 @@ class Character extends FlxSprite
 		animOffsets[name] = [x, y];
 	}
 
-	public function act(arguments:Array<Dynamic>) {
-
+	public function act(arguments:Array<Dynamic>)
+	{
 		var theAction = arguments[0];
 		var theArgumentsArray = arguments.slice(1);
 
-		switch(theAction){
+		switch (theAction)
+		{
+			case 'idle':
+				this.idleSuffix = theArgumentsArray[0];
+				this.recalculateDanceIdle();
 
-		case 'idle':
-			this.idleSuffix = theArgumentsArray[0];
-			this.recalculateDanceIdle();
-
-		case 'hey':
+			case 'hey':
 				var time:Float = Std.parseFloat(theArgumentsArray[0]);
-				if(Math.isNaN(time) || time <= 0) time = 0.6;
+				if (Math.isNaN(time) || time <= 0)
+					time = 0.6;
 				this.playAnim('hey', true);
 				this.specialAnim = true;
 				this.heyTimer = time;
 
-		case 'animation':
-			this.playAnim(theArgumentsArray[0], true);
-			this.specialAnim = true;
+			case 'animation':
+				this.playAnim(theArgumentsArray[0], true);
+				this.specialAnim = true;
 
-		case 'die':
-			//change this to vs discord death
-			this.isDead = true;
-			this.origin.set(this.width /2, (this.height));
-			if (theArgumentsArray[0] != null) 	
-				FlxG.sound.play(Paths.sound(theArgumentsArray[0]));
+			case 'die':
+				// change this to vs discord death
+				this.isDead = true;
+				if (theArgumentsArray[0] != null)
+					FlxG.sound.play(Paths.sound(theArgumentsArray[0]));
 
-			if (this.isPlayer) {
-				FlxTween.tween(FlxG.camera, {zoom: 1.1}, 1, {ease: FlxEase.elasticInOut, onComplete: function(twn:FlxTween) {		
-					
-					FlxTween.angle(this, 0, 90, 0.5, {ease: FlxEase.quadInOut});	
-					
-					FlxTween.color(this, 0.5, FlxColor.WHITE, 0xFFe6726a, {ease: FlxEase.quadInOut, onComplete: function(twn:FlxTween) {
-					
-						PlayState.instance.killNotes();
-					
-						new FlxTimer().start(1, function(tmr:FlxTimer) {
-							
-							this.visible = false;
-							PlayState.instance.openSubState(new GameOverSubstate());
-							#if desktop
-							DiscordClient.changePresence("Game Over - " + PlayState.instance.detailsText, PlayState.SONG.song + " (" + PlayState.instance.storyDifficultyText + ")", this.curCharacter);
-							#end
-						});
-					
-					}});
-				
-				}});
-			
-			} else {
-				new FlxTimer().start(1, function(tmr:FlxTimer) {	
-				
-					FlxTween.angle(this, 0, 90, 0.5, {ease: FlxEase.quadInOut});	
-				
-					FlxTween.color(this, 0.5, FlxColor.WHITE, 0xFFe6726a, {ease: FlxEase.quadInOut, onComplete: function(twn:FlxTween) {
-				
-						new FlxTimer().start(1, function(tmr:FlxTimer) {
-							this.visible = false;
-						});
-					
-					}});
-			
-				});
-			
-			}
+				if (this.isPlayer)
+				{
+					PlayState.instance.killNotes();
 
-		case 'respawn':
-			this.visible = true;
+					if (FlxG.sound.music != null)
+					{
+						FlxG.sound.music.pause();
+						PlayState.instance.vocals.pause();
+					}
 
-			FlxTween.tween(FlxG.camera, {zoom: 1}, 1, {ease: FlxEase.elasticInOut, onComplete: function(twn:FlxTween) {
-			
-				FlxTween.angle(this, 0, 0, 0.5, {ease: FlxEase.quadInOut});
-				
-					FlxTween.color(this, 0.5, FlxColor.WHITE,  FlxColor.WHITE,{ease: FlxEase.quadInOut, onComplete: function(twn:FlxTween) {
-			
-						new FlxTimer().start(1, function(tmr:FlxTimer) {
-							LoadingState.loadAndSwitchState(new PlayState(), true);
-						});
-			
-					}});
-			
-				}});
-		default:
-			trace('No particular action called ' + theAction);
-			trace('arguments called for ' + theAction + ": " + theArgumentsArray);
+					new FlxTimer().start(2, function(tmr:FlxTimer)
+					{
+						this.visible = false;
+						PlayState.instance.persistentUpdate = false;
+						PlayState.instance.persistentDraw = true;
+						PlayState.instance.paused = true;
+
+						PlayState.instance.openSubState(new PauseSubState(this.getScreenPosition().x, this.getScreenPosition().y));
+
+						#if desktop
+						DiscordClient.changePresence("Game Over - "
+							+ PlayState.instance.detailsText,
+							PlayState.SONG.song
+							+ " ("
+							+ PlayState.instance.storyDifficultyText
+							+ ")", this.curCharacter);
+						#end
+					});
+				}
+			default:
+				trace('No particular action called ' + theAction);
+				trace('arguments called for ' + theAction + ": " + theArgumentsArray);
 		}
 	}
 }

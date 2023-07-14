@@ -683,7 +683,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 		totalRatings = Conductor.getAverageRating();
-		scoreTxt.text = 'Score: ${songScore} | Misses: ${songMisses} | Rating: ${totalRatings[0]} ${(totalRatings[0] != '?/10' ? ' (${Highscore.floorDecimal(totalRatings[1] * 100, 2)})' : '')}';
+		scoreTxt.text = 'Score: ${songScore} | Misses: ${songMisses} | Rating: ${totalRatings[0]} ${(totalRatings[0] != '?/10' ? ' (${Highscore.floorDecimal(totalRatings[1] * 100, 2)}%)' : '')}';
 
 		if (ClientPrefs.hudZooms && bounce)
 		{
@@ -1189,11 +1189,9 @@ class PlayState extends MusicBeatState
 
 		var mult:Float = FlxMath.lerp(1, iconP1.scale.x, CoolUtil.boundTo(1 - (elapsed * 9), 0, 1));
 		iconP1.scale.set(mult, mult);
-		// iconP1.updateHitbox();
 
 		var mult:Float = FlxMath.lerp(1, iconP2.scale.x, CoolUtil.boundTo(1 - (elapsed * 9), 0, 1));
 		iconP2.scale.set(mult, mult);
-		// iconP2.updateHitbox();
 
 		iconP1.x = healthBar.x + (healthBar.width * (FlxMath.remapToRange(healthBar.percent, 0, 100, 100, 0) * 0.01));
 		iconP2.x = healthBar.x + (healthBar.width * (FlxMath.remapToRange(healthBar.percent, 0, 100, 100, 0) * 0.01)) - 150;
@@ -2501,10 +2499,13 @@ class PlayState extends MusicBeatState
 	override function stepHit()
 	{
 		super.stepHit();
-		if (Math.abs(FlxG.sound.music.time - (Conductor.songPosition - Conductor.offset)) > 20
-			|| (SONG.needsVoices && Math.abs(vocals.time - (Conductor.songPosition - Conductor.offset)) > 20))
+		if (!boyfriend.isDead)
 		{
-			resyncVocals();
+			if (Math.abs(FlxG.sound.music.time - (Conductor.songPosition - Conductor.offset)) > 20
+				|| (SONG.needsVoices && Math.abs(vocals.time - (Conductor.songPosition - Conductor.offset)) > 20))
+			{
+				resyncVocals();
+			}
 		}
 
 		if (curStep == lastStepHit)
