@@ -683,7 +683,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 		totalRatings = Conductor.getAverageRating();
-		scoreTxt.text = 'Score: ${songScore} | Misses: ${songMisses} | Rating: ${totalRatings[0]} ${(totalRatings[0] != '?/10' ? ' (${Highscore.floorDecimal(totalRatings[1] * 100, 2)})' : '')}';
+		scoreTxt.text = 'Score: ${songScore} | Misses: ${songMisses} | Rating: ${totalRatings[0]} ${(totalRatings[0] != '?/10' ? ' (${Highscore.floorDecimal(totalRatings[1] * 100, 2)}%)' : '')}';
 
 		if (ClientPrefs.hudZooms && bounce)
 		{
