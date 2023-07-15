@@ -650,8 +650,8 @@ class PlayState extends MusicBeatState
 		char.y += char.positionArray[1];
 	}
 
-	public var noteJudges:Int;
-	public var noteRatings:Float;
+	public var noteJudges:Int = 0;
+	public var noteRatings:Float = 0;
 
 	public function updateRating(note:Note = null, bounce:Bool)
 	{

@@ -171,7 +171,7 @@ class IntroState extends MusicBeatState
 		}
 	}
 
-	private var sickBeats:Int;
+	private var sickBeats:Int = 0;
 
 	public static var closedState:Bool = false;
 

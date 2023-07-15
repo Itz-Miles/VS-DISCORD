@@ -32,6 +32,8 @@ class Conductor
 		{
 			if (noteDelta <= Conductor.hitWindow * rating[2])
 			{
+				// trace("Note Delta: " + noteDelta);
+				// trace("Hit Window: " + Conductor.hitWindow);
 				return rating;
 			}
 		}
@@ -40,15 +42,17 @@ class Conductor
 
 	public static function getAverageRating():Dynamic
 	{
+		// trace("Note Ratings: " + PlayState.instance.noteRatings);
+		// trace("Note Judges: " + PlayState.instance.noteJudges);
 		if (PlayState.instance.noteJudges > 0)
 		{
-			return [
-				getRatingName(PlayState.instance.noteRatings / PlayState.instance.noteJudges),
-				PlayState.instance.noteRatings / PlayState.instance.noteJudges
-			];
+			var avgRating:Float = PlayState.instance.noteRatings / PlayState.instance.noteJudges;
+			// trace("Average Rating: " + avgRating);
+			return [getRatingName(avgRating), avgRating];
 		}
 		else
 		{
+			// trace("Average Rating: ?/10");
 			return ['?/10', null];
 		}
 	}
@@ -59,6 +63,7 @@ class Conductor
 		{
 			if (rating[1] <= avgRating)
 			{
+				// trace("Rating Threshold: " + rating[1]);
 				return rating[0];
 			}
 		}
