@@ -48,9 +48,6 @@ class Note extends FlxSprite
 
 	public var animSuffix:String = '';
 	public var gfNote:Bool = false;
-	public var earlyHitMult:Float = 1;
-	public var lateHitMult:Float = 1;
-	public var lowPriority:Bool = false;
 
 	public static var swagWidth:Float = 160 * 0.7;
 
@@ -73,9 +70,14 @@ class Note extends FlxSprite
 	public var copyAngle:Bool = true;
 	public var copyAlpha:Bool = true;
 
-	public var hitHealth:Float = 0.023;
+	public var hitHealth:Float = 0.023;	
+	public var earlyHitMult:Float = 1;
+	public var lateHitMult:Float = 1;
+	public var rating:Float = 1;
+	public var lowPriority:Bool = false;
 	public var missHealth:Float = 0.0475;
 	public var ratingDisabled:Bool = false;
+
 	public var texture(default, set):String = null;
 
 	public var noAnimation:Bool = false;
