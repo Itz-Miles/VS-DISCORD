@@ -3961,9 +3961,7 @@
 			}
 		],
 		"player3": null,
-		"splashSkin": "noteSplashesVanilla",
 		"song": "confrontation",
-		"arrowSkin": "",
 		"validScore": true,
 		"speed": 3,
 		"events": [
