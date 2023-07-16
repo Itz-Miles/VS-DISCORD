@@ -674,6 +674,7 @@ class PlayState extends MusicBeatState
 				{
 					noteRatings += noteRating[1];
 					noteJudges++;
+					note.rating = noteRating[1];
 				}
 				songScore += score;
 			}
@@ -2328,7 +2329,7 @@ class PlayState extends MusicBeatState
 
 						case 'Abnormal Note': // lies, this is ironically a "normal" note
 							if (!(health <= 0.2))
-								health -= 0.1; // not gonna do anything custom for the player because the player will never be mega in V1.
+								health -= 0.1;
 					}
 				}
 
@@ -2344,12 +2345,9 @@ class PlayState extends MusicBeatState
 
 			if (!note.isSustainNote)
 			{
-				combo += 1;
 				updateRating(note, true);
-				if (combo > 9999)
-					combo = 9999;
 			}
-			health += note.hitHealth;
+			health += (note.hitHealth * note.rating);
 
 			if (!note.noAnimation)
 			{
