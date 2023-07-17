@@ -1,110 +1,110 @@
 {
 	"animations": [
 		{
-			"loop": false,
 			"offsets": [
-				-6,
-				1
+				0,
+				0
 			],
+			"loop": false,
+			"fps": 24,
 			"anim": "idle",
-			"fps": 24,
-			"name": "bf-micup idle",
-			"indices": []
+			"indices": [],
+			"name": "idle"
 		},
 		{
-			"loop": false,
 			"offsets": [
-				-7,
-				1
+				0,
+				0
 			],
+			"loop": false,
+			"fps": 24,
 			"anim": "singLEFT",
-			"fps": 24,
-			"name": "bf-micup singLEFT",
-			"indices": []
+			"indices": [],
+			"name": "singLEFT"
 		},
 		{
-			"loop": false,
 			"offsets": [
-				-6,
-				1
+				-54,
+				0
 			],
+			"loop": false,
+			"fps": 24,
 			"anim": "singDOWN",
-			"fps": 24,
-			"name": "bf-micup singDOWN",
-			"indices": []
+			"indices": [],
+			"name": "singDOWN"
 		},
 		{
-			"loop": false,
 			"offsets": [
-				-7,
-				1
+				-39,
+				0
 			],
+			"loop": false,
+			"fps": 24,
 			"anim": "singUP",
-			"fps": 24,
-			"name": "bf-micup singUP",
-			"indices": []
+			"indices": [],
+			"name": "singUP"
 		},
 		{
-			"loop": false,
 			"offsets": [
-				-7,
-				3
+				-71,
+				0
 			],
+			"loop": false,
+			"fps": 24,
 			"anim": "singRIGHT",
-			"fps": 24,
-			"name": "bf-micup singRIGHT",
-			"indices": []
+			"indices": [],
+			"name": "singRIGHT"
 		},
 		{
-			"loop": false,
 			"offsets": [
-				-7,
-				1
+				-74,
+				-1
 			],
+			"indices": [],
+			"fps": 1,
 			"anim": "singLEFTmiss",
-			"fps": 24,
-			"name": "bf-micup singLEFTmiss",
-			"indices": []
+			"loop": false,
+			"name": "miss"
 		},
 		{
-			"loop": false,
 			"offsets": [
-				-7,
-				1
+				-74,
+				-1
 			],
+			"indices": [],
+			"fps": 1,
 			"anim": "singDOWNmiss",
-			"fps": 24,
-			"name": "bf-micup singDOWNmiss",
-			"indices": []
+			"loop": false,
+			"name": "miss"
 		},
 		{
-			"loop": false,
 			"offsets": [
-				-7,
-				1
+				-74,
+				-1
 			],
-			"anim": "singUPmiss",
-			"fps": 24,
-			"name": "bf-micup singUPmiss",
-			"indices": []
-		},
-		{
-			"loop": false,
-			"offsets": [
-				-7,
-				1
-			],
+			"indices": [],
+			"fps": 1,
 			"anim": "singRIGHTmiss",
-			"fps": 24,
-			"name": "bf-micup singRIGHTmiss",
-			"indices": []
+			"loop": false,
+			"name": "miss"
+		},
+		{
+			"offsets": [
+				-74,
+				-1
+			],
+			"indices": [],
+			"fps": 1,
+			"anim": "singUPmiss",
+			"loop": false,
+			"name": "miss"
 		}
 	],
 	"no_antialiasing": false,
 	"image": "characters/bf-micup",
 	"position": [
-		-970,
-		-780
+		0,
+		0
 	],
 	"healthicon": "bf",
 	"flip_x": true,
@@ -118,5 +118,5 @@
 		0
 	],
 	"sing_duration": 4,
-	"scale": 0.2
+	"scale": 1
 }
