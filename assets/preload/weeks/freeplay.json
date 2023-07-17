@@ -29,15 +29,6 @@
 			]
 		],
 		[
-			"confrontation",
-			"menuface",
-			[
-				88,
-				101,
-				242
-			]
-		],
-		[
 			"mic-Up",
 			"menuface",
 			[
@@ -57,11 +48,20 @@
 		],
 		[
 			"interstellar",
-			"menuface",
+			"icon-wumpus",
 			[
 				6,
 				133,
 				255
+			]
+		],
+		[
+			"confrontation",
+			"clydepissed",
+			[
+				88,
+				101,
+				242
 			]
 		]
 
