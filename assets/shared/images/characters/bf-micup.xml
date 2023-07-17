@@ -26,12 +26,5 @@
 <SubTexture name="singRIGHT0001" x="0" y="1766" width="451" height="491"/>
 <SubTexture name="singRIGHT0002" x="451" y="1766" width="450" height="492"/>
 <SubTexture name="singRIGHT0003" x="451" y="1766" width="450" height="492"/>
-<SubTexture name="miss10000" x="496" y="879" width="421" height="424"/>
-<SubTexture name="miss10001" x="901" y="1766" width="421" height="424"/>
-<SubTexture name="miss20000" x="496" y="879" width="421" height="424"/>
-<SubTexture name="miss20001" x="901" y="1766" width="421" height="424"/>
-<SubTexture name="miss30000" x="496" y="879" width="421" height="424"/>
-<SubTexture name="miss30001" x="901" y="1766" width="421" height="424"/>
-<SubTexture name="miss40000" x="496" y="879" width="421" height="424"/>
-<SubTexture name="miss40001" x="901" y="1766" width="421" height="424"/>
+<SubTexture name="miss0001" x="496" y="879" width="421" height="424"/>
 </TextureAtlas>
