@@ -1,6 +1,5 @@
 package editors;
 
-import flixel.system.FlxSound;
 #if desktop
 import Discord.DiscordClient;
 #end
