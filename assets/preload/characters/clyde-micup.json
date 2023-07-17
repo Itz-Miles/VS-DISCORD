@@ -1,78 +1,78 @@
 {
 	"animations": [
 		{
+			"loop": false,
 			"offsets": [
-				-7,
+				0,
 				0
 			],
-			"loop": false,
-			"fps": 18,
 			"anim": "idle",
-			"indices": [],
-			"name": "idle"
+			"fps": 18,
+			"name": "idle",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
-				-5,
+				0,
 				0
 			],
-			"loop": false,
-			"fps": 18,
 			"anim": "singLEFT",
-			"indices": [],
-			"name": "singLEFT"
-		},
-		{
-			"offsets": [
-				-5,
-				0
-			],
-			"loop": false,
 			"fps": 18,
-			"anim": "singDOWN",
-			"indices": [],
-			"name": "singDOWN"
+			"name": "singLEFT",
+			"indices": []
 		},
 		{
-			"offsets": [
-				-5,
-				-1
-			],
 			"loop": false,
-			"fps": 18,
-			"anim": "singUP",
-			"indices": [],
-			"name": "singUP"
-		},
-		{
 			"offsets": [
-				-4,
+				39,
 				1
 			],
-			"loop": false,
+			"anim": "singDOWN",
 			"fps": 18,
+			"name": "singDOWN",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				29,
+				-1
+			],
+			"anim": "singUP",
+			"fps": 18,
+			"name": "singUP",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [
+				2,
+				0
+			],
 			"anim": "singRIGHT",
-			"indices": [],
-			"name": "singRIGHT"
+			"fps": 18,
+			"name": "singRIGHT",
+			"indices": []
 		}
 	],
 	"no_antialiasing": false,
 	"image": "characters/clyde-micup",
 	"position": [
-		-990,
-		-690
+		0,
+		0
 	],
 	"healthicon": "clydepissed",
 	"flip_x": false,
 	"healthbar_colors": [
-		88,
-		101,
-		242
+		255,
+		255,
+		255
 	],
 	"camera_position": [
-		1070,
-		1030
+		0,
+		0
 	],
 	"sing_duration": 5.99999999999999,
-	"scale": 0.2
+	"scale": 1
 }
