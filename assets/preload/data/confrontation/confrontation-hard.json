@@ -1,8 +1,8 @@
 {
 	"song": {
-		"player1": "mic-up-bf",
+		"player1": "bf-micup",
 		"composer": "ShiftyTM",
-		"player2": "micupclyde",
+		"player2": "clyde-micup",
 		"notes": [
 			{
 				"lengthInSteps": 16,
