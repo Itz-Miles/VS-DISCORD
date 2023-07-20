@@ -112,9 +112,9 @@ class OptionsState extends MusicBeatState
 			{ // Check if player came from playstate.
 				FlxG.sound.music.volume = 0.0;
 				var name:String = PlayState.SONG.song;
-				var poop = Highscore.formatSong(name, CoolUtil.difficultyIndex(CoolUtil.difficulties, ClientPrefs.optionsDifficulty));
+				var poop = Highscore.formatSong(name, CoolUtil.getDifficultyIndex(CoolUtil.difficulties, ClientPrefs.optionsDifficulty));
 				PlayState.SONG = Song.loadFromJson(poop, name);
-				PlayState.storyDifficulty = CoolUtil.difficultyIndex(CoolUtil.difficulties, ClientPrefs.optionsDifficulty) -1;
+				PlayState.storyDifficulty = CoolUtil.getDifficultyIndex(CoolUtil.difficulties, ClientPrefs.optionsDifficulty);
 				FlxG.sound.music.volume = 0;
 				PlayState.changedDifficulty = true;
 				PlayState.chartingMode = false;
