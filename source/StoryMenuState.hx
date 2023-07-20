@@ -50,7 +50,7 @@ class StoryMenuState extends MusicBeatState
 		CoolUtil.difficulties = CoolUtil.defaultDifficulties.copy();
 		if (lastDifficultyName == '')
 		{
-			lastDifficultyName = CoolUtil.defaultDifficulty;
+			lastDifficultyName = ClientPrefs.optionsDifficulty;
 		}
 
 		changeDifficulty();
@@ -153,7 +153,7 @@ class StoryMenuState extends MusicBeatState
 			}
 		}
 
-		curDifficulty = Math.round(Math.max(0, CoolUtil.defaultDifficulties.indexOf(CoolUtil.defaultDifficulty)));
+		curDifficulty = Math.round(Math.max(0, CoolUtil.defaultDifficulties.indexOf(ClientPrefs.optionsDifficulty)));
 		var newPos:Int = CoolUtil.difficulties.indexOf(lastDifficultyName);
 		if (newPos > -1)
 		{
