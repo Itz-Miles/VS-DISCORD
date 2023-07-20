@@ -12,9 +12,7 @@ import openfl.utils.Assets;
 using StringTools;
 
 class CoolUtil
-{
-	public static var defaultDifficulties:Array<String> = ['Easy', 'Normal', 'Hard'];
-	
+{	
 	public static var difficulties:Array<String> = ['Easy', 'Normal', 'Hard'];
 
 	inline public static function quantize(f:Float, snap:Float)
@@ -25,12 +23,12 @@ class CoolUtil
 		return (m / snap);
 	}
 
-	public static function getDifficultyFilePath(num:Null<Int> = null)
+	public static function getDifficultyFilePath(difficultyIndex:Null<Int> = null)
 	{
-		if (num == null)
-			num = PlayState.storyDifficulty;
+		if (difficultyIndex == null)
+			difficultyIndex = PlayState.storyDifficulty;
 
-		var fileSuffix:String = difficulties[num];
+		var fileSuffix:String = difficulties[difficultyIndex];
 		if (fileSuffix != ClientPrefs.optionsDifficulty)
 		{
 			fileSuffix = '-' + fileSuffix;
@@ -42,9 +40,9 @@ class CoolUtil
 		return Paths.formatToSongPath(fileSuffix);
 	}
 
-	public static function difficultyIndex(arr:Array<String>, search:String):Int {
-		var index:Int = -1;
-		for (i in 0...arr.length) {
+	public static function getDifficultyIndex(arr:Array<String>, search:String):Int {
+		var index:Int = 0;
+		for (i in 0...arr.length -1) {
 			if (arr[i] == search) {
 				index = i;
 				break;
@@ -53,12 +51,12 @@ class CoolUtil
 		return index;
 	}
 
-	public static function difficultyString(?difficultyProp:Dynamic):String
+	public static function getDifficultyString(?difficultyInt):String
 	{
-		if (difficultyProp != null)
-			return defaultDifficulties[difficultyProp].toUpperCase();
+		if (difficultyInt != null)
+			return difficulties[difficultyInt].toUpperCase();
 
-		return difficulties[PlayState.storyDifficulty + 1].toUpperCase();
+		return difficulties[PlayState.storyDifficulty].toUpperCase();
 	}
 
 	inline public static function boundTo(value:Float, min:Float, max:Float):Float
