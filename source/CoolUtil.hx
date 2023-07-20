@@ -14,9 +14,8 @@ using StringTools;
 class CoolUtil
 {
 	public static var defaultDifficulties:Array<String> = ['Easy', 'Normal', 'Hard'];
-	public static var defaultDifficulty:String = 'Normal'; // The chart that has no suffix and starting difficulty on Freeplay/Story Mode
-
-	public static var difficulties:Array<String> = [];
+	
+	public static var difficulties:Array<String> = ['Easy', 'Normal', 'Hard'];
 
 	inline public static function quantize(f:Float, snap:Float)
 	{
@@ -32,7 +31,7 @@ class CoolUtil
 			num = PlayState.storyDifficulty;
 
 		var fileSuffix:String = difficulties[num];
-		if (fileSuffix != defaultDifficulty)
+		if (fileSuffix != ClientPrefs.optionsDifficulty)
 		{
 			fileSuffix = '-' + fileSuffix;
 		}
@@ -58,7 +57,8 @@ class CoolUtil
 	{
 		if (difficultyProp != null)
 			return defaultDifficulties[difficultyProp].toUpperCase();
-		return difficulties[PlayState.storyDifficulty].toUpperCase();
+
+		return difficulties[PlayState.storyDifficulty + 1].toUpperCase();
 	}
 
 	inline public static function boundTo(value:Float, min:Float, max:Float):Float
