@@ -22,7 +22,7 @@ class ClientPrefs
 	public static var noReset:Bool = false;
 	public static var hudAlpha:Float = 1;
 	public static var controllerMode:Bool = false;
-	public static var optionsDifficulty:String;
+	public static var optionsDifficulty:String = 'Hard';
 	
 	public static var firstIntro:Bool = true;
 	public static var hitsoundVolume:Float = 0;
