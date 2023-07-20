@@ -23,7 +23,7 @@ class StoryMenuState extends MusicBeatState
 	// Wether you have to beat the previous week for playing this one, defaults to True
 	public static var weekCompleted:Map<String, Bool> = new Map<String, Bool>();
 	private static var lastDifficultyName:String = '';
-	var curDifficulty:Int = CoolUtil.difficultyIndex(CoolUtil.defaultDifficulties, ClientPrefs.optionsDifficulty);
+	var curDifficulty:Int = CoolUtil.getDifficultyIndex(CoolUtil.difficulties, ClientPrefs.optionsDifficulty);
 	private static var curWeek:Int = 0;
 
 	override function create()
@@ -47,7 +47,6 @@ class StoryMenuState extends MusicBeatState
 
 		WeekData.setDirectoryFromWeek(WeekData.weeksLoaded.get(WeekData.weeksList[0]));
 
-		CoolUtil.difficulties = CoolUtil.defaultDifficulties.copy();
 		if (lastDifficultyName == '')
 		{
 			lastDifficultyName = ClientPrefs.optionsDifficulty;
@@ -128,7 +127,7 @@ class StoryMenuState extends MusicBeatState
 		WeekData.setDirectoryFromWeek(leWeek);
 		PlayState.storyWeek = curWeek;
 
-		CoolUtil.difficulties = CoolUtil.defaultDifficulties.copy();
+		CoolUtil.difficulties = CoolUtil.difficulties.copy();
 		var diffStr:String = WeekData.getCurrentWeek().difficulties;
 		if (diffStr != null)
 			diffStr = diffStr.trim(); // Fuck you HTML5
@@ -153,7 +152,7 @@ class StoryMenuState extends MusicBeatState
 			}
 		}
 
-		curDifficulty = Math.round(Math.max(0, CoolUtil.defaultDifficulties.indexOf(ClientPrefs.optionsDifficulty)));
+		curDifficulty = Math.round(Math.max(0, CoolUtil.difficulties.indexOf(ClientPrefs.optionsDifficulty)));
 		var newPos:Int = CoolUtil.difficulties.indexOf(lastDifficultyName);
 		if (newPos > -1)
 		{
