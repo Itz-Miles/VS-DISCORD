@@ -70,7 +70,7 @@ class GameplaySubState extends BaseOptionsMenu
 		option.changeValue = 0.1;
 		addOption(option);
 
-		var option:Option = new Option('Difficulty:', "The game's default difficulty.", 'optionsDifficulty', 'string', 'Normal', CoolUtil.defaultDifficulties);
+		var option:Option = new Option('Difficulty:', "The game's default difficulty.", 'optionsDifficulty', 'string', 'Hard', CoolUtil.difficulties);
 		addOption(option);
 
 		super();
