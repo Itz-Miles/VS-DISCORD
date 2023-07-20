@@ -24,7 +24,7 @@ class FreeplayState extends MusicBeatState
 
 	private static var curSelected:Int = 0;
 
-	var curDifficulty:Int = CoolUtil.difficultyIndex(CoolUtil.defaultDifficulties, ClientPrefs.optionsDifficulty) -1;
+	var curDifficulty:Int = CoolUtil.getDifficultyIndex(CoolUtil.difficulties, ClientPrefs.optionsDifficulty);
 
 	private static var lastDifficultyName:String = '';
 
@@ -145,7 +145,6 @@ class FreeplayState extends MusicBeatState
 		{
 			lastDifficultyName = ClientPrefs.optionsDifficulty;
 		}
-		curDifficulty = Math.round(Math.max(0, CoolUtil.defaultDifficulties.indexOf(lastDifficultyName)));
 
 		changeSelection();
 		changeDiff();
@@ -263,6 +262,7 @@ class FreeplayState extends MusicBeatState
 
 		if (controls.BACK)
 		{
+			ClientPrefs.optionsDifficulty = CoolUtil.difficulties[curDifficulty];
 			persistentUpdate = false;
 			if (colorTween != null)
 			{
@@ -282,7 +282,7 @@ class FreeplayState extends MusicBeatState
 			PlayState.SONG = Song.loadFromJson(poop, songLowercase);
 			PlayState.isStoryMode = false;
 			PlayState.storyDifficulty = curDifficulty;
-			ClientPrefs.optionsDifficulty = CoolUtil.difficulties[curDifficulty + 1];
+			ClientPrefs.optionsDifficulty = CoolUtil.difficulties[curDifficulty];
 
 			trace('CURRENT WEEK: ' + WeekData.getWeekFileName());
 			if (colorTween != null)
@@ -339,7 +339,7 @@ class FreeplayState extends MusicBeatState
 		#end
 
 		PlayState.storyDifficulty = curDifficulty;
-		diffText.text = '< ${CoolUtil.difficultyString(curDifficulty)} >';
+		diffText.text = '< ${CoolUtil.getDifficultyString(curDifficulty)} >';
 		positionHighscore();
 	}
 
@@ -386,7 +386,6 @@ class FreeplayState extends MusicBeatState
 
 		PlayState.storyWeek = songs[curSelected].week;
 
-		CoolUtil.difficulties = CoolUtil.defaultDifficulties.copy();
 		var diffStr:String = WeekData.getCurrentWeek().difficulties;
 		if (diffStr != null)
 			diffStr = diffStr.trim(); // Fuck you HTML5
@@ -410,15 +409,6 @@ class FreeplayState extends MusicBeatState
 			{
 				CoolUtil.difficulties = diffs;
 			}
-		}
-
-		if (CoolUtil.difficulties.contains(ClientPrefs.optionsDifficulty))
-		{
-			curDifficulty = Math.round(Math.max(0, CoolUtil.defaultDifficulties.indexOf(ClientPrefs.optionsDifficulty)) -1);
-		}
-		else
-		{
-			curDifficulty = 0;
 		}
 
 		var newPos:Int = CoolUtil.difficulties.indexOf(lastDifficultyName);
