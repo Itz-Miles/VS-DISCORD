@@ -8,11 +8,12 @@ import flixel.FlxCamera;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import openfl.utils.Assets;
+import flixel.util.FlxSave;
 
 using StringTools;
 
 class CoolUtil
-{	
+{
 	public static var difficulties:Array<String> = ['Easy', 'Normal', 'Hard'];
 
 	inline public static function quantize(f:Float, snap:Float)
@@ -40,10 +41,13 @@ class CoolUtil
 		return Paths.formatToSongPath(fileSuffix);
 	}
 
-	public static function getDifficultyIndex(arr:Array<String>, search:String):Int {
+	public static function getDifficultyIndex(arr:Array<String>, search:String):Int
+	{
 		var index:Int = 0;
-		for (i in 0...arr.length -1) {
-			if (arr[i] == search) {
+		for (i in 0...arr.length - 1)
+		{
+			if (arr[i] == search)
+			{
 				index = i;
 				break;
 			}
@@ -153,5 +157,11 @@ class CoolUtil
 		#else
 		FlxG.openURL(site);
 		#end
+	}
+
+	public static function getSavePath(folder:String = 'Itz_Miles'):String
+	{
+		@:privateAccess
+		return '${FlxG.stage.application.meta.get('company')}/${FlxSave.validate(FlxG.stage.application.meta.get('file'))}';
 	}
 }
