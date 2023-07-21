@@ -49,7 +49,7 @@ class IntroState extends MusicBeatState
 
 		super.create();
 
-		FlxG.save.bind('funkin');
+		FlxG.save.bind('funkin', CoolUtil.getSavePath());
 		ClientPrefs.loadPrefs();
 
 		Highscore.load();
