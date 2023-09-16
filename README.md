@@ -104,9 +104,16 @@ lime build mac
 Versus Discord is not an official Discord product. Not approved by or assosiated with Discord.inc
 
 ## Versus Discord Team
-* Miles Fuqua - Developer/Parallax3D <img src="./assets/shared/images/icons/miles.png" width="16">
+* name - contribution
+* name - contribution
+* name - contribution
+* name - contribution
+* name - contribution
+* name - contribution
+* name - contribution
+* name - contribution
+* Miles Fuqua - Backend/Frontend Developer <img src="./assets/shared/images/icons/miles.png" width="16">
 * github - [contributors](https://github.com/Itz-Miles/VS-Discord/graphs/contributors) <img src= "./assets/shared/images/icons/github.png" width="16">
-* the rest of the team
 
 ## Psych Engine
 * Shadow Mario - Programmer/Owner of Psych <img src="./assets/shared/images/icons/shadowmario.png" width="16">
